@@ -43,96 +43,72 @@ There will be a page leagues names and what teams are involved in it. And user c
 
 # User Stories
 
-1. As a user, I would like add a new fundraising project so that I can actually create it.
+1. As a user, I would like to view highlights videos about soccer
 
 - **Feature Tasks**:
- - Create an html form so that the user can insert his project information
- - Create a constructor function that creates an object associated with each project.
-  - Id (auto increment)
-  - Title 
-  - Image path (URL) 
-  - Goal (amount of money that the user wants)
-  - Story 
-  - Raised (the amount of money that the user gets)
-  - Category of the project (one of three categories [education, medical, non-profit]).
-  - Name of the user
-  - Location of the user
- - Create a function that will randomly generate random number for that amount of money that raised for each project (for the sake of the demo)
- - Store every project object in array.
- - Store the array of project in the local storage.
- - Filter the projects to three arrays based on category.
- - Store the three arrays in the local storage.
+ - Create a slider that contains images about football matches highlights
+ - use an api to render images and more informations about each highlight. the informations includes :
+  - image about the highlight video
+  - the teams in each video  
+- when user click on the button under the image a video will be shown.
 
 - **Acceptance Tests**:
- - Ensure that you update the projects array with the new project with new id.
- - Ensure you update the filtered arrays every time you create new project.
+ - Ensure that you each slide is connected to a video
+ - Ensure that user can move from video to another
+ - Ensure that the content is updated frequently
 
-2. As a user, I would like to keep a track of the donations so I can know how much I got in my project.
+2. As a user, I would like to search for matches
 
 - **Feature Tasks**:
- - Add an event listener to html element that holds the project information in the page that displays projects as cards view 
- - Create new html document that have the tags needed to display user project information.
- - Get the projects array from the local storage.
- - Get the html elements.
- - Create a function to filter the array of projects by id.
- - Assign each project information to it is suitable html tag.
- - Redirect the user to the page to display the project information.
+ - a page with a form with multiple ways of searching
+ - display results with images.
+ - a lot of usefull informations will be displayed
+ - when searching about matches by cities weather for that city will be provided
+ - display teams in the match with the corresponding team flag
 
 - **Acceptance Tests**:
- - Ensure that you entered the page of the selected project
+ - Ensure that search results are correct and relevant to the input.
 
 
-3. As a user, I would like to navigate through projects to determine which project to donat.
+3. As a user, I would like to read the latest news in the sport world.
 
 - **Feature Tasks**:
  - *Hompe page:*
-  - Get all the projects from local storage.
-  - Create function that will display projects randomly.
- - *Category-based page:*
-  - Get the category array from local storage.
-  - Create a function to display this array.
+  - display sport news in organised way to make them attractive and easy on the eye
+  - display image for each news section
+  - news will be updated frequently
 
 
 - **Acceptance Tests**:
- - Ensure in the category-based page that your displaying the projects correctly based on the category of the button that will redirect to this page.
+ - Ensure that the news are relevant to sports and updated.
 
 
-4. As user, I would like to select any project that I want to donate.
+4. As user, I would like to add matches to my wish-list
 
 - **Feature Tasks**:
- - Add event listener to the project in home page and category-based page.
- - Create function to get this project from array of projects in local storage.
- - Create function to display the project information in new document.
- - Create an event listener on a donation button to make a donation with specific amount and deduct the amount form the wallet amount.
- - save the id of the project and the amount of donation in object and push it to array.
- - Store the array in the local storage.
+ - add data base to save the matches that user choose
+ - allow user to sighn up in the website to have customised data
+ - when page loads data will be retrieved from data base to the local storage to maintain the login
 
 
 - **Acceptance Tests**:
- - 	Ensure the user have entered the correct project that he selected.
- - Ensure that you deduct the same amount the entered in the text input.
- - Ensure that the user have enough money in his wallet.
+ - Ensure the data base is working and connected to the server
+ - ensures that user can add information to the data base
+ - Ensure that the website will not require logging-in at each page using local storage
 
 
- 5.	As user, I would like to have a wallet to deposit amount of money for the sake of making a donation in several projects.
+ 5.	As user, I would like to search for a certain player and read his cv and other information about him.
 
  - **Feature Tasks**:
-  - Create a variable or object for a wallet.
-  - Create function to deposit specific amount of money to the wallet.
-  - Create function to withdraw specific amount of money from the wallet.
+  - Create a page that displays information about player
+  - implement a search form to let the user input the player name and search
+  - the result will include an image of the player along his personal data.
 
 - **Acceptance Tests**:
-  - Ensure that when you deposit or withdraw to update the local storage.
+  - ensures that the results are relevant to the input
 
-6. As user, I would like to have a chart to show me a statistics about my donations.
-- **Feature Tasks**:
- - Include a chartjs library in my wallet page.
- - Get the array of donations from local storage.
- - Display the chart.
-
-- **Acceptance Tests**:
--	Ensure that you clear that chart before every time you update it.
-
+# data base modeling
+![database](public/images/database/database-diagram.png)
 
 # Domain Modeling
 
