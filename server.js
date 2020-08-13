@@ -17,16 +17,18 @@ app.use(methodOverride('_method'));
 
 
 
-
-
-
-
-
-
-
-client.connect().then(() => {           // this is a promise and we need to start the server after it connects to the database
-    // app.listen
-    app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
-        console.log('server is listening to the port: ', PORT);
-    });
+app.get('/', (req, res) => {
+    res.render('./index.ejs');
 });
+
+app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
+    console.log('server is listening to the port: ', PORT);
+});
+
+
+// client.connect().then(() => {           // this is a promise and we need to start the server after it connects to the database
+//     // app.listen
+//     app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
+//         console.log('server is listening to the port: ', PORT);
+//     });
+// });
