@@ -1,3 +1,20 @@
+.wrapper {
+  margin: 0 auto;
+  width: 90%;
+}
+
+nav a{
+  font: 1.4em/1em sans-serif;
+  display: inline-block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: white;
+  text-align: center;   
+  
+}
+nav a:hover {
+  color: green;
+}
 .logo {
     width: 160px;
     height: 90px;
@@ -11,45 +28,10 @@
     margin-top: 130px;
     position: relative;
 }
-/* ///// */
-/* subnav for the sign up */
-/* 
-.subnav {
-    float: left;
-    overflow: hidden;
-  }
-  
-  .subnav .subnavbtn {
-    font-size: 16px;  
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-  }
-  
-  .subnav-content {
-    display: none;
-    position: absolute;
-    left: 0;
-    background-color: red;
-    width: 100%;
-    z-index: 1;
-  }
-  
-  .subnav-content a {
-    float: left;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .subnav-content a:hover {
-    background-color: #eee;
-    color: black;
-  }
-  
-  .subnav:hover .subnav-content {
-    display: block;
-  } */
+
+#logo{
+  float: left;
+}
+#main {
+  padding-top: 70px;
+}
