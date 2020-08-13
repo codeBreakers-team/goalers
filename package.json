@@ -1,11 +1,11 @@
 {
   "name": "goalers",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Table of Contents",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "ejs": "^3.1.3",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
+    "nodemon": "^2.0.4",
     "pg": "^8.3.0",
     "superagent": "^6.0.0"
   }

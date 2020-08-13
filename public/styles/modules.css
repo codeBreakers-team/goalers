@@ -1,0 +1,37 @@
+.wrapper {
+  margin: 0 auto;
+  width: 90%;
+}
+
+nav a{
+  font: 1.4em/1em sans-serif;
+  display: inline-block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: white;
+  text-align: center;   
+  
+}
+nav a:hover {
+  color: green;
+}
+.logo {
+    width: 160px;
+    height: 90px;
+    transition: all 0.5s ease;
+    margin-top: 0.9em;
+    padding-left:10%;
+    margin-top:12%;
+
+}
+#football{
+    margin-top: 130px;
+    position: relative;
+}
+
+#logo{
+  float: left;
+}
+#main {
+  padding-top: 70px;
+}

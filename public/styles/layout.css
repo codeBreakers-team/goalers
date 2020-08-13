@@ -1,0 +1,32 @@
+header {
+    width: 100%;
+    max-width: 100%;
+    position: fixed;
+    z-index: 999;
+    background: rgba(50,50,50,.95);
+    box-shadow: 0 10px 20px rgba(50,50,50,.95);
+}
+
+nav {
+    width: 60%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    justify-content: center;
+    float:right;
+    margin-top: 3%;
+}
+a {
+    background-color: transparent;
+    font-weight: 800;
+    line-height: 3.1em;
+    transition: all 0.5s ease;
+    height: fit-content;
+}
+
+p {
+    margin: 0 0 10px;
+    line-height: 1.65em;
+    text-indent: 30px;
+    padding: 10px;
+}

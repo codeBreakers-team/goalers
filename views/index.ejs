@@ -2,14 +2,19 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/index.css">
+
+   <-- <%- include('partials/head') %>  -->
+
 </head>
 
 <body>
-    <header></header>
+
+        <%- include('partials/header') %>
 
     <main>
         <!--  -->
@@ -55,16 +60,13 @@
         <!-- end of iframes -->
 
 
-
-
     </main>
+    <%- include('partials/footer') %>
 
-    <footer>
-        <p>copy</p>
-        <p>right</p>
-    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/app.js"></script>
+
+
 </body>
 
 </html>
