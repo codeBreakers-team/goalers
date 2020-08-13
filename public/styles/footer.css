@@ -47,7 +47,7 @@ footer{
 }
 
 .footer-distributed h3 span{
-	color:  #e0ac1c;
+	color:  #139b3d;
 }
 
 /* Footer links */
@@ -119,7 +119,8 @@ footer{
 /* Footer Right */
 
 .footer-distributed .footer-right{
-	width: 30%;
+    width: 30%;
+    padding-top: 18px;
 }
 
 .footer-distributed .footer-company-about{
