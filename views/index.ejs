@@ -7,7 +7,22 @@
     <%- include('partials/header') %>
     <main>
         <img src="/images/football.jpg" alt="football" id="football">
+    
+
+        <div class="added">
+            <% latestMatches.forEach((match, i) => { %>               
+                <section class="matchInfo latest-match-<%- i %>">
+                    <img class="matchThumbnail" src="<%= match.thumbnail %>" alt="">
+                    <h2 class="matchTitle"><%= match.title %></h2>
+                    <p class="teams"><%= match.team1 %> vs <%= match.team2 %></p>
+                    <div class="matchEmbed match-embed-<%- i %>"><%- match.embed %></div>
+               
+                </section>
+                <%  })  %>
+        </div>
     </main>
     <%- include('partials/footer') %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
