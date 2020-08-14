@@ -4,10 +4,21 @@
     <%- include('partials/head') %>
 </head>
 <body>
-    <%- include('partials/header') %>
-    <main>
-        <img src="/images/football.jpg" alt="football" id="football">
+    <%- include('partials/header') %> 
+    <div id="test">
+        <form class="form-3">
+            <p class="clearfix">
+            </p>
+            <p class="clearfix">
+                <input type="submit" name="submit" value="Sign in">
+            </p>       
+        </form>​
+    </div> 
     
+    
+    <main>
+        
+        <!-- <img src="/images/football.jpg" alt="football" id="football"> -->
 
         <div class="added">
             <% latestMatches.forEach((match, i) => { %>               
