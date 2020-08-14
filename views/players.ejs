@@ -8,14 +8,35 @@
 <body>
     <header>
          <!-- <%- include('partials/header') %>  -->
+         <link rel="stylesheet" href="./public/styles/searchPageStyle.css">
+
     </header>
 
     <main>
+
+
+        <form action="/searchplayer">
+            <label for="playerName">Player Name:</label><br>
+            <input type="text" id="playerNameId" name="playerName" value=""><br>
+            <input type="submit" value="Submit">
+          </form> 
         <h1>welcome to my page</h1><br>
 
+        <%       
+        if (typeof(player)=='undefined') { %>
 
-      <h1>  <%= player.strPlayer %> </h1>
-      <img src="<%= player.strThumb %>" alt="">
+            <%} else { %>  
+
+   
+            <h1>  <%= player.strPlayer %> </h1>
+            <img id="playerImage" width="200px" src="<%= player.strThumb %>" alt="">
+            <p id="playerDescription" width="200px"> <%= player.strDescriptionEN %>             
+            </p>
+
+            <% } %>
+
+
+    
 
     </main>
 

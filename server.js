@@ -39,15 +39,25 @@ app.get('/', (request, response) => {
         });
 });
 
-app.get('/palyers', (request, response) => {
-    // console.log('request: ',request.query.playerName);
+app.get('/searchplayer', (request, response) => {
+    console.log('request: ', request.query.playerName);
     let playerName = request.query.playerName;
     let link = `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${playerName}`;
     superagent.get(link).then((returnedData) => {
-        let playerObject = new Player(returnedData.body.player[0]);  
+        // console.log('returnedData: ',returnedData);
+        let playerObject = new Player(returnedData.body.player[0]);
+        console.log('playerObject: ',playerObject);
+
         response.render('players', { player: playerObject });
     });
 });
+
+app.get('/player', (request, response) => {
+
+
+    response.render('players')
+});
+
 
 app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
     console.log('server is listening to the port: ', PORT);
