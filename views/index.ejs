@@ -3,24 +3,22 @@
 <head>
     <%- include('partials/head') %>
 </head>
+
 <body>
     <%- include('partials/header') %> 
     <div id="test">
-        <form class="form-3">
-            <p class="clearfix">
-            </p>
-            <p class="clearfix">
-                <input type="submit" name="submit" value="Sign in">
-            </p>       
-        </form>​
+        <div id="form">
+            <p></p>
+            <h3>Welcome to GOALERS!</h3>
+            <p id="intro">Watch and stream all your favorite live sports. Plus fixtures, news, videos and others. </p>
+            <button onclick="window.location.href='#added'">Explore</button>
+            
+        </div>
     </div> 
     
-    
     <main>
-        
-        <!-- <img src="/images/football.jpg" alt="football" id="football"> -->
 
-        <div class="added">
+        <div class="added" id="added">
             <% latestMatches.forEach((match, i) => { %>               
                 <section class="matchInfo latest-match-<%- i %>">
                     <img class="matchThumbnail" src="<%= match.thumbnail %>" alt="">
