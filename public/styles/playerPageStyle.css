@@ -1,0 +1,60 @@
+#playerSearchForm {
+    font-size: 30px;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 150px;
+    padding: 20px;
+    background-color: blue;
+    text-align: center;
+}
+
+#playerNameLabel {
+    margin-left: 28%;
+}
+
+#playerNameInputText {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#searchButton {
+    background-color: #ffffff;
+    font-style: italic;
+    border-radius: 5px;
+}
+
+#playerInfoDiv {
+    background-color: #b6e08c;
+    padding: 30px 50px 0px 50px;
+    position: absolute;
+    top: 220px;
+    width: 100%;
+}
+
+#imageAndInfoDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+#playerImage {
+    border-radius: 10px;
+    margin: 10px;
+    width: 55%;
+}
+
+#playerBreifInfoDiv {
+    background-color: rgb(62, 116, 216);
+    margin: 10px;
+    border-radius: 10px;
+    width: 30%;
+    font-size: 30px;
+    padding: 70px 40px 70px 40px;
+    color: wheat;
+}
+
+#playerDescription {
+    font-size: 25px;
+    color: white;
+    padding: 20px 80px 20px 30px;
+}
