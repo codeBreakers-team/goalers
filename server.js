@@ -58,6 +58,12 @@ app.get('/player', (request, response) => {
     response.render('players')
 });
 
+app.get('/about-us', (request, response) => {
+
+
+    response.render('about-us')
+});
+
 
 app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
     console.log('server is listening to the port: ', PORT);
