@@ -34,7 +34,7 @@ exports.default=function (player){
     this.strHeight=player.strHeight;
     this.strWeight=player.strWeight;
     this.intLoved=player.intLoved;
-    this.strThumb=player.strThumb ;
+    this.strThumb=player.strThumb || 'https://sumo.cdn.tv2.no/imageapi/v2/img/58ac403f84ae6c3cc09441f9+v12?width=1920&height=1080&location=list';
     this.strCutout=player.strCutout;
     this.strRender=player.strRender;
     this.strBanner=player.strBanner;
