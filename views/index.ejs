@@ -56,9 +56,9 @@
 
 
         <!-- end of iframes -->
-        <!--  -->
+        <!-- start of leagues  -->
         <% Object.entries(leagues).forEach((leagueDataArr, i) => { %>
-            <h2 style="color: red;border: 5px solid brown; margin-bottom: 20px;"> <%= leagueDataArr[0] %></h4>
+            <h2 style="color: red;border: 5px solid brown; margin-bottom: 20px;"> <%= leagueDataArr[0] %></h2>
                 
                 <% leagueDataArr[1].forEach(matchData => { %>
                     <p style="color: black;"> <%= matchData.matchName %> </p>
