@@ -27,16 +27,54 @@ app.get('/aaaaa', (req, res) => {  // home page
 });
 
 app.get('/', (request, response) => {
+//slider
+let matchesArr = [];
+     let link = `https://www.scorebat.com/video-api/v1/`;
+     superagent.get(link)
+         .then((returnedData) => {
+            //  let matchesArr = [];
+             for (let i = 0; i < 5; i++) {
+                 matchesArr.push(new LastMatch(returnedData.body[i]));
+             }
+            //  response.render('index', { latestMatches: matchesArr });
+         });
+        //end of slider
+        //start of leagues latest matches results
+        let allLeaguesObj = {};
+        //let allLeaguesNames= [];  //////////
+    let leaguesLink = 'https://www.thesportsdb.com/api/v1/json/1/all_leagues.php';
+    superagent.get(leaguesLink).then((returnedLeagueData) => {
+        
+        for (let i = 0; i < 4; i++) {                                      //give 4 leagues
+            let leagueName = returnedLeagueData.body.leagues[i].strLeague;
+            //allLeaguesNames.push(leagueName);   //////////
+            let leagueId = returnedLeagueData.body.leagues[i].idLeague;
+            let latestLeagueMatchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=${leagueId}`;
+            
+            superagent.get(latestLeagueMatchesLink).then((returnedLatestLeagueMatchesData) => {
+                let oneLeagueMatchesArr = [];
+                for (let j = 0; j < 4; j++) {
+                    oneLeagueMatchesArr.push(new LeagueMatch(returnedLatestLeagueMatchesData.body.events[j]));
+                }
 
-    let link = `https://www.scorebat.com/video-api/v1/`;
-    superagent.get(link)
-        .then((returnedData) => {
-            let matchesArr = [];
-            for (let i = 0; i < 5; i++) {
-                matchesArr.push(new LastMatch(returnedData.body[i]));
-            }
-            response.render('index', { latestMatches: matchesArr });
-        });
+                allLeaguesObj[`${leagueName}`] = oneLeagueMatchesArr;
+                if(i==3){
+                    console.log(allLeaguesObj);
+                    response.render('index', { latestMatches: matchesArr, leagues: allLeaguesObj });
+                }
+            });
+
+        }
+        //console.log(allLeaguesNames); //////////
+        //console.log(allLeaguesObj);
+        //response.send(allLeaguesObj);
+        // response.render('index', { latestMatches: leaguesArr });
+    })
+    // .then((allLeaguesObj) => {
+    //     console.log(allLeaguesObj);
+    //     response.send(allLeaguesObj);
+    // });
+
 });
 
 app.get('/searchplayer', (request, response) => {
@@ -46,7 +84,7 @@ app.get('/searchplayer', (request, response) => {
     superagent.get(link).then((returnedData) => {
         // console.log('returnedData: ',returnedData);
         let playerObject = new Player(returnedData.body.player[0]);
-        console.log('playerObject: ',playerObject);
+        console.log('playerObject: ', playerObject);
 
         response.render('players', { player: playerObject });
     });
@@ -78,7 +116,19 @@ function getLastMatches() {
 }
 
 
-
+function LeagueMatch(match){
+    this.matchName = match.strEvent;
+    this.leagueName = match.strLeague;
+    this.homeTeam = match.strHomeTeam;
+    this.homeTeamId = match.idHomeTeam;
+    this.awayTeamId = match.idAwayTeam;
+    this.homeTeamScore = match.intHomeScore;
+    this.awayTeam = match.strAwayTeam;
+    this.awayTeamScore = match.intAwayScore;
+    this.eventImg = match.strThumb;
+    this.matchGoalsVideo = match.strVideo;
+    return this;
+}
 
 
 // client.connect().then(() => {           // this is a promise and we need to start the server after it connects to the database
