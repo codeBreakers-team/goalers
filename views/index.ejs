@@ -2,21 +2,29 @@
 <html lang="en">
 
 <head>
-    
-
-   <-- <%- include('partials/head') %>  -->
-   <!-- <link rel="stylesheet" href="styles/index.css"> -->
+    <%- include('partials/head') %>
 </head>
 
 <body>
-
         <%- include('partials/header') %>
-
+        <div id="header-image">
+            <div id="form">
+                <p></p>
+                <h3>Welcome to GOALERS!</h3>
+                <p id="intro">Watch and stream all your favorite live sports. Plus fixtures, news, videos and others. </p>
+                <button onclick="window.location.href='#added'">Explore</button>
+                
+            </div>
+        </div> 
+        
     <main>
-        <!--  -->
-        <!--  -->
-        <img src="/images/football.jpg" alt="football" id="football">
-        <div class="slideshow-container">
+        <div class="introduction">
+            <h3 id="sub-header">Goalers helps you watch all your favorite live sports including La Liga, Ligue 1, Copa Libertadores, Copa Sudamericana, and MLW.</h3>
+            <h3> Here is some matches we chose for you, <span>ENJOY!</span></h3>
+
+       
+
+        <div class="slideshow-container" id="added">
             <!-- Full-width images with number and caption text -->
             <% latestMatches.forEach((match, i) => { %>
             <div class="mySlides fade">
@@ -51,12 +59,10 @@
 
 
         <br /> <br /> <br /> <br />
-        <p>--------------------------------------------------------------------------------------------------</p>
-
 
         <!-- end of iframes -->
 
-
+    </div>
     </main>
     <%- include('partials/footer') %>
 
