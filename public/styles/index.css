@@ -96,6 +96,7 @@ border: none;
   display: flex;
   background-color: black;
   padding-left: 10px;
+  flex-wrap: wrap;
   
 }
 .single-league-name:nth-of-type(1){
@@ -118,15 +119,17 @@ border: none;
 text-align: center;
   flex-direction: row;
   justify-content: space-between;
-  /* padding: 10px 0px; */
+  flex-wrap: wrap;
+
 }
 .one-match{
   display: flex;
   flex-direction: column;
   width: 24%;
-    /* border: 2px solid; */
+
     padding: 5px 0px;
     font-size: 1.2em;
+    min-width: 175px;
 }
 .league-vs{
 background-image: url(../images/league-background/upper-vs.jpg);
