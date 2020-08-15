@@ -96,6 +96,7 @@ border: none;
   display: flex;
   background-color: black;
   padding-left: 10px;
+  flex-wrap: wrap;
   
 }
 .single-league-name:nth-of-type(1){
@@ -111,4 +112,31 @@ border: none;
 }
 .HorizontalScroll .HorizontalScrollMouse .VideoPlayerStoriesC{
   display: none !important;
+}
+/* results in tabs section (leagues) */
+
+.league-matches{
+text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+.one-match{
+  display: flex;
+  flex-direction: column;
+  width: 24%;
+
+    padding: 5px 0px;
+    font-size: 1.2em;
+    min-width: 175px;
+}
+.league-vs{
+background-image: url(../images/league-background/upper-vs.jpg);
+color: yellow !important;
+  line-height: 3em;
+}
+.league-vs-result{
+  background-image: url(../images/league-background/down-result.jpg);
+  line-height: 4em;
 }

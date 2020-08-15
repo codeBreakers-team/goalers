@@ -71,10 +71,12 @@
         </div>
             <div class="each-league-matches">
             <% Object.entries(leagues).forEach((leagueDataArr, i) => { %>
-                <section class="league<%= i %> league-matches" style="border: solid 2px rgb(131, 6, 131); display: none;">
+                <section class="league<%= i %> league-matches" style="display: none;">
                 <% leagueDataArr[1].forEach(matchData => { %>
-                    <p style="color: black;"> <%= matchData.matchName %> </p>
-                    <p style="color: black;">result: <%= matchData.homeTeamScore%> : <%= matchData.awayTeamScore %> </p>
+                    <div class="one-match">
+                    <p class="league-vs" > <%= matchData.matchName %> </p>
+                    <p class="league-vs-result">result: <%= matchData.homeTeamScore%> : <%= matchData.awayTeamScore %> </p>
+                </div>
                     <% }) %>
                 </section>
                 <% }) %>
