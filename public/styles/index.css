@@ -84,3 +84,31 @@
   width: 977px;
   height: 39vw;
 }
+.single-league-name{
+border: none;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin-right: 3%;
+    font-size: 1em;
+}
+.leagues-names-container{
+  display: flex;
+  background-color: black;
+  padding-left: 10px;
+  
+}
+.single-league-name:nth-of-type(1){
+  background-color: red;
+}
+
+.single-league-name:hover{
+  background-color: gray;
+}
+.matchEmbed{
+  width: 80%;
+  margin: 0px auto 0px auto;
+}
+.HorizontalScroll .HorizontalScrollMouse .VideoPlayerStoriesC{
+  display: none !important;
+}
