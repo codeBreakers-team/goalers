@@ -4,13 +4,66 @@
     </div>
     <div class="wrapper">
         <nav>
-            <a href="#"><i class="fas fa-house-user"></i> HOME</a>
+            <a href="/"><i class="fas fa-house-user"></i> HOME</a>
             <a href="#"><i class="fas fa-users"></i> TEAMS</a>
             <a href="/player"><i class="fas fa-running"></i> PLAYERS</a>
             <a href="#"><i class="fas fa-address-card"></i> ABOUT</a>
+            <div class="dropdown">
             <a href="#"><i class="fas fa-user-circle" style="font-size: 35px;"></i></a>
+            <div class="dropdown-content">
+                <a href="#" onclick="openForm()">Log in</a>
+                <a href="#" onclick="openSignForm()">Sign up</a>
+            </div>
+        </div>
         </nav>
+
+        <div class="form-popup" id="loginForm">
+            <form action="/" class="form-container">
+              <h1>Login</h1><br><br><br>
+          
+              <br><label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="email" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required>
+          
+              <button type="submit" class="btn">Login</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+          </div>
+
+          <div class="form-popup" id="signUpForm">
+            <form action="/" class="form-container">
+              <h1>Sign up</h1><br><br><br><br>
+          
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="email" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required>
+          
+              <button type="submit" class="btn">Sign up</button>
+              <button type="button" class="btn cancel" onclick="closeSignForm()">Close</button>
+            </form>
+          </div>
     </div>
+    
 </header>
 
+<script>
+    function openForm() {
+      document.getElementById("loginForm").style.display = "block";
+    }
+    
+    function closeForm() {
+      document.getElementById("loginForm").style.display = "none";
+    }
+    function openSignForm() {
+      document.getElementById("signUpForm").style.display = "block";
+    }
+    
+    function closeSignForm() {
+      document.getElementById("signUpForm").style.display = "none";
+    }
+</script> 
 <!-- <i class="fas fa-futbol" style="font-size: 20px;"></i> -->

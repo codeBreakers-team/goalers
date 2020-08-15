@@ -59,7 +59,6 @@ app.get('/', (request, response) => {
 
                     allLeaguesObj[`${leagueName}`] = oneLeagueMatchesArr;
                     if (i == 3) {
-                        console.log(allLeaguesObj);
                         response.render('index', { latestMatches: matchesArr, leagues: allLeaguesObj });
                     }
                 });
