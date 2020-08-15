@@ -15,11 +15,12 @@
 .text {
   color: #f2f2f2;
   font-size: 15px;
-  padding: 8px 12px;
+  /* padding: 8px 12px; */
   /* position: absolute;
   bottom: 8px; */
   width: 100%;
   text-align: center;
+  background-color: black;
 }
 
 /* Number text (1/3 etc) */
@@ -77,4 +78,37 @@
     justify-content: center;
     align-items: center;
     align-content: space-around;
+}
+/* image in slider */
+.mySlides img{
+  width: 977px;
+  height: 39vw;
+}
+.single-league-name{
+border: none;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin-right: 3%;
+    font-size: 1em;
+}
+.leagues-names-container{
+  display: flex;
+  background-color: black;
+  padding-left: 10px;
+  
+}
+.single-league-name:nth-of-type(1){
+  background-color: red;
+}
+
+.single-league-name:hover{
+  background-color: gray;
+}
+.matchEmbed{
+  width: 80%;
+  margin: 0px auto 0px auto;
+}
+.HorizontalScroll .HorizontalScrollMouse .VideoPlayerStoriesC{
+  display: none !important;
 }

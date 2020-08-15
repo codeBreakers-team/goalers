@@ -33,12 +33,33 @@ $('button.watch').on('click',function(event){
      console.log(a);
     $('.matchEmbed').hide();
     $(`div.${a}`).show();
+   let x = document.getElementsByClassName("VideoPlayerStoriesC");
+  for (let i = 0; i < x.length; i++) {
+    x[i].style.display = "none";}
+    let y = document.getElementsByClassName("EmbedCodeWrapper");
+  for (let i = 0; i < y.length; i++) {
+    y[i].style.display = "none";}
     //content = $(`div.${a}`).innerHTML;
     content = document.getElementsByClassName(`${a}`)[1].innerHTML;
-    console.log(content);
 })
 
 // iframe.contentWindow.document.getElementsByTagName("H1")[0];
 //document.getElementsByClassName('matchEmbed')[0].children[0].children[0].contentWindow
-
+// index tabs
+document.getElementsByClassName('league-matches')[0].style.display = 'block'; //displays the first leage matches section
+function openMatches(evt) {
+  var i, x, tablinks;
+  var selectedClassName = evt.currentTarget.classList[1];
+  x = document.getElementsByClassName("league-matches");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("single-league-name");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].style.backgroundColor = 'black';
+  }
+  document.getElementsByClassName(`${selectedClassName}`)[1].style.display = "block";
+  document.getElementsByClassName(`${selectedClassName}`)[0].style.backgroundColor = 'red';
+  // evt.currentTarget.backgroundColor = 'red';
+}
 
