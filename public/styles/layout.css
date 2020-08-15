@@ -15,12 +15,12 @@ nav {
     border-radius: 5px;
     justify-content: center;
     float:right;
-    margin-top: 3%;
+    margin-top: 2%;
 }
 a {
     background-color: transparent;
     font-weight: 800;
-    line-height: 3.1em;
+    line-height: 1.3em;
     transition: all 0.5s ease;
     height: fit-content;
 }
