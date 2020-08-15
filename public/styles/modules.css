@@ -27,10 +27,11 @@ nav a:hover {
 #header-image{
   width: 100%;
   background-image: url('/images/ball.jpg') ;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   position: relative;
-  top: 130px;
-  height: 689px;
+  top: 115px;
+  /* background-size: cover; */
+  height: 559px;
   
 }
 #football{
@@ -78,13 +79,14 @@ nav a:hover {
 /* /////////////////////////////// */
 .introduction{
   font-family: 'Pangolin', cursive;
-  background-color:rgba(50,50,50,.98);
+  background-color:rgba(50,50,50,.90);
   color: aliceblue;
   padding:5%;
 }
 .introduction h3{
   font-size: 50px;
-  padding: 3%;
+  margin:4%;
+  margin-top: 8%;
   text-align: center;
 }
 .introduction h3 span{
@@ -92,6 +94,20 @@ nav a:hover {
 }
 .introduction #sub-header{
   font-size: 35px;
-  padding: 5%;
+  padding: 2%;
   text-align: center;
+}
+.text button{
+  display: block;
+   padding: 19px 39px 18px 39px;
+   color: #FFF;
+   margin: 0 auto;
+   background: green;
+   font-size: 18px;
+   text-align: center;
+   font-style: normal;
+   width: 90%;
+   border: 1px solid green;
+   border-width: 1px 1px 3px;
+   margin-bottom: 10px;
 }
