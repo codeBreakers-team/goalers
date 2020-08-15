@@ -122,11 +122,11 @@ function LeagueMatch(match){
     this.homeTeam = match.strHomeTeam;
     this.homeTeamId = match.idHomeTeam;
     this.awayTeamId = match.idAwayTeam;
-    this.homeTeamScore = match.intHomeScore;
+    this.homeTeamScore = match.intHomeScore || 0;
     this.awayTeam = match.strAwayTeam;
-    this.awayTeamScore = match.intAwayScore;
-    this.eventImg = match.strThumb;
-    this.matchGoalsVideo = match.strVideo;
+    this.awayTeamScore = match.intAwayScore || 0;
+    this.eventImg = match.strThumb || 'not found';
+    this.matchGoalsVideo = match.strVideo || 'not found';
     return this;
 }
 

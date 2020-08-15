@@ -33,6 +33,7 @@
             </div>
             
             <%  })  %>
+            
         </div>
         <br>
         <div style="text-align:center">
@@ -55,6 +56,19 @@
 
 
         <!-- end of iframes -->
+        <!--  -->
+        <% Object.entries(leagues).forEach((leagueDataArr, i) => { %>
+            <h2 style="color: red;border: 5px solid brown; margin-bottom: 20px;"> <%= leagueDataArr[0] %></h4>
+                
+                <% leagueDataArr[1].forEach(matchData => { %>
+                    <p style="color: black;"> <%= matchData.matchName %> </p>
+                    <p style="color: black;">result: <%= matchData.homeTeamScore%> : <%= matchData.awayTeamScore %> </p>
+
+               <% }) %>
+
+            
+            <%  })  %>
+        <!--  -->
 
 
     </main>
