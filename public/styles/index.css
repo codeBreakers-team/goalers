@@ -112,3 +112,28 @@ border: none;
 .HorizontalScroll .HorizontalScrollMouse .VideoPlayerStoriesC{
   display: none !important;
 }
+/* results in tabs section (leagues) */
+
+.league-matches{
+text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+  /* padding: 10px 0px; */
+}
+.one-match{
+  display: flex;
+  flex-direction: column;
+  width: 24%;
+    /* border: 2px solid; */
+    padding: 5px 0px;
+    font-size: 1.2em;
+}
+.league-vs{
+background-image: url(../images/league-background/upper-vs.jpg);
+color: yellow !important;
+  line-height: 3em;
+}
+.league-vs-result{
+  background-image: url(../images/league-background/down-result.jpg);
+  line-height: 4em;
+}
