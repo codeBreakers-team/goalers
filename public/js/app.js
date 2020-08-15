@@ -46,7 +46,7 @@ $('button.watch').on('click',function(event){
 // iframe.contentWindow.document.getElementsByTagName("H1")[0];
 //document.getElementsByClassName('matchEmbed')[0].children[0].children[0].contentWindow
 // index tabs
-document.getElementsByClassName('league-matches')[0].style.display = 'block'; //displays the first leage matches section
+document.getElementsByClassName('league-matches')[0].style.display = 'flex'; //displays the first leage matches section
 function openMatches(evt) {
   var i, x, tablinks;
   var selectedClassName = evt.currentTarget.classList[1];
@@ -58,7 +58,7 @@ function openMatches(evt) {
   for (i = 0; i < x.length; i++) {
     tablinks[i].style.backgroundColor = 'black';
   }
-  document.getElementsByClassName(`${selectedClassName}`)[1].style.display = "block";
+  document.getElementsByClassName(`${selectedClassName}`)[1].style.display = "flex";
   document.getElementsByClassName(`${selectedClassName}`)[0].style.backgroundColor = 'red';
   // evt.currentTarget.backgroundColor = 'red';
 }
