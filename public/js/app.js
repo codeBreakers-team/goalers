@@ -33,9 +33,14 @@ $('button.watch').on('click',function(event){
      console.log(a);
     $('.matchEmbed').hide();
     $(`div.${a}`).show();
+   let x = document.getElementsByClassName("VideoPlayerStoriesC");
+  for (let i = 0; i < x.length; i++) {
+    x[i].style.display = "none";}
+    let y = document.getElementsByClassName("EmbedCodeWrapper");
+  for (let i = 0; i < y.length; i++) {
+    y[i].style.display = "none";}
     //content = $(`div.${a}`).innerHTML;
     content = document.getElementsByClassName(`${a}`)[1].innerHTML;
-    console.log(content);
 })
 
 // iframe.contentWindow.document.getElementsByTagName("H1")[0];
