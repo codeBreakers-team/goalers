@@ -1,4 +1,4 @@
-exports.default=function (match) {
+exports.default = function(match) {
     this.title = match.title;
     this.embed = match.embed;
     this.thumbnail = match.thumbnail;

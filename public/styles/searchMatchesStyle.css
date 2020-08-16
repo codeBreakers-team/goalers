@@ -1,10 +1,9 @@
+body{
+    background-color: rgb(236, 236, 27);
+}
 main {
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 120px;
-    background-color: rgb(236, 236, 27);
-    padding: 40px;
 }
 
 #searchCategoryUl {
@@ -35,30 +34,7 @@ main {
 
 #searchCategoryLeague {}
 
-#countrySearchForm {
-    display: none !important;
-    font-size: 30px;
-    width: fit-content;
-    display: flex;
-    position: relative;
-    background-color: violet;
-    text-align: center;
-}
 
-#playerNameLabel {
-    margin-left: 28%;
-}
-
-#playerNameInputText {
-    margin-right: 10px;
-    margin-left: 10px;
-}
-
-#searchButton {
-    background-color: #ffffff;
-    font-style: italic;
-    border-radius: 5px;
-}
 
 #playerInfoDiv {
     background-color: #b6e08c;
@@ -94,3 +70,39 @@ main {
     color: white;
     padding: 20px 80px 20px 30px;
 }
+
+/*  */
+.single-search-name{
+    border: none;
+        background-color: black;
+        color: white;
+        padding: 5px;
+        margin-right: 3%;
+        font-size: 1em;
+    }
+    .leagues-names-container{
+      display: flex;
+      background-color: black;
+      padding-left: 10px;
+      flex-wrap: wrap;
+      
+    }
+    .single-search-name:nth-of-type(1){
+      background-color: red;
+    }
+    
+    .single-search-name:hover{
+      background-color: gray;
+    }
+    .match-search-tabs-container{
+        margin: 8em auto 0px auto;
+        width: 85%;
+    }
+    .searchForm{
+        width: 29%;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0px;
+        font-size: 1.2em;
+    }
+    /*  */
