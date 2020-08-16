@@ -105,7 +105,7 @@ app.get('/matches', (request, response) => {
     superagent.get(link).then((returnedData) => {
         console.log('returnedData.body: ', returnedData.body)
 
-        response.render('search-matches', { countries: returnedData.body });
+        response.render('search-matches', { countries: returnedData.body.countries });
     });
 
 
