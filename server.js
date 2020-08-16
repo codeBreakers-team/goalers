@@ -130,14 +130,16 @@ app.post('/', saveUser);
 function saveUser(req,res){
     console.log(req.body)
   let {username,email,psw} = req.body;
-  let SQL = 'INSERT into user(username,email,psw) VALUES ($1, $2, $3);';
+  let SQL = 'INSERT into account(username,email,psw) VALUES ($1, $2, $3);';
   let values = [username,email,psw];
 
   return client.query(SQL, values).then( ()=>{
-    SQL = 'SELECT * FROM user WHERE email = $1;';
-    values = [req.body.email];
-    console.log(req.body, data.rows[0])
-    res.redirect(`/${data.rows[0].id}`)
+    let SQL2 = 'SELECT * FROM account WHERE email = $1;';
+    let values2 = [req.body.email];
+    return client.query(SQL2,values2).then( data => {
+        console.log(req.body, data.rows[0])
+    res.redirect(`/${data.rows[0].id}`);
+      }).catch(err => console.log('first',err));
     }).catch(err => console.log(err));
 }
 
@@ -166,7 +168,8 @@ function LeagueMatch(match) {
 }
 
 
-client.connect().then(() => {           // this is a promise and we need to start the server after it connects to the database
+client.connect().then(() => { 
+    console.log('connected')          // this is a promise and we need to start the server after it connects to the database
     // app.listen
     app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
         console.log('server is listening to the port: ', PORT);
