@@ -16,75 +16,101 @@
     <main>
 
 
+        <div class="match-search-tabs-container">
+            <div class="leagues-names-container">
+                <button id="searchByCountry" class="single-search-name byCountryForm" onclick="openSearch(event)">
+                    Country
+                </button>
+                <button id="searchByTeam" class="single-search-name byTeamForm" onclick="openSearch(event)"> Team
+                </button>
 
-        <ul id="searchCategoryUl">
-            <li id="searchCategoryLabel" class="searchCategoryLi">Search By</li>
-            <div>
-                <li id="searchCategoryCountry" class="searchCategoryLi">Country</li>
-                <form id="countrySearchForm" action="/searchplayer">
-                    <label id="countryLabel" for="countryInputText">Country</label><br>
-                    <input type="text" id="countryInputText" name="country" value=""><br>
-                    <input id="searchButton" type="submit" value="Search">
-                </form>
+                <button id="searchByPlayer" class="single-search-name byPlayerForm" onclick="openSearch(event)"> Player
+                </button>
+                <button id="searchByLeague" class="single-search-name byLeagueForm" onclick="openSearch(event)"> League
+                </button>
             </div>
-            <li id="searchCategoryTeam" class="searchCategoryLi">Team</li>
-            <li id="searchCategoryPlayer" class="searchCategoryLi">Player</li>
-            <li id="searchCategoryLeague" class="searchCategoryLi">League</li>
-        </ul>
 
 
+            <div class="each-league-matches">
+                <section class="byCountryForm searchForm" style="display: none;">
+                    <form id="countrySearchForm" action="/searchByCountry" method="GET">
+                        <label>Country: <input id="countryInputText" type="text" name="country"> </label> <br />
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
+                </section>
+            </div>
+
+            <div class="each-league-matches">
+                <section class="byTeamForm searchForm" style="display: none;">
+                    <form id="teamSearchForm" action="/searchMatchesByTeamName" method="GET">
+                        <label>Team: <input id="teamInputText" type="text" name="teamName"> </label> <br />
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
+                </section>
+            </div>
+
+            <div class="each-league-matches">
+                <section class="byPlayerForm searchForm" style="display: none;">
+                    <form id="playerSearchForm" action="/searchMatchesByName" method="GET">
+                        <label>Player: <input id="playerInputText" type="text" name="player"> </label> <br />
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
+                </section>
+            </div>
+
+            <div class="each-league-matches">
+                <section class="byLeagueForm searchForm" style="display: none;">
+
+                    <form id="leagueSearchForm" action="/searchMatchesByLeagueName" method="GET">
+
+                        <label for="leagueInputList">Choose league name from the list:</label>
+                        <input list="leaguesDataList" name="leagueInputList" id="leagueInputList">
+                        <datalist id="leaguesDataList">
+                            <% if(typeof(leagues)!=='undefined'){ %>
+
+                                <% leagues.forEach(league => { %>
+                                <option value=<%= league.idLeague %>><%= league.strLeague %></option>
+                                <%  })  %>
+                                <% } %>
 
 
-        <%       
-        if (typeof(player)=='undefined') { %>
+                            </datalist>
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
+                </section>
+            </div>
+        </div>
+        <% if(typeof(matches)!=='undefined'){ %>
+            <div class="all-matches-search-result">
+                <% matches.forEach((match, i) => { %>
+                    <section class="each-match-serchResult">
+                        <h3>
+                            <%= match.strEvent %>
+                        </h3>
+                        <h4>
+                            <%= match.strLeague %>
+                        </h4>
+                        <h4>
+                            <%= match.dateEvent %>
+                        </h4>
+                        <h4>
+                            <%= match.strTime %>
+                        </h4>
+                        <form class="add-to-wishList" action="/addMatchToWishList" method="POST">
+                            <input type="hidden" name="matchId" value="<%= match.idEvent %>">
+                            <input type="hidden" name="matchName" value="<%= match.strEvent %>">
+                            <input type="hidden" name="matchDate" value="<%= match.dateEvent %>">
+                            <input type="hidden" name="matchTime" value="<%= match.strTime %>">
+                            <input type="hidden" name="homeTeam" value="<%= match.strHomeTeam %>">
+                            <input type="hidden" name="awayTeam" value="<%= match.strAwayTeam %>">
 
-            <%} else { %>
+                            <button type="submit" class="add-wishList">add to wishList</button>
+                        </form>
+                    </section>
+                    <%  })  %>
+            </div>
 
-                <div id="playerInfoDiv">
-                    <div id="imageAndInfoDiv">
-                        <img id="playerImage" src="<%= player.strThumb %>" alt="">
-                        <div id=playerBreifInfoDiv>
-                            <h1>
-                                <%= player.strPlayer %>
-                            </h1>
-                            <h3>Nationality:
-                                <%= player.strNationality %>
-                            </h3>
-                            <h3>Teams:
-                                <%= player.strTeam  %>,
-                                    <%= player.strTeam2  %>
-                            </h3>
-                            <h3>Born Date:
-                                <%= player.dateBorn %>
-                            </h3>
-                            <h3>Gender:
-                                <%= player.strGender %>
-                            </h3>
-                            <h3>Side:
-                                <%= player.strSide %>
-                            </h3>
-                            <h3>Position:
-                                <%= player.strPosition %>
-                            </h3>
-                            <h3>Facebook:
-                                <%= player.strFacebook %>
-                            </h3>
-                            <h3>Height:
-                                <%= player.strHeight %>
-                            </h3>
-                            <h3>Weight :
-                                <%= player.strWeight %>
-                            </h3>
-                        </div>
-                    </div>
-                    <p id="playerDescription">
-                        <%= player.strDescriptionEN %>
-                    </p>
-                </div>
-                <% } %>
-
-
-
+            <% } %>
 
 
 
@@ -97,7 +123,8 @@
 
 
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/matches.js"></script>
 </body>
 
 </html>
