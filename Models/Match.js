@@ -59,8 +59,5 @@ exports.default = function(match) {
     this.strTweet3 = match.strTweet3;
     this.strVideo = match.strVideo;
     this.strPostponed = match.strPostponed;
-    this.strLocked = match.strLocked;
-    exports.default.all.push(this);
+    this.strLocked = match.strLocked
 }
-
-exports.default.all = [];

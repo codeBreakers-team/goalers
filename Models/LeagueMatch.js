@@ -1,4 +1,4 @@
-exports.default=function(match) {
+exports.default = function(match) {
     this.matchName = match.strEvent;
     this.leagueName = match.strLeague;
     this.homeTeam = match.strHomeTeam;
