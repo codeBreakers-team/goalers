@@ -17,7 +17,7 @@ app.use(methodOverride('_method'));
 
 
 const Player = require("./Models/Player").default;
-const LastMatch = require("./Models/LastMatch").default;
+const LastMatch = require("./Models/LastMatch.js").default;
 const LeagueMatch = require("./Models/LeagueMatch").default;
 const Match = require("./Models/Match").default;
 
@@ -128,8 +128,9 @@ app.get('/matches/searchByCountry', (request, response) => {
 });
 
 //get matches using team name
-app.get('/matches/searchMatchesByTeamName', (request, response) => {
+app.get('/matches/searchMatchesByTeamName', (request, response, next) => {
     let teamName = request.query.teamName;
+    let matchesArray = [];
     // console.log('teamName: ', teamName);
 
     let teamNamelink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
@@ -143,15 +144,52 @@ app.get('/matches/searchMatchesByTeamName', (request, response) => {
                 if (matchesData.body && matchesData.body.events && matchesData.body.events.length) {
                     matchesData.body.events.forEach(event => {
                         let match = new Match(event);
+                        matchesArray.push(match);
                         // console.log(match);
                     });
                 }
+                console.log('matches: ', matchesArray);
+                response.render('search-matches', { matches: matchesArray });
+            }).catch(e => {
+                console.log(e);
             });
-
         });
+
     });
-    console.log('matchesReult: ', Match.all);
-    response.render('search-matches', { matches: Match.all });
+});
+
+
+
+//get matches league
+app.get('/matches/searchMatchesByLeagueName', (request, response) => {
+    let leagueId = request.query.leagueId;
+    let matchesArray = [];
+
+    // console.log('leagueId: ', leagueId);
+
+    let leagueIdlink = `https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${leagueId}`;
+    superagent.get(leagueIdlink).then((returnedData) => {
+        // console.log('returnedData: ', returnedData.body.events);
+
+        // console.log('Teams result: ', returnedData.body.teams);     
+        // console.log('element: ', element.idTeam);
+        // console.log('matchesData: ', matchesData.body.events);
+        if (returnedData.body && returnedData.body.events && returnedData.body.events.length) {
+            returnedData.body.events.forEach(event => {
+
+                let match = new Match(event);
+                matchesArray.push(match);
+
+
+                // console.log(match);
+            });
+        }
+
+        console.log('matchesReult: ', matchesArray);
+        response.render('search-matches', { matches: matchesArray });
+
+
+    });
 });
 
 
