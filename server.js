@@ -128,33 +128,43 @@ app.get('/matches/searchByCountry', (request, response) => {
 });
 
 //get matches using team name
-app.get('/matches/searchMatchesByTeamName', (request, response, next) => {
+app.get('/matches/searchMatchesByTeamName', (request, response) => {
     let teamName = request.query.teamName;
     let matchesArray = [];
+    let idsArray = [];
     // console.log('teamName: ', teamName);
 
     let teamNamelink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
     superagent.get(teamNamelink).then((returnedData) => {
+
         // console.log('Teams result: ', returnedData.body.teams);
         returnedData.body.teams.forEach(element => {
             // console.log('element: ', element.idTeam);
-            let matchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${element.idTeam}`;
+            idsArray.push(element.idTeam);
+        });
+
+        console.log(idsArray);
+
+
+        for (var i = 0; i < idsArray.length; i++) {
+            let j = i;
+            let matchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idsArray[i]}`;
+
             superagent.get(matchesLink).then((matchesData) => {
                 // console.log('matchesData: ', matchesData.body.events);
                 if (matchesData.body && matchesData.body.events && matchesData.body.events.length) {
-                    matchesData.body.events.forEach(event => {
+                    matchesData.body.events.map((event) => {
                         let match = new Match(event);
                         matchesArray.push(match);
-                        // console.log(match);
                     });
                 }
-                console.log('matches: ', matchesArray);
-                response.render('search-matches', { matches: matchesArray });
-            }).catch(e => {
-                console.log(e);
-            });
-        });
 
+                if (j == idsArray.length - 1) {
+                    console.log('matchesArray: ', matchesArray);
+                    response.render('search-matches', { matches: matchesArray });
+                }
+            });
+        };
     });
 });
 
@@ -178,15 +188,13 @@ app.get('/matches/searchMatchesByLeagueName', (request, response) => {
             returnedData.body.events.forEach(event => {
 
                 let match = new Match(event);
-                matchesArray.push(match);
-
 
                 // console.log(match);
             });
         }
 
-        console.log('matchesReult: ', matchesArray);
-        response.render('search-matches', { matches: matchesArray });
+        console.log('matchesReult: ', Match.all);
+        response.render('search-matches', { matches: Match.all });
 
 
     });
