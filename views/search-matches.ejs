@@ -41,7 +41,7 @@
             </section>
             <div class="each-league-matches">
                 <section class="byTeamForm searchForm" style="display: none;">
-                    <form id="teamSearchForm" action="/matches/searchTeamByName" method="GET">
+                    <form id="teamSearchForm" action="/matches/searchMatchesByTeamName" method="GET">
                         <label>Team: <input id="teamInputText" type="text" name="team"> </label> <br />
                         <input class="searchButton" type="submit" value="Search">
                     </form>
@@ -67,6 +67,8 @@
 
         <!-- end of search tabs  -->
         <!-- start of results -->
+        
+
         <% if(typeof(matches)!=='undefined'){ %>
             <div class="all-matches-search-result">
                 <% matches.forEach((match, i) => { %>
