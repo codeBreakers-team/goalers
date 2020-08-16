@@ -40,7 +40,7 @@
                     </form>
                 </section>
             </div>
-            
+
             <div class="each-league-matches">
                 <section class="byTeamForm searchForm" style="display: none;">
                     <form id="teamSearchForm" action="/searchMatchesByTeamName" method="GET">
@@ -49,7 +49,7 @@
                     </form>
                 </section>
             </div>
-            
+
             <div class="each-league-matches">
                 <section class="byPlayerForm searchForm" style="display: none;">
                     <form id="playerSearchForm" action="/searchMatchesByName" method="GET">
@@ -58,39 +58,59 @@
                     </form>
                 </section>
             </div>
-            
+
             <div class="each-league-matches">
                 <section class="byLeagueForm searchForm" style="display: none;">
-                    <form id="leagueSearchForm" action="/searchEventsByLeague" method="GET">
-                        <label>League: <input id="leagueInputText" type="text" name="league"> </label> <br />
+
+                    <form id="leagueSearchForm" action="/searchMatchesByLeagueName" method="GET">
+
+                        <label for="leagueInputList">Choose league name from the list:</label>
+                        <input list="leaguesDataList" name="leagueInputList" id="leagueInputList">
+                        <datalist id="leaguesDataList">
+                            <% if(typeof(leagues)!=='undefined'){ %>
+
+                                <% leagues.forEach(league => { %>
+                                <option value=<%= league.idLeague %>><%= league.strLeague %></option>
+                                <%  })  %>
+                                <% } %>
+
+
+                            </datalist>
                         <input class="searchButton" type="submit" value="Search">
                     </form>
                 </section>
             </div>
-           
         </div>
         <% if(typeof(matches)!=='undefined'){ %>
             <div class="all-matches-search-result">
                 <% matches.forEach((match, i) => { %>
-                <section class="each-match-serchResult">
-                    <h3> <%= match.strEvent %> </h3> 
-                    <h4> <%= match.strLeague %> </h4> 
-                    <h4> <%= match.dateEvent %> </h4>
-                    <h4> <%= match.strTime %> </h4>
-                    <form class="add-to-wishList" action="/addMatchToWishList" method="POST">
-                        <input type="hidden" name="matchId" value="<%= match.idEvent %>">
-                        <input type="hidden" name="matchName" value="<%= match.strEvent %>">
-                        <input type="hidden" name="matchDate" value="<%= match.dateEvent %>">
-                        <input type="hidden" name="matchTime" value="<%= match.strTime %>">
-                        <input type="hidden" name="homeTeam" value="<%= match.strHomeTeam %>">
-                        <input type="hidden" name="awayTeam" value="<%= match.strAwayTeam %>">
-    
-                        <button type="submit" class="add-wishList">add to wishList</button>
-                    </form>
-                </section>
-                <%  })  %>
+                    <section class="each-match-serchResult">
+                        <h3>
+                            <%= match.strEvent %>
+                        </h3>
+                        <h4>
+                            <%= match.strLeague %>
+                        </h4>
+                        <h4>
+                            <%= match.dateEvent %>
+                        </h4>
+                        <h4>
+                            <%= match.strTime %>
+                        </h4>
+                        <form class="add-to-wishList" action="/addMatchToWishList" method="POST">
+                            <input type="hidden" name="matchId" value="<%= match.idEvent %>">
+                            <input type="hidden" name="matchName" value="<%= match.strEvent %>">
+                            <input type="hidden" name="matchDate" value="<%= match.dateEvent %>">
+                            <input type="hidden" name="matchTime" value="<%= match.strTime %>">
+                            <input type="hidden" name="homeTeam" value="<%= match.strHomeTeam %>">
+                            <input type="hidden" name="awayTeam" value="<%= match.strAwayTeam %>">
+
+                            <button type="submit" class="add-wishList">add to wishList</button>
+                        </form>
+                    </section>
+                    <%  })  %>
             </div>
-    
+
             <% } %>
 
 
