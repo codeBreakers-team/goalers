@@ -207,7 +207,7 @@ nav a:hover {
   opacity: 1;
 }
 
-div #burgerLinks{
+a.burgerIcon , div#burgerLinks{
   
   display: none;
 }
