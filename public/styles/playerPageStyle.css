@@ -5,7 +5,7 @@
     display: flex;
     top: 100px;
     padding: 20px;
-    background-color: blue;
+    background-color:#81a884;
     text-align: center;
 }
 
@@ -16,16 +16,23 @@
 #playerNameInputText {
     margin-right: 10px;
     margin-left: 10px;
-}
-
-#searchButton {
-    background-color: #ffffff;
-    font-style: italic;
+    width: 300px;
+    background-color: #f6f0f0;
     border-radius: 5px;
 }
 
+#searchButton {
+    background-color: #e1d8d8;
+    font-style: italic;
+    border-radius: 5px;
+    width: 80px;
+}
+/* #searchButton :hover {
+    background-color : rgb(110, 167, 93);
+} */
+
 #playerInfoDiv {
-    background-color: #b6e08c;
+    background-color:rgb(182, 224 ,140 ,.6);
     padding: 30px 50px 0px 50px;
     width: 100%;
 }
@@ -42,17 +49,17 @@
 }
 
 #playerBreifInfoDiv {
-    background-color: rgb(62, 116, 216);
+    background-color: rgba(50,50,50,.55);
     margin: 10px;
     border-radius: 10px;
     width: 30%;
     font-size: 30px;
     padding: 70px 40px 70px 40px;
-    color: wheat;
+    color: #f1ebe0;
 }
 
 #playerDescription {
     font-size: 25px;
-    color: white;
+    color: #766a6a;
     padding: 20px 80px 20px 30px;
 }
