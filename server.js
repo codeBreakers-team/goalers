@@ -28,6 +28,7 @@ app.get('/aaaaa', (req, res) => { // home page
     //res.render('index', {booksResult: bookArr});
 });
 
+//Home Page Route
 app.get('/', (request, response) => {
     //slider
     let matchesArr = [];
@@ -75,6 +76,7 @@ app.get('/', (request, response) => {
         // });
 });
 
+//search for player Route
 app.get('/searchplayer', (request, response) => {
     let playerName = request.query.playerName;
     let link = `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${playerName}`;
@@ -102,30 +104,27 @@ app.get('/player', (request, response) => {
     response.render('players')
 });
 
-
+// matches page
 app.get('/matches', (request, response) => {
-    let link = `https://www.thesportsdb.com/api/v1/json/1/all_countries.php`;
-    superagent.get(link).then((returnedData) => {
-        console.log('returnedData.body: ', returnedData.body)
 
-        response.render('search-matches', { countries: returnedData.body.countries });
-    });
-
-
+    let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
+    superagent.get(all_leaguesLink).then(leagues => {
+        console.log('leagues.body: ', leagues.body.leagues);
+        // console.log('returnedData.body: ', returnedData.body.countries);
+        response.render('search-matches', { leagues: leagues.body.leagues });
+    })
 });
 
 
-app.get('/searchByCountry', (request, response) => {
-    let countryName = request.query.countryName;
-    // console.log('countryName', countryName);
-    let link = `https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?c=${countryName}`;
+function getAllLeaguesLink(request, response) {
+    let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
+    superagent.get(all_leaguesLink).then(leagues => {
+        console.log('leagues.body: ', leagues.body.leagues);
+        // console.log('returnedData.body: ', returnedData.body.countries);
+    })
 
-    superagent.get(link).then((returnedData) => {
-        console.log('returnedData.body: ', returnedData.body.countrys)
 
-        response.render('search-matches', { leagues: returnedData.body.countrys });
-    });
-});
+}
 
 //get matches using team name
 app.get('/searchMatchesByTeamName', (request, response) => {
@@ -133,24 +132,18 @@ app.get('/searchMatchesByTeamName', (request, response) => {
     console.log('reques.query', request.query)
     let matchesArray = [];
     let idsArray = [];
-     console.log('teamName: ', teamName);
-
+    console.log('teamName: ', teamName);
     let teamNamelink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
     superagent.get(teamNamelink).then((returnedData) => {
-
         // console.log('Teams result: ', returnedData.body.teams);
         returnedData.body.teams.forEach(element => {
             // console.log('element: ', element.idTeam);
             idsArray.push(element.idTeam);
         });
-
         console.log(idsArray);
-
-
         for (var i = 0; i < idsArray.length; i++) {
             let j = i;
             let matchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idsArray[i]}`;
-
             superagent.get(matchesLink).then((matchesData) => {
                 // console.log('matchesData: ', matchesData.body.events);
                 if (matchesData.body && matchesData.body.events && matchesData.body.events.length) {
@@ -159,7 +152,6 @@ app.get('/searchMatchesByTeamName', (request, response) => {
                         matchesArray.push(match);
                     });
                 }
-
                 if (j == idsArray.length - 1) {
                     console.log('matchesArray: ', matchesArray);
                     response.render('search-matches', { matches: matchesArray });
@@ -169,50 +161,26 @@ app.get('/searchMatchesByTeamName', (request, response) => {
     });
 });
 
-
-
-//get matches league
+//get matches using league
 app.get('/searchMatchesByLeagueName', (request, response) => {
-    let leagueId = request.query.leagueId;
+    // console.log('request.query: ', request.query);
+    let leagueId = request.query.leagueInputList;
     let matchesArray = [];
-
     // console.log('leagueId: ', leagueId);
-
     let leagueIdlink = `https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${leagueId}`;
     superagent.get(leagueIdlink).then((returnedData) => {
-        // console.log('returnedData: ', returnedData.body.events);
-
-        // console.log('Teams result: ', returnedData.body.teams);     
-        // console.log('element: ', element.idTeam);
-        // console.log('matchesData: ', matchesData.body.events);
         if (returnedData.body && returnedData.body.events && returnedData.body.events.length) {
             returnedData.body.events.forEach(event => {
-
                 let match = new Match(event);
-
-                // console.log(match);
+                matchesArray.push(match);
             });
         }
-
-        console.log('matchesReult: ', Match.all);
-        response.render('search-matches', { matches: Match.all });
-
-
+        console.log('matchesArray: ', matchesArray);
+        response.render('search-matches', { matches: matchesArray });
     });
 });
 
-
-
-//get
-app.get('/searchEventsByPlayerName', (request, response) => {
-    let teamIdLink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${request.query.teamName}`;
-    superagent.get(teamIdLink).then((returnedData) => {
-        console.log('returnedData.body: ', returnedData.body.countrys);
-        response.render('search-matches', { leagues: returnedData.body.countrys });
-    });
-});
-
-
+//about us page route
 app.get('/about-us', (request, response) => {
     response.render('about-us')
 });
@@ -229,10 +197,3 @@ function getLastMatches() {
         return matchesData;
     });
 }
-
-// client.connect().then(() => {           // this is a promise and we need to start the server after it connects to the database
-//     // app.listen
-//     app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
-//         console.log('server is listening to the port: ', PORT);
-//     });
-// });
