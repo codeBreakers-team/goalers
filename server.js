@@ -115,7 +115,7 @@ app.get('/matches', (request, response) => {
 });
 
 
-app.get('/matches/searchByCountry', (request, response) => {
+app.get('/searchByCountry', (request, response) => {
     let countryName = request.query.countryName;
     // console.log('countryName', countryName);
     let link = `https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?c=${countryName}`;
@@ -128,7 +128,7 @@ app.get('/matches/searchByCountry', (request, response) => {
 });
 
 //get matches using team name
-app.get('/matches/searchMatchesByTeamName', (request, response) => {
+app.get('/searchMatchesByTeamName', (request, response) => {
     let teamName = request.query.teamName;
     console.log('reques.query', request.query)
     let matchesArray = [];
@@ -172,7 +172,7 @@ app.get('/matches/searchMatchesByTeamName', (request, response) => {
 
 
 //get matches league
-app.get('/matches/searchMatchesByLeagueName', (request, response) => {
+app.get('/searchMatchesByLeagueName', (request, response) => {
     let leagueId = request.query.leagueId;
     let matchesArray = [];
 
@@ -204,7 +204,7 @@ app.get('/matches/searchMatchesByLeagueName', (request, response) => {
 
 
 //get
-app.get('/matches/searchEventsByPlayerName', (request, response) => {
+app.get('/searchEventsByPlayerName', (request, response) => {
     let teamIdLink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${request.query.teamName}`;
     superagent.get(teamIdLink).then((returnedData) => {
         console.log('returnedData.body: ', returnedData.body.countrys);
@@ -212,13 +212,6 @@ app.get('/matches/searchEventsByPlayerName', (request, response) => {
     });
 });
 
-app.get('/matches/searchEventsByLeaguee', (request, response) => {
-    let teamIdLink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${request.query.teamName}`;
-    superagent.get(teamIdLink).then((returnedData) => {
-        console.log('returnedData.body: ', returnedData.body.countrys);
-        response.render('search-matches', { leagues: returnedData.body.countrys });
-    });
-});
 
 app.get('/about-us', (request, response) => {
     response.render('about-us')
