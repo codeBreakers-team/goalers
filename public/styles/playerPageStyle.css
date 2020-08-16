@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alatsi&display=swap');
+
 #playerSearchForm {
     margin-top: 150px;
     font-size: 30px;
@@ -5,8 +7,9 @@
     display: flex;
     top: 100px;
     padding: 20px;
-    background-color:#81a884;
+    background-color:rgb(230 228 228);
     text-align: center;
+    font-family: 'Segoe UI', 'Roboto', arial, sans-serif;
 }
 
 #playerNameLabel {
@@ -19,10 +22,12 @@
     width: 300px;
     background-color: #f6f0f0;
     border-radius: 5px;
+    
 }
 
 #searchButton {
-    background-color: #e1d8d8;
+    background-color: #33383b;
+    color: #f1ebe0;
     font-style: italic;
     border-radius: 5px;
     width: 80px;
@@ -32,9 +37,12 @@
 } */
 
 #playerInfoDiv {
-    background-color:rgb(182, 224 ,140 ,.6);
+    /* background-color:rgba(101, 110, 92, 0.6); */
     padding: 30px 50px 0px 50px;
     width: 100%;
+    background-image: url(https://st2.depositphotos.com/1502607/10186/i/950/depositphotos_101860542-stock-photo-green-grass-soccer-field-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #imageAndInfoDiv {
@@ -60,6 +68,7 @@
 
 #playerDescription {
     font-size: 25px;
-    color: #766a6a;
+    color: #e6e0e0;
     padding: 20px 80px 20px 30px;
+    background-color: rgba(50,50,50,.55);
 }
