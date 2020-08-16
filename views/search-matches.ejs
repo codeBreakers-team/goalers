@@ -16,60 +16,53 @@
     <main>
 
         <!--  -->
-
-        <div class="leagues-names-container">
-            <button id="searchByCountry" class="single-search-name byCountryForm" onclick="openMatches(event)"> Country
-            </button> <!--  -->
-            <button id="searchByTeam" class="single-search-name byTeamForm" onclick="openMatches(event)"> Team </button>
-            <!--  -->
-            <button id="searchByPlayer" class="single-search-name byPlayerForm" onclick="openMatches(event)"> Player
-            </button> <!--  -->
-            <button id="searchByLeague" class="single-search-name byLeagueForm" onclick="openMatches(event)"> League
-            </button> <!--  -->
-        </div>
-
-
-        <div class="each-league-matches">
-            <section class="byCountryForm searchForm" style="display: none;">
-                <form id="teamSearchForm" action="/searchplayer">
-                    <label>Country: <input id="countryInputText" type="text" name="country"> </label> <br />
-
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-                    <% countries.forEach((country, i) => { %>
-                    <ul id="myUL">
-                        <li> <%= country %> </li>
-                        <%  })  %>
-                    </ul>
-
-                    <input id="searchButton" type="submit" value="Search">
-                </form>
-        </div>
-        </section>
-
-        <section class="byTeamForm searchForm" style="display: none;">
-            <form id="teamSearchForm" action="/searchplayer">
-                <label>Team: <input id="teamInputText" type="text" name="team"> </label> <br />
-                <input id="searchButton" type="submit" value="Search">
-            </form>
+        <div class="match-search-tabs-container">
+            <div class="leagues-names-container">
+                <button id="searchByCountry" class="single-search-name byCountryForm" onclick="openSearch(event)">
+                    Country
+                </button> <!--  -->
+                <button id="searchByTeam" class="single-search-name byTeamForm" onclick="openSearch(event)"> Team
+                </button>
+                <!--  -->
+                <button id="searchByPlayer" class="single-search-name byPlayerForm" onclick="openSearch(event)"> Player
+                </button> <!--  -->
+                <button id="searchByLeague" class="single-search-name byLeagueForm" onclick="openSearch(event)"> League
+                </button> <!--  -->
             </div>
-        </section>
 
-        <section class="byPlayerForm searchForm" style="display: none;">
-            <form id="playerSearchForm" action="/searchplayer">
-                <label>Player: <input id="playerInputText" type="text" name="player"> </label> <br />
-                <input id="searchButton" type="submit" value="Search">
-            </form>
+
+            <div class="each-league-matches">
+                <section class="byCountryForm searchForm" style="display: none;">
+                    <form id="countrySearchForm" action="/matches/searchByCountry">
+                        <label>Country: <input id="countryInputText" type="text" name="country"> </label> <br />
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
             </div>
-        </section>
-
-        <section class="byLeagueForm searchForm" style="display: none;">
-            <form id="leagueSearchForm" action="/searchplayer">
-                <label>League: <input id="leagueInputText" type="text" name="league"> </label> <br />
-                <input id="searchButton" type="submit" value="Search">
-            </form>
+            </section>
+            <div class="each-league-matches">
+                <section class="byTeamForm searchForm" style="display: none;">
+                    <form id="teamSearchForm" action="/matches/searchTeamByName">
+                        <label>Team: <input id="teamInputText" type="text" name="team"> </label> <br />
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
             </div>
-        </section>
-
+            </section>
+            <div class="each-league-matches">
+                <section class="byPlayerForm searchForm" style="display: none;">
+                    <form id="playerSearchForm" action="/matches/searchEventsByPlayerName">
+                        <label>Player: <input id="playerInputText" type="text" name="player"> </label> <br />
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
+            </div>
+            </section>
+            <div class="each-league-matches">
+                <section class="byLeagueForm searchForm" style="display: none;">
+                    <form id="leagueSearchForm" action="/matches/searchEventsByLeague">
+                        <label>League: <input id="leagueInputText" type="text" name="league"> </label> <br />
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
+            </div>
+            </section>
         </div>
 
         <!--  -->
@@ -137,7 +130,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/matches.js"></script>
 </body>
 
 </html>
