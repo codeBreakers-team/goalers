@@ -18,8 +18,7 @@ app.use(methodOverride('_method'));
 
 const Player = require("./Models/Player").default;
 const LastMatch = require("./Models/LastMatch").default;
-
-
+const LeagueMatch = require("./Models/LeagueMatch").default;
 
 app.get('/aaaaa', (req, res) => { // home page
     getLastMatches();
@@ -56,13 +55,11 @@ app.get('/', (request, response) => {
                     for (let j = 0; j < 4; j++) {
                         oneLeagueMatchesArr.push(new LeagueMatch(returnedLatestLeagueMatchesData.body.events[j]));
                     }
-
                     allLeaguesObj[`${leagueName}`] = oneLeagueMatchesArr;
                     if (i == 3) {
                         response.render('index', { latestMatches: matchesArr, leagues: allLeaguesObj });
                     }
                 });
-
             }
             //console.log(allLeaguesNames); //////////
             //console.log(allLeaguesObj);
@@ -73,7 +70,6 @@ app.get('/', (request, response) => {
         //     console.log(allLeaguesObj);
         //     response.send(allLeaguesObj);
         // });
-
 });
 
 app.get('/searchplayer', (request, response) => {
@@ -100,21 +96,46 @@ app.get('/searchplayer', (request, response) => {
 });
 
 app.get('/player', (request, response) => {
-
-
     response.render('players')
 });
 
 
-app.get('/searchMatches', (request, response) => {
+app.get('/matches', (request, response) => {
+    let link = `https://www.thesportsdb.com/api/v1/json/1/all_countries.php`;
+    superagent.get(link).then((returnedData) => {
+        console.log('returnedData.body: ', returnedData.body)
+
+        response.render('search-matches', { countries: returnedData.body });
+    });
 
 
-    response.render('search-matches')
 });
 
+
+app.get('/matches/searchByCountry', (request, response) => {
+    let countryName = request.query.countryName;
+    // console.log('countryName', countryName);
+    let link = `https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?c=${countryName}`;
+
+    superagent.get(link).then((returnedData) => {
+        console.log('returnedData.body: ', returnedData.body.countrys)
+
+        response.render('search-matches', { leagues: returnedData.body.countrys });
+    });
+});
+
+app.get('/matches/searchEventsByTeam', (request, response) => {
+    let teamIdLink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${request.query.teamName}`;
+
+    superagent.get(teamIdLink).then((returnedData) => {
+        console.log('returnedData.body: ', returnedData.body.countrys)
+
+        response.render('search-matches', { leagues: returnedData.body.countrys });
+    });
+});
+
+
 app.get('/about-us', (request, response) => {
-
-
     response.render('about-us')
 });
 
@@ -133,19 +154,7 @@ function getLastMatches() {
 }
 
 
-function LeagueMatch(match) {
-    this.matchName = match.strEvent;
-    this.leagueName = match.strLeague;
-    this.homeTeam = match.strHomeTeam;
-    this.homeTeamId = match.idHomeTeam;
-    this.awayTeamId = match.idAwayTeam;
-    this.homeTeamScore = match.intHomeScore || 0;
-    this.awayTeam = match.strAwayTeam;
-    this.awayTeamScore = match.intAwayScore || 0;
-    this.eventImg = match.strThumb || 'not found';
-    this.matchGoalsVideo = match.strVideo || 'not found';
-    return this;
-}
+
 
 
 // client.connect().then(() => {           // this is a promise and we need to start the server after it connects to the database
