@@ -160,7 +160,7 @@ footer{
 
 
 
-@media (max-width: 780px) {
+@media (max-width: 360px) {
 
 	.footer-distributed .footer-left,
 	.footer-distributed .footer-center,
@@ -176,5 +176,9 @@ footer{
 	}
 p {
 	font-size: 15px;
+}
+
+div.footer-center , .footer-right > p :first-child{
+	display: none !important;
 }
 }
