@@ -3,6 +3,7 @@
 
 <head>
     <%- include('partials/head') %>
+    <link rel="stylesheet" href="styles/sideNav.css">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
                 
             </div>
         </div> 
-        
+        <%- include('partials/sideNav') %> <!-- will be modified -->
     <main>
         <div class="introduction">
             <h3 id="sub-header">Goalers helps you watch all your favorite live sports including La Liga, Ligue 1, Copa Libertadores, Copa Sudamericana, and MLW.</h3>
@@ -89,6 +90,7 @@
 
     </div>
     </main>
+
     <%- include('partials/footer') %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
