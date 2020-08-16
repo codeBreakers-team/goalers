@@ -127,8 +127,8 @@ app.get('/matches/searchByCountry', (request, response) => {
     });
 });
 
-//get team ID using team name
-app.get('/matches/searchTeamByName', (request, response) => {
+//get matches using team name
+app.get('/matches/searchMatchesByTeamName', (request, response) => {
     let teamName = request.query.teamName;
     // console.log('teamName: ', teamName);
 
@@ -154,13 +154,7 @@ app.get('/matches/searchTeamByName', (request, response) => {
     response.render('search-matches', { matches: Match.all });
 });
 
-app.get('/matches/searchEventsByTeamById', (request, response) => {
-    let teamIdLink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${request.query.teamName}`;
-    superagent.get(teamIdLink).then((returnedData) => {
-        console.log('returnedData.body: ', returnedData.body.countrys);
-        response.render('search-matches', { leagues: returnedData.body.countrys });
-    });
-});
+
 
 //get
 app.get('/matches/searchEventsByPlayerName', (request, response) => {
