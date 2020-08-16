@@ -17,21 +17,21 @@
   
   /* The about link: 20px from the top with a green background */
   #about {
-    top: 20px;
+    top: 7em;
     background-color: #4CAF50;
   }
   
   #blog {
-    top: 80px;
+    top: 10em;
     background-color: #2196F3; /* Blue */
   }
   
   #projects {
-    top: 140px;
+    top: 13em;
     background-color: #f44336; /* Red */
   }
   
   #contact {
-    top: 200px;
+    top: 16em;
     background-color: #555 /* Light Black */
   }
