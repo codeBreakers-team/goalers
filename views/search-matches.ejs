@@ -15,7 +15,7 @@
 
     <main>
 
-        <!-- search tabs -->
+
         <div class="match-search-tabs-container">
             <div class="leagues-names-container">
                 <button id="searchByCountry" class="single-search-name byCountryForm" onclick="openSearch(event)">
@@ -33,51 +33,51 @@
 
             <div class="each-league-matches">
                 <section class="byCountryForm searchForm" style="display: none;">
-                    <form id="countrySearchForm" action="/matches/searchByCountry">
+                    <form id="countrySearchForm" action="/searchByCountry" method="GET">
                         <label>Country: <input id="countryInputText" type="text" name="country"> </label> <br />
                         <input class="searchButton" type="submit" value="Search">
                     </form>
+                </section>
             </div>
-            </section>
+            
             <div class="each-league-matches">
                 <section class="byTeamForm searchForm" style="display: none;">
-                    <form id="teamSearchForm" action="/matches/searchMatchesByTeamName" method="GET">
-                        <label>Team: <input id="teamInputText" type="text" name="team"> </label> <br />
+                    <form id="teamSearchForm" action="/searchMatchesByTeamName" method="GET">
+                        <label>Team: <input id="teamInputText" type="text" name="teamName"> </label> <br />
                         <input class="searchButton" type="submit" value="Search">
                     </form>
+                </section>
             </div>
-            </section>
+            
             <div class="each-league-matches">
                 <section class="byPlayerForm searchForm" style="display: none;">
-                    <form id="playerSearchForm" action="/matches/searchMatchesByName">
+                    <form id="playerSearchForm" action="/searchMatchesByName" method="GET">
                         <label>Player: <input id="playerInputText" type="text" name="player"> </label> <br />
                         <input class="searchButton" type="submit" value="Search">
                     </form>
+                </section>
             </div>
-            </section>
+            
             <div class="each-league-matches">
                 <section class="byLeagueForm searchForm" style="display: none;">
-                    <form id="leagueSearchForm" action="/matches/searchEventsByLeague">
+                    <form id="leagueSearchForm" action="/searchEventsByLeague" method="GET">
                         <label>League: <input id="leagueInputText" type="text" name="league"> </label> <br />
                         <input class="searchButton" type="submit" value="Search">
                     </form>
+                </section>
             </div>
-            </section>
+           
         </div>
-
-        <!-- end of search tabs  -->
-        <!-- start of results -->
-        
-
         <% if(typeof(matches)!=='undefined'){ %>
             <div class="all-matches-search-result">
                 <% matches.forEach((match, i) => { %>
                 <section class="each-match-serchResult">
-                    <h3> <%= match.strEvent %> </h3> <!-- match name -->
-                    <h4> <%= match.strLeague %> </h4> <!-- match league name -->
-                    <h4> <%= match.dateEvent %> </h4> <!-- match date -->
-                    <h4> <%= match.strTime %> </h4> <!-- match time -->
-                    <form class="add-to-wishList" action="/wishList/add" method="POST">
+                    <h3> <%= match.strEvent %> </h3> 
+                    <h4> <%= match.strLeague %> </h4> 
+                    <h4> <%= match.dateEvent %> </h4>
+                    <h4> <%= match.strTime %> </h4>
+                    <form class="add-to-wishList" action="/addMatchToWishList" method="POST">
+                        <input type="hidden" name="matchId" value="<%= match.idEvent %>">
                         <input type="hidden" name="matchName" value="<%= match.strEvent %>">
                         <input type="hidden" name="matchDate" value="<%= match.dateEvent %>">
                         <input type="hidden" name="matchTime" value="<%= match.strTime %>">
