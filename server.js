@@ -128,7 +128,7 @@ app.get('/matches/searchByCountry', (request, response) => {
 });
 
 //get matches using team name
-app.get('/matches/searchMatchesByTeamName', (request, response, next) => {
+app.get('/matches/searchMatchesByTeamName', (request, response) => {
     let teamName = request.query.teamName;
     let matchesArray = [];
     // console.log('teamName: ', teamName);
