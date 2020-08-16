@@ -28,8 +28,8 @@ nav a:hover {
   width: 100%;
   background-image: url('/images/ball.jpg') ;
   /* background-repeat: no-repeat; */
-  position: relative;
-  top: 115px;
+  /* position: relative;
+  top: 115px; */
   /* background-size: cover; */
   height: 559px;
   
@@ -98,6 +98,7 @@ nav a:hover {
   font-size: 35px;
   padding: 2%;
   text-align: center;
+  margin-top: 0px;
 }
 .text button{
   display: block;
