@@ -15,19 +15,19 @@
 
     <main>
 
-        <!--  -->
+        <!-- search tabs -->
         <div class="match-search-tabs-container">
             <div class="leagues-names-container">
                 <button id="searchByCountry" class="single-search-name byCountryForm" onclick="openSearch(event)">
                     Country
-                </button> <!--  -->
+                </button>
                 <button id="searchByTeam" class="single-search-name byTeamForm" onclick="openSearch(event)"> Team
                 </button>
-                <!--  -->
+
                 <button id="searchByPlayer" class="single-search-name byPlayerForm" onclick="openSearch(event)"> Player
-                </button> <!--  -->
+                </button>
                 <button id="searchByLeague" class="single-search-name byLeagueForm" onclick="openSearch(event)"> League
-                </button> <!--  -->
+                </button>
             </div>
 
 
@@ -41,7 +41,7 @@
             </section>
             <div class="each-league-matches">
                 <section class="byTeamForm searchForm" style="display: none;">
-                    <form id="teamSearchForm" action="/matches/searchTeamByName">
+                    <form id="teamSearchForm" action="/matches/searchTeamByName" method="GET">
                         <label>Team: <input id="teamInputText" type="text" name="team"> </label> <br />
                         <input class="searchButton" type="submit" value="Search">
                     </form>
@@ -49,7 +49,7 @@
             </section>
             <div class="each-league-matches">
                 <section class="byPlayerForm searchForm" style="display: none;">
-                    <form id="playerSearchForm" action="/matches/searchEventsByPlayerName">
+                    <form id="playerSearchForm" action="/matches/searchMatchesByName">
                         <label>Player: <input id="playerInputText" type="text" name="player"> </label> <br />
                         <input class="searchButton" type="submit" value="Search">
                     </form>
@@ -65,58 +65,28 @@
             </section>
         </div>
 
-        <!--  -->
-
-        <%       
-        if (typeof(player)=='undefined') { %>
-
-        <%} else { %>
-
-        <div id="playerInfoDiv">
-            <div id="imageAndInfoDiv">
-                <img id="playerImage" src="<%= player.strThumb %>" alt="">
-                <div id=playerBreifInfoDiv>
-                    <h1>
-                        <%= player.strPlayer %>
-                    </h1>
-                    <h3>Nationality:
-                        <%= player.strNationality %>
-                    </h3>
-                    <h3>Teams:
-                        <%= player.strTeam  %>,
-                        <%= player.strTeam2  %>
-                    </h3>
-                    <h3>Born Date:
-                        <%= player.dateBorn %>
-                    </h3>
-                    <h3>Gender:
-                        <%= player.strGender %>
-                    </h3>
-                    <h3>Side:
-                        <%= player.strSide %>
-                    </h3>
-                    <h3>Position:
-                        <%= player.strPosition %>
-                    </h3>
-                    <h3>Facebook:
-                        <%= player.strFacebook %>
-                    </h3>
-                    <h3>Height:
-                        <%= player.strHeight %>
-                    </h3>
-                    <h3>Weight :
-                        <%= player.strWeight %>
-                    </h3>
-                </div>
+        <!-- end of search tabs  -->
+        <!-- start of results -->
+        <% if(typeof(matches)!=='undefined'){ %>
+            <div class="all-matches-search-result">
+                <% matches.forEach((match, i) => { %>
+                <section class="each-match-serchResult">
+                    <h3> <%= match.strEvent %> </h3> <!-- match name -->
+                    <h4> <%= match.strLeague %> </h4> <!-- match league name -->
+                    <h4> <%= match.dateEvent %> </h4> <!-- match date -->
+                    <h4> <%= match.strTime %> </h4> <!-- match time -->
+                    <form class="add-to-wishList" action="/wishList/add" method="POST">
+                        <input type="hidden" name="matchName" value="<%= match.strEvent %>">
+                        <input type="hidden" name="matchDate" value="<%= match.dateEvent %>">
+                        <input type="hidden" name="matchTime" value="<%= match.strTime %>">
+    
+                        <button type="submit" class="add-wishList">add to wishList</button>
+                    </form>
+                </section>
+                <%  })  %>
             </div>
-            <p id="playerDescription">
-                <%= player.strDescriptionEN %>
-            </p>
-        </div>
-        <% } %>
-
-
-
+    
+            <% } %>
 
 
 
