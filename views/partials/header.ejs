@@ -7,7 +7,7 @@
             <a href="/"><i class="fas fa-house-user"></i> HOME</a>
             <a href="#"><i class="fas fa-users"></i> TEAMS</a>
             <a href="/player"><i class="fas fa-running"></i> PLAYERS</a>
-            <a href="#"><i class="fas fa-address-card"></i> ABOUT</a>
+            <a href="/about-us"><i class="fas fa-address-card"></i> ABOUT</a>
             <div class="dropdown">
             <a href="#"><i class="fas fa-user-circle" style="font-size: 35px;"></i></a>
             <div class="dropdown-content">
@@ -53,6 +53,7 @@
 <script>
     function openForm() {
       document.getElementById("loginForm").style.display = "block";
+      document.getElementById("signUpForm").style.display = "none";
     }
     
     function closeForm() {
@@ -60,6 +61,7 @@
     }
     function openSignForm() {
       document.getElementById("signUpForm").style.display = "block";
+      document.getElementById("loginForm").style.display = "none";
     }
     
     function closeSignForm() {
