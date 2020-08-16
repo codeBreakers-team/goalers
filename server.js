@@ -130,9 +130,10 @@ app.get('/matches/searchByCountry', (request, response) => {
 //get matches using team name
 app.get('/matches/searchMatchesByTeamName', (request, response) => {
     let teamName = request.query.teamName;
+    console.log('reques.query', request.query)
     let matchesArray = [];
     let idsArray = [];
-    // console.log('teamName: ', teamName);
+     console.log('teamName: ', teamName);
 
     let teamNamelink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
     superagent.get(teamNamelink).then((returnedData) => {
