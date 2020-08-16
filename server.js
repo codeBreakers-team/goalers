@@ -1,5 +1,6 @@
 'use strict'
 const express = require('express');
+var session = require('express-session');
 const app = express();
 const cors = require('cors');
 app.use(cors());
@@ -14,29 +15,31 @@ const { response, query } = require('express');
 const client = new pg.Client(process.env.DATABASE_URL);
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
-
+app.use(session({
+    secret: 'save',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true,
+    maxAge: 60000 }
+  }))
 
 const Player = require("./Models/Player").default;
 const LastMatch = require("./Models/LastMatch").default;
 
-
-
 app.get('/aaaaa', (req, res) => { // home page
     getLastMatches();
-    //res.render('index', {booksResult: bookArr});
 });
 
 app.get('/', (request, response) => {
+    console.log(request.session);
     //slider
     let matchesArr = [];
     let link = `https://www.scorebat.com/video-api/v1/`;
     superagent.get(link)
         .then((returnedData) => {
-            //  let matchesArr = [];
             for (let i = 0; i < 5; i++) {
                 matchesArr.push(new LastMatch(returnedData.body[i]));
             }
-            //  response.render('index', { latestMatches: matchesArr });
         });
     //end of slider
     //start of leagues latest matches results
@@ -64,16 +67,7 @@ app.get('/', (request, response) => {
                 });
 
             }
-            //console.log(allLeaguesNames); //////////
-            //console.log(allLeaguesObj);
-            //response.send(allLeaguesObj);
-            // response.render('index', { latestMatches: leaguesArr });
         })
-        // .then((allLeaguesObj) => {
-        //     console.log(allLeaguesObj);
-        //     response.send(allLeaguesObj);
-        // });
-
 });
 
 app.get('/searchplayer', (request, response) => {
@@ -100,6 +94,7 @@ app.get('/searchplayer', (request, response) => {
 });
 
 app.get('/player', (request, response) => {
+    console.log(request.session);
 
 
     response.render('players')
@@ -118,29 +113,53 @@ app.get('/about-us', (request, response) => {
     response.render('about-us')
 });
 
-app.post('/', saveUser);
+app.post('/signup', signUser);
+app.post('/login', logUser);
+app.get('/logout', logout);
 
-// app.listen(PORT, () => { // to Start the express server only after the database connection is established.
-//     console.log('server is listening to the port: ', PORT);
-// });
+app.get('/:id', (req,res) => {
+    res.redirect(`/`);
+})
 
-// let handleError = (err, res) => {
-//     res.render('/pages/error', {error: `Something's wrong, ${err}`})
-// }
-function saveUser(req,res){
-    console.log(req.body)
+function signUser(req,res){
   let {username,email,psw} = req.body;
   let SQL = 'INSERT into account(username,email,psw) VALUES ($1, $2, $3);';
   let values = [username,email,psw];
-
   return client.query(SQL, values).then( ()=>{
     let SQL2 = 'SELECT * FROM account WHERE email = $1;';
     let values2 = [req.body.email];
     return client.query(SQL2,values2).then( data => {
-        console.log(req.body, data.rows[0])
     res.redirect(`/${data.rows[0].id}`);
-      }).catch(err => console.log('first',err));
+      })
     }).catch(err => console.log(err));
+}
+
+function logUser(req,res){
+  let {username,psw} = req.body;
+  let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
+  let values = [username,psw];
+  return client.query(SQL, values).then( data =>{
+      console.log(data.rows[0]);
+      if(!data.rows[0]){
+          res.redirect(`/`);
+      } else {
+          req.session.username = username;
+          req.session.psw = psw;
+        res.redirect(`/:id`);
+      }
+    }).catch(err => console.log(err));
+}
+
+function logout (req, res, next) {
+    if (req.session) {
+      req.session.destroy(err => {
+        if (err) {
+          console.log(err);
+        } else {
+          return res.redirect('/');
+        }
+      });
+    }
 }
 
 function getLastMatches() {
