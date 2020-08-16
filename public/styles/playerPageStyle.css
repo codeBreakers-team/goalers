@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Alatsi&display=swap');
-
+main{
+    min-height: 53.3vh;
+}
 #playerSearchForm {
-    margin-top: 150px;
+    margin-top: .9em;
     font-size: 30px;
     width: 100%;
     display: flex;
     top: 100px;
-    padding: 20px;
+    padding: 20px 0px;
     background-color:rgb(230 228 228);
     text-align: center;
     font-family: 'Segoe UI', 'Roboto', arial, sans-serif;
