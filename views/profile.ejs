@@ -7,7 +7,8 @@
 
 <body>
     <%- include('partials/header') %>
-    <table id="matches-table">
+    <table id="matches-table" class="styled-table">
+    <thead>
         <tr>
             <th>Match</th>
             <th>Home Team</th>
@@ -15,6 +16,8 @@
             <th>Date</th>
             <th>Time</th>
         </tr>
+    </thead>
+    <tbody>
         <% matchesTable.forEach(match => { %>
             <tr>
             <td><%= match.matchname %></td>
@@ -24,6 +27,7 @@
             <td><%= match.matchtime %></td>
         </tr>
         <% }); %>
+    </tbody>
     </table>
     <%- include('partials/head') %>
 </body>
