@@ -1,14 +1,17 @@
   /* Style the links inside the sidenav */
   #mySidenav a {
     position: fixed; /* Position them relative to the browser window */
-    left: -80px; /* Position them outside of the screen */
+    /*left: -80px;*/ /* Position them outside of the screen */
+    left: -122px;
     transition: 0.3s; /* Add transition on hover */
     padding: 15px; /* 15px padding */
-    width: 100px; /* Set a specific width */
+    /*width: 100px;*/ /* Set a specific width */
+    width: 8em;
     text-decoration: none; /* Remove underline */
     font-size: 20px; /* Increase font size */
     color: white; /* White text color */
     border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+    text-align: center;
   }
   
   #mySidenav a:hover {
@@ -18,17 +21,17 @@
   /* The about link: 20px from the top with a green background */
   #about {
     top: 7em;
-    background-color: #4CAF50;
+    background-color: #b8b8b8;
   }
   
   #blog {
     top: 10em;
-    background-color: #2196F3; /* Blue */
+    background-color: #648767; /* Blue */
   }
   
   #projects {
     top: 13em;
-    background-color: #f44336; /* Red */
+    background-color: #5d737e; /* Red */
   }
   
   #contact {

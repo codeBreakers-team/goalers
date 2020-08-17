@@ -53,18 +53,18 @@ body {
     background-size: cover;
 }
 
-#imageAndInfoDiv {
+.imageAndInfoDiv {
     display: flex;
     flex-direction: row;
 }
 
-#playerImage {
+.playerImage {
     border-radius: 10px;
     margin: 10px;
     width: 32%;
 }
 
-#playerBreifInfoDiv {
+.playerBreifInfoDiv {
     background-color: rgba(50, 50, 50, .55);
     margin: 10px;
     border-radius: 10px;
@@ -119,16 +119,16 @@ body {
         background-repeat: no-repeat;
         background-size: cover;
     }
-    #imageAndInfoDiv {
+    .imageAndInfoDiv {
         display: flex;
         flex-direction: column;
     }
-    #playerImage {
+    .playerImage {
         border-radius: 10px;
         margin: 8px;
         width: 85%;
     }
-    #playerBreifInfoDiv {
+    .playerBreifInfoDiv {
         background-color: rgba(50, 50, 50, .55);
         padding-left: 5px;
         border-radius: 10px;
