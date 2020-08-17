@@ -128,6 +128,7 @@ nav a:hover {
 }
 
 .dropdown-content {
+  right: -4px;
   display: none;
   position: absolute;
   background-color: #f1f1f1;
@@ -217,6 +218,9 @@ a.burgerIcon , div#burgerLinks{
 }
 
 @media (max-width: 360px) {
+  #mySidenav{
+    display: none;
+  }
   nav{
     display: block;
     overflow: auto;
