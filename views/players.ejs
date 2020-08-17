@@ -25,9 +25,9 @@
 
             <%       
         if (typeof(players)=='undefined') { %>
-                <h1>undefined</h1>
+
                 <%} else { %>
-                    <h1>defined</h1>
+<div class="allPlayersContainer">
                     <% players.forEach (player => {  %>
                         <div id="playerInfoDiv">
                             <div class="imageAndInfoDiv">
@@ -68,7 +68,7 @@
                         </div>
 
                         <% }) %>
-
+                    </div>
                             <% } %>
 
 
