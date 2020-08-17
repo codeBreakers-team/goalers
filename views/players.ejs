@@ -9,78 +9,77 @@
 
 <body>
 
-        <%- include('partials/header') %>
+    <%- include('partials/header') %>
 
 
-    <%- include('partials/sideNav') %>
+        <%- include('partials/sideNav') %>
 
-        <main>
+            <main>
 
 
-            <form id="playerSearchForm" action="/searchplayer">
-                <label id="playerNameLabel" for="playerName">Player Name</label><br>
-                <input type="text" id="playerNameInputText" name="playerName" value=""><br>
-                <input id="searchButton" type="submit" value="Search">
-            </form>
+                <form id="playerSearchForm" action="/searchplayer">
+                    <label id="playerNameLabel" for="playerName">Player Name</label><br>
+                    <input type="text" id="playerNameInputText" name="playerName" value=""><br>
+                    <input id="searchButton" type="submit" value="Search">
+                </form>
 
-            <%       
+                <%       
         if (typeof(players)=='undefined') { %>
 
-                <%} else { %>
-<div class="allPlayersContainer">
-                    <% players.forEach (player => {  %>
-                        <div id="playerInfoDiv">
-                            <div class="imageAndInfoDiv">
-                                <img class="playerImage" src="<%= player.strThumb %>" alt="">
-                                <div class=playerBreifInfoDiv>
-                                    <h1>
-                                        <%= player.strPlayer %>
-                                    </h1>
-                                    <h3>Nationality:
-                                        <%= player.strNationality %>
-                                    </h3>
-                                    <h3>Teams:
-                                        <%= player.strTeam  %>,
-                                            <%= player.strTeam2  %>
-                                    </h3>
-                                    <h3>Born Date:
-                                        <%= player.dateBorn %>
-                                    </h3>
-                                    <h3>Gender:
-                                        <%= player.strGender %>
-                                    </h3>
-                                    <h3>Side:
-                                        <%= player.strSide %>
-                                    </h3>
-                                    <h3>Position:
-                                        <%= player.strPosition %>
-                                    </h3>
-                                    <h3>Height:
-                                        <%= player.strHeight %>
-                                    </h3>
-                                    <h3>Weight :
-                                        <%= player.strWeight %>
-                                    </h3>
+                    <%} else { %>
+                        <div class="allPlayersContainer">
+                            <% players.forEach (player => {  %>
+                                <div id="playerInfoDiv">
+                                    <img class="playerImage" src="<%= player.strThumb %>" alt="">
+                                    <div class=playerBreifInfoDiv>
+                                        <h1>
+                                            <%= player.strPlayer %>
+                                        </h1>
+                                        <h3>Nationality:
+                                            <%= player.strNationality %>
+                                        </h3>
+                                        <h3>Teams:
+                                            <%= player.strTeam  %>,
+                                                <%= player.strTeam2  %>
+                                        </h3>
+                                        <h3>Born Date:
+                                            <%= player.dateBorn %>
+                                        </h3>
+                                        <h3>Gender:
+                                            <%= player.strGender %>
+                                        </h3>
+                                        <h3>Side:
+                                            <%= player.strSide %>
+                                        </h3>
+                                        <h3>Position:
+                                            <%= player.strPosition %>
+                                        </h3>
+                                        <h3>Height:
+                                            <%= player.strHeight %>
+                                        </h3>
+                                        <h3>Weight :
+                                            <%= player.strWeight %>
+                                        </h3>
+
+                                    </div>
+
 
                                 </div>
-                            </div>
 
+                                <% }) %>
                         </div>
-
-                        <% }) %>
-                    </div>
-                            <% } %>
+                        <% } %>
 
 
 
 
 
 
-        </main>
+            </main>
 
-        <footer>
-            <%- include('partials/footer') %>
-        </footer>
+            <footer>
+                <%- include('partials/footer') %>
+            </footer>
 
 
 
