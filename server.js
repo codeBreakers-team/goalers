@@ -294,7 +294,7 @@ function logout (req, res, next) {
           return res.redirect('/');
         }
       });
-    }
+    } res.redirect('/');
 }
 
 function addMatchToWishList(req,res){
