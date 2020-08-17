@@ -62,3 +62,4 @@ function openMatches(evt) {
   document.getElementsByClassName(`${selectedClassName}`)[0].style.backgroundColor = 'red';
   // evt.currentTarget.backgroundColor = 'red';
 }
+

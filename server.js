@@ -32,6 +32,7 @@ app.get('/aaaaa', (req, res) => { // home page
     getLastMatches();
 });
 
+//Home Page Route
 app.get('/', (request, response) => {
     console.log(request.session);
     //slider
@@ -74,6 +75,7 @@ app.get('/', (request, response) => {
         // });
 });
 
+//search for player Route
 app.get('/searchplayer', (request, response) => {
     let playerName = request.query.playerName;
     let link = `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${playerName}`;
@@ -98,93 +100,110 @@ app.get('/searchplayer', (request, response) => {
 });
 
 app.get('/player', (request, response) => {
-    response.render('players')
+    //get all fav player link
+    let favPlayerLink = `https://www.thesportsdb.com/api/v1/json/1/searchloves.php?u=zag`;
+    // extract Ids of fav players
+    let favPlayersIds = [];
+    //result array which will be passed to ejs file
+    let playersArray = [];
+    try {
+        superagent.get(favPlayerLink).then(data => {
+            favPlayersIds = data.body.players.map(player => {
+                    // if there is no id 'No Id Provided' will be the value of id then we will filter it
+                    return player.idPlayer || 'No Id Provided';
+                }).filter(item => {
+                    return item != 'No Id Provided';
+                })
+                // console.log('favPlayersIds: ', favPlayersIds);
+            let randomFavPlayerIndex = Math.floor(Math.random() * favPlayersIds.length + 1);
+            // console.log('randomFavPlayerIndex: ', randomFavPlayerIndex);
+            let getPlayerByIdLink = `https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=${favPlayersIds[randomFavPlayerIndex]}`;
+            superagent.get(getPlayerByIdLink).then(item => {
+                if (item.body.players[0].strSport == 'Soccer') {
+                    let player = new Player(item.body.players[0]);
+                    // console.log('player: ', player);
+                    playersArray.push(player);
+                }
+                response.render('players', { players: playersArray });
+            })
+        })
+    } catch (error) {
+        console.log('error: ', error);
+    }
 });
 
-
+// matches page
 app.get('/matches', (request, response) => {
-    let link = `https://www.thesportsdb.com/api/v1/json/1/all_countries.php`;
-    superagent.get(link).then((returnedData) => {
-        console.log('returnedData.body: ', returnedData.body)
 
-        response.render('search-matches', { countries: returnedData.body.countries });
-    });
-
-
+    let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
+    superagent.get(all_leaguesLink).then(leagues => {
+        console.log('leagues.body: ', leagues.body.leagues);
+        // console.log('returnedData.body: ', returnedData.body.countries);
+        response.render('search-matches', { leagues: leagues.body.leagues });
+    })
 });
 
 
-app.get('/matches/searchByCountry', (request, response) => {
-    let countryName = request.query.countryName;
-    // console.log('countryName', countryName);
-    let link = `https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?c=${countryName}`;
+function getAllLeaguesLink(request, response) {
+    let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
+    superagent.get(all_leaguesLink).then(leagues => {
+        console.log('leagues.body: ', leagues.body.leagues);
+        // console.log('returnedData.body: ', returnedData.body.countries);
+    })
 
-    superagent.get(link).then((returnedData) => {
-        console.log('returnedData.body: ', returnedData.body.countrys)
 
-        response.render('search-matches', { leagues: returnedData.body.countrys });
-    });
-});
+}
 
 //get matches using team name
-app.get('/matches/searchMatchesByTeamName', (request, response) => {
+app.get('/searchMatchesByTeamName', (request, response) => {
     let teamName = request.query.teamName;
+    console.log('reques.query', request.query)
     let matchesArray = [];
-    // console.log('teamName: ', teamName);
-
+    let idsArray = [];
+    console.log('teamName: ', teamName);
     let teamNamelink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
     superagent.get(teamNamelink).then((returnedData) => {
         // console.log('Teams result: ', returnedData.body.teams);
         returnedData.body.teams.forEach(element => {
             // console.log('element: ', element.idTeam);
-            let matchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${element.idTeam}`;
+            idsArray.push(element.idTeam);
+        });
+        console.log(idsArray);
+        for (var i = 0; i < idsArray.length; i++) {
+            let j = i;
+            let matchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idsArray[i]}`;
             superagent.get(matchesLink).then((matchesData) => {
                 // console.log('matchesData: ', matchesData.body.events);
                 if (matchesData.body && matchesData.body.events && matchesData.body.events.length) {
-                    matchesData.body.events.forEach(event => {
+                    matchesData.body.events.map((event) => {
                         let match = new Match(event);
                         matchesArray.push(match);
-                        // console.log(match);
                     });
                 }
-                console.log('matches: ', matchesArray);
-                response.render('search-matches', { matches: matchesArray });
-            }).catch(e => {
-                console.log(e);
+                if (j == idsArray.length - 1) {
+                    console.log('matchesArray: ', matchesArray);
+                    response.render('search-matches', { matches: matchesArray });
+                }
             });
-        });
-
+        };
     });
 });
 
-
-
-//get matches league
-app.get('/matches/searchMatchesByLeagueName', (request, response) => {
-    let leagueId = request.query.leagueId;
+//get matches using league
+app.get('/searchMatchesByLeagueName', (request, response) => {
+    // console.log('request.query: ', request.query);
+    let leagueId = request.query.leagueInputList;
     let matchesArray = [];
-
     // console.log('leagueId: ', leagueId);
-
     let leagueIdlink = `https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${leagueId}`;
     superagent.get(leagueIdlink).then((returnedData) => {
-        // console.log('returnedData: ', returnedData.body.events);
-
-        // console.log('Teams result: ', returnedData.body.teams);     
-        // console.log('element: ', element.idTeam);
-        // console.log('matchesData: ', matchesData.body.events);
         if (returnedData.body && returnedData.body.events && returnedData.body.events.length) {
             returnedData.body.events.forEach(event => {
-
                 let match = new Match(event);
                 matchesArray.push(match);
-
-
-                // console.log(match);
             });
         }
-
-        console.log('matchesReult: ', matchesArray);
+        console.log('matchesArray: ', matchesArray);
         response.render('search-matches', { matches: matchesArray });
 
 
@@ -261,6 +280,7 @@ app.get('/matches/searchEventsByLeaguee', (request, response) => {
     });
 });
 
+//about us page route
 app.get('/about-us', (request, response) => {
     response.render('about-us')
 });
@@ -286,9 +306,4 @@ client.connect().then(() => {
         console.log('server is listening to the port: ', PORT);
     });
 });
-// client.connect().then(() => {           // this is a promise and we need to start the server after it connects to the database
-//     // app.listen
-//     app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
-//         console.log('server is listening to the port: ', PORT);
-//     });
-// });
+

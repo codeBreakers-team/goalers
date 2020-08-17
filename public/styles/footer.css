@@ -16,7 +16,7 @@ footer{
 	width: 100%;
 	text-align: left;
 	font: bold 16px sans-serif;
-	padding: 50px 50px 60px 50px;
+	padding: 25px 25px 10px 25px;
 	/* margin-top: 80px; */
 }
 
@@ -45,9 +45,6 @@ footer{
 	width: 30%;
 }
 
-.footer-distributed h3 span{
-	color:  #139b3d;
-}
 
 /* Footer links */
 
@@ -163,61 +160,25 @@ footer{
 
 
 
-@media (max-width: 780px) {
+@media (max-width: 360px) {
 
 	.footer-distributed .footer-left,
 	.footer-distributed .footer-center,
 	.footer-distributed .footer-right{
 		display: block;
 		width: 100%;
-		margin-bottom: 40px;
+		margin-bottom: 10px;
 		text-align: center;
 	}
 
 	.footer-distributed .footer-center i{
 		margin-left: 0;
 	}
-
-}
-/* 
-.fa .fa-facebook {
-    background:url(../images/icons/ffacebook.png) no-repeat;
+p {
+	font-size: 15px;
 }
 
-.fa .fa-twitter{
-    background:url(../images/icons/ftwitter.png) no-repeat;
+div.footer-center , .footer-right > p :first-child{
+	display: none !important;
 }
-
-.fa .fa-instagram{
-    background:url() no-repeat;
 }
-
-.fa .fa-flickr{
-    background:url(../../images/icons/fflickr.png) no-repeat;
-}
-
-.fa .fa-feed{
-    background:url(../../images/icons/ffeed.png) no-repeat;
-}
-
-.fa .fa-facebook:hover {
-    background:url(../../images/icons/ffacebookhover.png) no-repeat;
-}
-
-.fa .fa-twitter:hover{
-    background:url(../images/icons/ftwitterhover.png) no-repeat;
-}
-
-.fa .fa-instagram:hover{
-    background:url() no-repeat;
-}
-
-.fa .fa-flickr:hover{
-    background:url(../images/icons/fflickrhover.png) no-repeat;
-}
-
-.fa .fa-feed:hover{
-    background:url(../images/icons/frsshover.png) no-repeat;
-}
- */
-
