@@ -277,5 +277,31 @@ a.burgerIcon , div#burgerLinks{
   right: 50px;
   top: 0;
   }
+
+  #header-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #header-image #form{
+    width: 18em;
+    position: static;
+  }
   
+  .slideshow-container{
+    max-width: 95%;
+  }
+  .matchEmbed{
+    width: 95%;
+  }
+  .leagues-names-container{
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+  }
+  .single-league-name{
+    width: 100%;
+    margin-right: 0px;
+  }
+
   }
