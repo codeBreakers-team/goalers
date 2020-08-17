@@ -190,10 +190,11 @@ app.get('/matches/searchMatchesByLeagueName', (request, response) => {
 
     });
 });
-
+//////////////////////////// User
 app.post('/signup', signUser);
 app.post('/login', logUser);
 app.get('/logout', logout);
+app.get('/profile', profile);
 
 app.get('/:id', (req,res) => {
     res.redirect(`/`);
@@ -240,6 +241,9 @@ function logout (req, res, next) {
     }
 }
 
+function profile (req,res){
+    
+}
 //get
 app.get('/matches/searchEventsByPlayerName', (request, response) => {
     let teamIdLink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${request.query.teamName}`;
@@ -261,9 +265,9 @@ app.get('/about-us', (request, response) => {
     response.render('about-us')
 });
 
-app.listen(PORT, () => { // to Start the express server only after the database connection is established.
-    console.log('server is listening to the port: ', PORT);
-});
+// app.listen(PORT, () => { // to Start the express server only after the database connection is established.
+//     console.log('server is listening to the port: ', PORT);
+// });
 
 function getLastMatches() {
     console.log('inside func');
@@ -274,20 +278,6 @@ function getLastMatches() {
     });
 }
 
-
-function LeagueMatch(match) {
-    this.matchName = match.strEvent;
-    this.leagueName = match.strLeague;
-    this.homeTeam = match.strHomeTeam;
-    this.homeTeamId = match.idHomeTeam;
-    this.awayTeamId = match.idAwayTeam;
-    this.homeTeamScore = match.intHomeScore || 0;
-    this.awayTeam = match.strAwayTeam;
-    this.awayTeamScore = match.intAwayScore || 0;
-    this.eventImg = match.strThumb || 'not found';
-    this.matchGoalsVideo = match.strVideo || 'not found';
-    return this;
-}
 
 
 client.connect().then(() => { 
