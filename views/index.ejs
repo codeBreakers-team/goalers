@@ -75,8 +75,8 @@
                 <section class="league<%= i %> league-matches" style="display: none;">
                 <% leagueDataArr[1].forEach(matchData => { %>
                     <div class="one-match">
-                    <p class="league-vs" > <%= matchData.matchName %> </p>
-                    <p class="league-vs-result">result: <%= matchData.homeTeamScore%> : <%= matchData.awayTeamScore %> </p>
+                    <p class="league-vs" > <span> <%= matchData.matchName %> </span> </p>
+                    <p class="league-vs-result"> <spanp> result: <%= matchData.homeTeamScore%> : <%= matchData.awayTeamScore %> </span> </p>
                 </div>
                     <% }) %>
                 </section>

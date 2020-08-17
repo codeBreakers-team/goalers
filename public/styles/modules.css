@@ -1,123 +1,126 @@
 .wrapper {
-  margin: 0 auto;
-  width: 90%;
+    margin: 0 auto;
+    width: 90%;
 }
 
-nav a{
-  font: 1.4em/1em sans-serif;
-  display: inline-block;
-  padding: 15px 20px;
-  text-decoration: none;
-  color: white;
-  text-align: center;   
-  
+nav a {
+    font: 1.4em/1em sans-serif;
+    display: inline-block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
 }
+
 nav a:hover {
-  color: green;
+    color: green;
 }
+
 .logo {
     width: 160px;
     height: 90px;
     transition: all 0.5s ease;
     margin-top: 0.9em;
-    padding-left:10%;
-    margin-top:12%;
-
+    padding-left: 10%;
+    margin-top: 12%;
 }
-#header-image{
-  width: 100%;
-  background-image: url('/images/ball.jpg') ;
-  /* background-repeat: no-repeat; */
-  /* position: relative;
+
+#header-image {
+    width: 100%;
+    background-image: url('/images/ball.jpg');
+/*     background-repeat: no-repeat; */
+    /* position: relative;
   top: 115px; */
-  /* background-size: cover; */
-  height: 559px;
-  
-}
-#football{
-  width: 100%;
+    background-size: cover;
+    height: 559px;
 }
 
-#logo{
-  float: left;
+#football {
+    width: 100%;
 }
+
+#logo {
+    float: left;
+}
+
 
 /* /////////////////////////////Form  */
-#form{
-  /* background: rgba(50,50,50,.90); */
-  background: rgb(12,23,0);
-background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714627647934) 50%, rgba(117,207,78,0.7682423311121324) 100%);
-  width: 28%;
-  border-radius: 50px 20px;
-  position: relative;
-  top: 11%;
-  left: 12%;
-  padding: 2.5%;
-  padding-bottom: 5%;
+
+#form {
+    /* background: rgba(50,50,50,.90); */
+    background: rgb(12, 23, 0);
+    background: linear-gradient(180deg, rgba(12, 23, 0, 1) 0%, rgba(29, 141, 42, 0.8410714627647934) 50%, rgba(117, 207, 78, 0.7682423311121324) 100%);
+    width: 28%;
+    border-radius: 50px 20px;
+    position: relative;
+    top: 11%;
+    left: 12%;
+    padding: 2.5%;
+    padding-bottom: 5%;
 }
-#form h3{
-  font-family: 'Pangolin', cursive;
-  font-weight: bold;
-  /* font-size: 50px; */
-  font-size: 3.5em;
-  text-align: center;
-  color: white;
+#form h3 {
+    font-family: 'Pangolin', cursive;
+    font-weight: bold;
+    /* font-size: 50px; */
+    font-size: 3.5em;
+    text-align: center;
+    color: white;
 }
-#intro{
-  font-family: 'Pangolin', cursive;
-  /* font-size: 20px; */
-  font-size: 1.25em;
-  padding:2%;
-  color: white;
+#intro {
+    font-family: 'Pangolin', cursive;
+    /* font-size: 20px; */
+    font-size: 1.25em;
+    padding: 2%;
+    color: white;
 }
-#form button{
-  font-family: 'Pangolin', cursive;
-  position: absolute;
-  left: 20%;
-  width: 60%;
-  height: 10%;
-  font-size: 25px;
-  font-size: 1.6em;
-  color: white;
-  background-color: green;
-  border: solid 1px;
-  border-radius: 25px
+#form button {
+    font-family: 'Pangolin', cursive;
+    position: absolute;
+    left: 20%;
+    width: 60%;
+    height: 10%;
+    font-size: 25px;
+    font-size: 1.6em;
+    color: white;
+    background-color: green;
+    border: solid 1px;
+    border-radius: 25px
 }
 /* /////////////////////////////// */
-.introduction{
-  font-family: 'Pangolin', cursive;
-  background-color:rgba(50,50,50,.99);
-  color: aliceblue;
-  padding:5%;
+.introduction {
+    font-family: 'Pangolin', cursive;
+    background-color: rgba(50, 50, 50, .99);
+    color: aliceblue;
+    padding: 5%;
 }
-.introduction h3{
-  font-size: 50px;
-  margin:4%;
-  margin-top: 8%;
-  text-align: center;
+.introduction h3 {
+    font-size: 50px;
+    margin: 4%;
+    margin-top: 8%;
+    text-align: center;
 }
-.introduction h3 span{
-  color:green;
+.introduction h3 span {
+    color: green;
 }
-.introduction #sub-header{
-  font-size: 35px;
-  padding: 2%;
-  text-align: center;
-  margin-top: 0px;
+.introduction #sub-header {
+    font-size: 35px;
+    padding: 2%;
+    text-align: center;
+    margin-top: 0px;
 }
-.text button{
-  display: block;
-   padding: 19px 39px 18px 39px;
-   color: #FFF;
-   margin: 0 auto;
-   background: green;
-   font-size: 18px;
-   text-align: center;
-   font-style: normal;
-   width: 90%;
-   border: 1px solid green;
-   border-width: 1px 1px 3px;
-   margin-bottom: 10px;
+.text button {
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: green;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 90%;
+    border: 1px solid green;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
 }
 /* /////////////////////////////// */
 /* .each-league-matches{
@@ -125,96 +128,95 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
 } */
 
 .dropdown {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-content {
-  right: -4px;
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    right: -4px;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {    background-color: #ddd;}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {    display: block;}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {    background-color: #3e8e41;}
 
 /* ////////////////////////// */
 .form-popup {
-  display: none;
-  width: 300px;
-  position: relative;
-  top: 150px;
-  left: 40%;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
+    display: none;
+    width: 300px;
+    position: relative;
+    top: 150px;
+    left: 40%;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
 }
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
 }
-.form-container h1{
-  text-align: center;
-  font-size: 40px;
-  position: absolute;
+.form-container h1 {
+    text-align: center;
+    font-size: 40px;
+    position: absolute;
 }
 
 
 /* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
-  width: 80%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
+.form-container input[type=text],.form-container input[type=password] {
+    width: 80%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
 }
 
 /* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-  color: #000;
+.form-container input[type=text]:focus,.form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+    color: #000;
 }
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
 }
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+    background-color: red;
 }
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
+.form-container .btn:hover,.open-button:hover {
+    opacity: 1;
 }
 
-<<<<<<< HEAD
 /* //////////////////////////////// */
 /* 
 table td:hover {
@@ -252,25 +254,24 @@ table th {
   letter-spacing: .1em;
   text-transform: uppercase;
 } */
-=======
-a.burgerIcon , div#burgerLinks{
-  
-  display: none;
-}
 
-@media (max-width: 360px) {
-  header{
-    position: fixed;
-    z-index: 10;
-    top: 0px;
-    display: block;
-  }
-  #header-image{
-    margin-top: 7em;
-  }
-  #mySidenav{
+a.burgerIcon, div #burgerLinks { 
     display: none;
   }
+
+@media (max-width: 360px){
+      header {
+        position: fixed;
+        z-index: 10;
+        top: 0px;
+        display: block;
+    }
+    #header-image {
+        margin-top: 7em;
+    }
+    #mySidenav {
+        display: none;
+    }  
   nav{
     display: block;
     overflow: auto;
@@ -316,6 +317,44 @@ a.burgerIcon , div#burgerLinks{
   right: 50px;
   top: 0;
   }
-  
+
+  #header-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
->>>>>>> 1412597f8e24f658acb5629859aaa5d67225e623
+  #header-image #form{
+    width: 18em;
+    position: static;
+  }
+
+  .slideshow-container{
+    max-width: 95%;
+  }
+  .matchEmbed{
+    width: 95%;
+  }
+  .leagues-names-container{
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+  }
+  .single-league-name{
+    width: 100%;
+    margin-right: 0px;
+  }
+  .one-match{
+    width: 49%;
+    min-width: auto;
+  }
+  .league-vs{
+    min-height: 4em;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    line-height: 2em;
+    padding: 0px 2.8px;
+  }
+   
+}
+
