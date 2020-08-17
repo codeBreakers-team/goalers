@@ -56,10 +56,10 @@ function openMatches(evt) {
   }
   tablinks = document.getElementsByClassName("single-league-name");
   for (i = 0; i < x.length; i++) {
-    tablinks[i].style.backgroundColor = 'black';
+    tablinks[i].style.backgroundColor = '#5d737e';
   }
   document.getElementsByClassName(`${selectedClassName}`)[1].style.display = "flex";
-  document.getElementsByClassName(`${selectedClassName}`)[0].style.backgroundColor = 'red';
+  document.getElementsByClassName(`${selectedClassName}`)[0].style.backgroundColor = '#7f7caf';
   // evt.currentTarget.backgroundColor = 'red';
 }
 

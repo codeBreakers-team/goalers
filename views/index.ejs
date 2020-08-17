@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles/sideNav.css">
 </head>
 
-<body>
+<body id="indexBody">
         <%- include('partials/header') %>
         <div id="header-image">
             <div id="form">
@@ -21,7 +21,7 @@
     <main>
         <div class="introduction">
             <h3 id="sub-header">Goalers helps you watch all your favorite live sports including La Liga, Ligue 1, Copa Libertadores, Copa Sudamericana, and MLW.</h3>
-            <h3> Here is some matches we chose for you, <span>ENJOY!</span></h3>
+            <div class="sliderAndVideo"><h3> Here is some matches we chose for you, <span>ENJOY!</span></h3>
 
        
 
@@ -42,8 +42,8 @@
             </div>
             
             <%  })  %>
-            
         </div>
+        
         <br>
         <div style="text-align:center">
             <span class="dot"></span>
@@ -58,7 +58,7 @@
 
 
         <%  })  %>
-
+    </div>
 
         <br /> <br /> <br /> <br />
 
