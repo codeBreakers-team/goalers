@@ -149,9 +149,10 @@ function playerPage(request, response) {
     let idsStratFrom = 34145399;
     let idsEndAt = 34149690;
     let randomStart = Math.floor(Math.random() * (idsEndAt - idsStratFrom + 1)) + idsStratFrom;
-    for (var i = randomStart; i < randomStart + 5; i++) {
+    let end = randomStart + 5;
+    for (var i = randomStart; i < end; i++) {
         let j = i;
-        let newRandomStart = randomStart;
+        let newRandomStart = end;
         let link = `https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=${i}`;
         superagent.get(link).then((item, ) => {
             // console.log('item.body: ', item.body.players[0]);
@@ -162,18 +163,16 @@ function playerPage(request, response) {
             } else {}
             // console.log('i: ', i);
             // console.log('randomStart: ', randomStart + 5);
-            if (j == newRandomStart + 4) {
-                console.log('j: ', j);
-                console.log('newRandomStart: ', newRandomStart + 5);
+            if (j == end - 1) {
+                // console.log('j: ', j);
+                // console.log('end: ', end);
                 let newPlayersArray = playersArray.filter(item => { return item.strSport == 'Soccer' });
                 // console.log('newPlayersArray: ', newPlayersArray)
-                // response.render('players', { players: newPlayersArray });
+                response.render('players', { players: newPlayersArray });
             }
         })
     }
 }
-
-
 
 // 4- matches page route function
 function matchesRoute(request, response) {
