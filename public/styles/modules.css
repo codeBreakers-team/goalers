@@ -317,6 +317,7 @@ a.burgerIcon, div #burgerLinks {
   .single-league-name{
     width: 100%;
     margin-right: 0px;
+    outline: none;
   }
   .one-match{
     width: 49%;
