@@ -303,5 +303,17 @@ a.burgerIcon , div#burgerLinks{
     width: 100%;
     margin-right: 0px;
   }
+  .one-match{
+    width: 49%;
+    min-width: auto;
+  }
+  .league-vs{
+    min-height: 4em;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    line-height: 2em;
+    padding: 0px 2.8px;
+  }
 
   }
