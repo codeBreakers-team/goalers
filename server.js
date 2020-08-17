@@ -235,8 +235,13 @@ function getMatchesByLeagueName(request, response) {
                 matchesArray.push(match);
             });
         }
-        //console.log('matchesArray: ', matchesArray);
-        response.render('search-matches', { matches: matchesArray });
+        let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
+        superagent.get(all_leaguesLink).then(leagues => {
+            console.log("leagues", leagues.body.leagues[0]);
+            //console.log('leagues.body: ', leagues.body.leagues);
+            // console.log('returnedData.body: ', returnedData.body.countries);
+            response.render('search-matches', { matches: matchesArray, leagues: leagues.body.leagues });
+        })
     });
 }
 
