@@ -95,7 +95,7 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     margin-bottom: 5em;
 }
 .introduction h3 {
-    font-size: 50px;
+    font-size: 4vw;
     margin: 4%;
     /* margin-top: 8%; */
     text-align: center;
@@ -105,9 +105,9 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
 }
 .introduction #sub-header {
     font-size: 35px;
-    padding: 2%;
+    /* padding: 2%; */
     text-align: center;
-    margin-top: 0px;
+    /* margin-top: 0px; */
 }
 .text button {
     display: block;
@@ -330,6 +330,8 @@ a.burgerIcon, div #burgerLinks {
     line-height: 2em;
     padding: 0px 2.8px;
   }
-   
+  .mySlides img{
+    height: 57vw;
+  }
 }
 

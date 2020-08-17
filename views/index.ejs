@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 
 <head>
     <%- include('partials/head') %>
@@ -7,88 +7,95 @@
 </head>
 
 <body id="indexBody">
-        <%- include('partials/header') %>
-        <div id="header-image">
-            <div id="form">
-                <p></p>
-                <h3>Welcome to GOALERS!</h3>
-                <p id="intro">Watch and stream all your favorite live sports. Plus fixtures, news, videos and others. </p>
-                <button onclick="window.location.href='#added'">Explore</button>
-                
-            </div>
-        </div> 
-        <%- include('partials/sideNav') %> <!-- will be modified -->
+    <%- include('partials/header') %>
+    <div id="header-image">
+        <div id="form">
+            <p></p>
+            <h3>Welcome to GOALERS!</h3>
+            <p id="intro">Watch and stream all your favorite live sports. Plus fixtures, news, videos and others. </p>
+            <button onclick="window.location.href='#added'">Explore</button>
+
+        </div>
+    </div>
+    <%- include('partials/sideNav') %>
+    <!-- will be modified -->
     <main>
         <div class="introduction">
-            <h3 id="sub-header">Goalers helps you watch all your favorite live sports including La Liga, Ligue 1, Copa Libertadores, Copa Sudamericana, and MLW.</h3>
-            <div class="sliderAndVideo"><h3> Here is some matches we chose for you, <span>ENJOY!</span></h3>
+            <h3 id="sub-header">
+                <p>Goalers helps you watch all your favorite live sports including La Liga, Ligue 1, Copa Libertadores,
+                    Copa Sudamericana, and MLW.</p>
+            </h3>
+            <div class="sliderAndVideo">
+                <h3> Here is some highlights we chose for you, <span>ENJOY!</span></h3>
 
-       
 
-        <div class="slideshow-container" id="added">
-            <!-- Full-width images with number and caption text -->
-            <% latestMatches.forEach((match, i) => { %>
-            <div class="mySlides fade">
-                <div class="over"></div>
-                <img src="<%= match.thumbnail %>"
-                    style="width: 100%;" />
-                <div class="text">
-                    <h2></h2>
-                    <p>
-                        <%= match.team1 %> vs <%= match.team2 %>
-                    </p>
-                    <button class="watch watch-<%- i %>">watch video</button>
+
+                <div class="slideshow-container" id="added">
+                    <!-- Full-width images with number and caption text -->
+                    <% latestMatches.forEach((match, i) => { %>
+                    <div class="mySlides fade">
+                        <div class="over"></div>
+                        <img src="<%= match.thumbnail %>" style="width: 100%;" />
+                        <div class="text">
+                            <h2></h2>
+                            <p>
+                                <%= match.team1 %> vs <%= match.team2 %>
+                            </p>
+                            <button class="watch watch-<%- i %>">watch video</button>
+                        </div>
+                    </div>
+
+                    <%  })  %>
                 </div>
+
+                <br>
+                <div style="text-align:center">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <!-- iframes -->
+                <% latestMatches.forEach((match, i) => { %>
+                <div style="display: none;" class="matchEmbed watch-<%- i %>"><%- match.embed %></div>
+
+
+                <%  })  %>
             </div>
-            
-            <%  })  %>
-        </div>
-        
-        <br>
-        <div style="text-align:center">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
-        <!-- iframes -->
-        <% latestMatches.forEach((match, i) => { %>
-        <div style="display: none;" class="matchEmbed watch-<%- i %>"><%- match.embed %></div>
 
+            <br /> <br /> <br /> <br />
 
-        <%  })  %>
-    </div>
-
-        <br /> <br /> <br /> <br />
-
-        <!-- end of iframes -->
-        <!-- start of leagues  -->
-        <div class="leagues-names-container">
-        <% Object.entries(leagues).forEach((leagueDataArr, i) => { %>
-            <!-- <h2 class="single-league-name" style="color: red;border: 5px solid brown; margin-bottom: 20px;"> <%= leagueDataArr[0] %></h2> -->
-            <button class="single-league-name league<%= i %>" onclick="openMatches(event)"> <%= leagueDataArr[0] %> </button>
-            <%  })  %>
-        </div>
+            <!-- end of iframes -->
+            <!-- start of leagues  -->
+            <div class="leagues-names-container">
+                <% Object.entries(leagues).forEach((leagueDataArr, i) => { %>
+                <!-- <h2 class="single-league-name" style="color: red;border: 5px solid brown; margin-bottom: 20px;"> <%= leagueDataArr[0] %></h2> -->
+                <button class="single-league-name league<%= i %>" onclick="openMatches(event)"> <%= leagueDataArr[0] %>
+                </button>
+                <%  })  %>
+            </div>
             <div class="each-league-matches">
-            <% Object.entries(leagues).forEach((leagueDataArr, i) => { %>
+                <% Object.entries(leagues).forEach((leagueDataArr, i) => { %>
                 <section class="league<%= i %> league-matches" style="display: none;">
-                <% leagueDataArr[1].forEach(matchData => { %>
+                    <% leagueDataArr[1].forEach(matchData => { %>
                     <div class="one-match">
-                    <p class="league-vs" > <span> <%= matchData.matchName %> </span> </p>
-                    <p class="league-vs-result"> <spanp> result: <%= matchData.homeTeamScore%> : <%= matchData.awayTeamScore %> </span> </p>
-                </div>
+                        <p class="league-vs"> <span> <%= matchData.matchName %> </span> </p>
+                        <p class="league-vs-result">
+                            <spanp> result: <%= matchData.homeTeamScore%> : <%= matchData.awayTeamScore %> </span>
+                        </p>
+                    </div>
                     <% }) %>
                 </section>
                 <% }) %>
             </div>
-               
 
-            
-            
-        <!--  -->
 
-    </div>
+
+
+            <!--  -->
+
+        </div>
     </main>
 
     <%- include('partials/footer') %>
