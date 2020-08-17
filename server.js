@@ -296,6 +296,28 @@ function logout (req, res, next) {
       });
     } res.redirect('/');
 }
+function test(req,res){
+    let {matchName,matchDate,matchTime,homeTeam,awayTeam} = req.body;
+    let matchId;
+    let SQL = 'SELECT id FROM match WHERE matchName = $1 AND matchDate = $2;';
+    let values = [matchName,matchDate];
+    return client.query(SQL, values).then( data => {
+        if (data.rowCount > 0) {
+            matchId=data.rows[0];
+        } else {
+            SQL = 'INSERT into match(matchName,homeTeam,awayTeam,matchDate,matchTime) VALUES ($1, $2, $3,$4,$5);';
+            values = [matchName,homeTeam,awayTeam,matchDate,matchTime];
+            return client.query(SQL, values).then( ()=>{
+            let SQL4 = 'INSERT into userDetails(match_id, account_id) VALUES ((SELECT id FROM match WHERE matchName = $1 AND matchDate = $2),(SELECT id FROM account WHERE username = $3));';
+            let values4 = [matchName, matchDate, sess.username];
+                client.query(SQL4,values4).then(() => {
+                    console.log([matchName, matchDate, sess.username])
+                });
+            });
+        };
+        res.redirect(`/addMatchToWishList`);
+    }).catch(err => console.log(err));   
+}
 
 function addMatchToWishList(req,res){
     let {matchName,matchDate,matchTime,homeTeam,awayTeam} = req.body;
