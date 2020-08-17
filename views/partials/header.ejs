@@ -17,72 +17,81 @@
         <div class="dropdown-content">
           <a href="#" onclick="openForm()">Log in</a>
           <a href="#" onclick="openSignForm()">Sign up</a>
+          <a href="/addMatchToWishList" onclick="openProfile()">profile</a>
+          <a href="/logout">Log out</a>
         </div>
       </div>
 
-      <div id="burgerLinks">
+      <!-- <div id="burgerLinks">
         <a href="/" class="mobileLinks"><i class="fas fa-house-user"></i> HOME</a>
         <a href="/matches" class="mobileLinks"><i class="fas fa-users"></i> MATCHES</a>
         <a href="/player" class="mobileLinks"><i class="fas fa-running"></i> PLAYERS</a>
         <a href="/about-us" class="mobileLinks"><i class="fas fa-address-card"></i> ABOUT</a>
-      </div>
-      <a href="javascript:void(0);" class="burgerIcon" style="font-size: 35px;" onclick="burgerFuntion()">
+      </div> -->
+      <!-- <a href="javascript:void(0);" class="burgerIcon" style="font-size: 35px;" onclick="burgerFuntion()">
         <i class="fa fa-bars"></i>
-      </a>
+      </a> -->
     </nav>
 
     <div class="form-popup" id="loginForm">
-      <form action="/" class="form-container">
-        <h1>Login</h1>
-        <br /><br /><br />
+      <form action="/login" class="form-container" method="POST">
+        <h1>Login</h1><br><br><br>
 
-        <br /><label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required />
+        <br><label for="username"><b>User name</b></label>
+        <input type="text" placeholder="Enter username" name="username" required>
 
         <label for="psw"><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
-        />
+        <input type="password" placeholder="Enter Password" name="psw" required>
 
         <button type="submit" class="btn">Login</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">
-          Close
-        </button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
       </form>
     </div>
 
     <div class="form-popup" id="signUpForm">
-      <form action="/" class="form-container">
-        <h1>Sign up</h1>
-        <br /><br /><br /><br />
+      <form action="/signup" class="form-container" method="POST">
+        <h1>Sign up</h1><br><br><br><br>
+
+        <br><label for="username"><b>User name</b></label>
+        <input type="text" placeholder="Enter username" name="username" required>
 
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required />
+        <input type="text" placeholder="Enter Email" name="email" required>
 
         <label for="psw"><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
-        />
+        <input type="password" placeholder="Enter Password" name="psw" required>
 
         <button type="submit" class="btn">Sign up</button>
-        <button type="button" class="btn cancel" onclick="closeSignForm()">
-          Close
-        </button>
+        <button type="button" class="btn cancel" onclick="closeSignForm()">Close</button>
+      </form>
+    </div>\
+
+    <div class="form-popup" id="logoutForm">
+      <form action="/signup" class="form-container" method="POST">
+        <h1>Are you sure you want to log out?</h1><br>
+        <button type="submit" class="btn">Log out</button>
+        <button type="button" class="btn cancel" onclick="closelogoutForm()">Close</button>
       </form>
     </div>
+
+    
   </div>
 </header>
 
 <script>
+
+function burgerFuntion() {
+    var burgerLinks = document.getElementById("burgerLinks");
+    if (burgerLinks.style.display === "block") {
+      burgerLinks.style.display = "none";
+    } else {
+      burgerLinks.style.display = "block";
+    }
+  }
   function openForm() {
     document.getElementById("loginForm").style.display = "block";
     document.getElementById("signUpForm").style.display = "none";
+    document.getElementById("logoutForm").style.display = "none";
   }
 
   function closeForm() {
@@ -91,19 +100,23 @@
   function openSignForm() {
     document.getElementById("signUpForm").style.display = "block";
     document.getElementById("loginForm").style.display = "none";
+    document.getElementById("logoutForm").style.display = "none";
   }
 
   function closeSignForm() {
     document.getElementById("signUpForm").style.display = "none";
   }
-
-  function burgerFuntion() {
-    var burgerLinks = document.getElementById("burgerLinks");
-    if (burgerLinks.style.display === "block") {
-      burgerLinks.style.display = "none";
-    } else {
-      burgerLinks.style.display = "block";
-    }
+  function openlogoutForm() {
+    document.getElementById("logoutForm").style.display = "block";
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("signUpForm").style.display = "none";
   }
+
+  function closelogoutForm() {
+    document.getElementById("logoutForm").style.display = "none";
+  }
+
 </script>
-<!-- <i class="fas fa-futbol" style="font-size: 20px;"></i> -->
+
+
+<!-- //////////////////////////////////// -->
