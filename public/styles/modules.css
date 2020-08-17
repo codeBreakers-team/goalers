@@ -44,7 +44,9 @@ nav a:hover {
 
 /* /////////////////////////////Form  */
 #form{
-  background: rgba(50,50,50,.90);
+  /* background: rgba(50,50,50,.90); */
+  background: rgb(12,23,0);
+background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714627647934) 50%, rgba(117,207,78,0.7682423311121324) 100%);
   width: 28%;
   border-radius: 50px 20px;
   position: relative;
