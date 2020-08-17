@@ -257,6 +257,8 @@ app.get('/:id', (req,res) => {
     res.redirect(`/`);
 })
 
+app.get('/profile', profile)
+
 function signUser(req,res){
   let {username,email,psw} = req.body;
   let SQL = 'INSERT into account(username,email,psw) VALUES ($1, $2, $3);';
@@ -299,36 +301,30 @@ function logout (req, res, next) {
 
 function addMatchToWishList(req,res){
     let {matchName,matchDate,matchTime,homeTeam,awayTeam} = req.body;
-    let SQL = 'INSERT into match(matchName,homeTeam,awayTeam,matchDate,matchTime) VALUES ($1, $2, $3,$4,$5);';
-    let values = [matchName,homeTeam,awayTeam,matchDate,matchTime];
-    return client.query(SQL, values).then( ()=>{
-        let SQL2 = 'SELECT * FROM match WHERE matchName = $1;';
-        let values2 = [matchName];
-        client.query(SQL2,values2).then( data => {
-            let matchId = data.rows[0].id;
-            let SQL3 = 'SELECT * FROM account WHERE username = $1;';
-            let values3 = [sess.username];
-            client.query(SQL3,values3).then(data => {
-            var accountId = data.rows[0].id;
-            sess.accountId = accountId;
-            let SQL4 = 'INSERT into userDetails(match_id, account_id) VALUES ($1,$2);';
-            let values4 = [matchId, accountId];
-            client.query(SQL4,values4).then(() => {
-                });
+    let SQL = 'SELECT id FROM match WHERE matchName = $1 AND matchDate = $2 AND matchTime = $3;';
+    let values = [matchName,matchDate,matchTime];
+    return client.query(SQL, values).then( data => {
+        if (data.rowCount === 0) {
+            let SQL3 = 'INSERT into match(matchName,homeTeam,awayTeam,matchDate,matchTime) VALUES ($1, $2, $3,$4,$5);';
+            let values3 = [matchName,homeTeam,awayTeam,matchDate,matchTime];
+            client.query(SQL3, values3).then( ()=>{
             });
-        });
+        } else {}
+        let SQL4 = 'INSERT into userDetails(match_id, account_id) VALUES ((SELECT id FROM match WHERE matchName = $1 AND matchDate = $2),(SELECT id FROM account WHERE username = $3));';
+        let values4 = [matchName, matchDate, sess.username];
+            client.query(SQL4,values4).then(() => {
+            });
         res.redirect(`/addMatchToWishList`);
-    }).catch(err => console.log(err));
+    }).catch(err => console.log(err));   
 }
 
 function profile (req,res){
-    let SQL = 'SELECT match.matchName, match.homeTeam, match.awayTeam, match.matchDate, match.matchTime, account.username FROM match,account,userDetails WHERE userDetails.account_id = $1';
-    let values = [sess.accountId];
+    let values = [sess.username,sess.username];
+    let SQL = 'SELECT DISTINCT match.matchName, match.homeTeam, match.awayTeam, match.matchDate, match.matchTime, account.username, account.id FROM match,account,userDetails WHERE userDetails.account_id = (SELECT id FROM account WHERE username = $1) AND account.username = $2;';
     client.query(SQL,values).then(data => {
         var matchesTable = data.rows;
         res.render('profile', {matchesTable : matchesTable});
-    });
-    
+    });  
 }
 //7- about us page route function
 function aboutUsPageRoute(request, response) {
