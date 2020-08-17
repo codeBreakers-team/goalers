@@ -1,7 +1,7 @@
 header {
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    display: flex;
     background: rgba(50,50,50,.95);
     box-shadow: 0 10px 20px rgba(50,50,50,.95);
 background: rgb(217,232,89);

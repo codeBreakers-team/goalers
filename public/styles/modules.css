@@ -217,7 +217,14 @@ a.burgerIcon , div#burgerLinks{
 }
 
 @media (max-width: 360px) {
-  
+  nav{
+    display: block;
+    overflow: auto;
+    width: 100%;
+  }
+  .mobileLinks{
+    display: block;
+  }
   #burgerLinks{
     position: relative;
     display: inline-block;
@@ -255,11 +262,5 @@ a.burgerIcon , div#burgerLinks{
   right: 50px;
   top: 0;
   }
-
-  #burgerLinks > a.mobileLinks{
-display: block !important;
-  }
-  #mySidenav{
-    display: none;
-  }
+  
   }
