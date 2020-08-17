@@ -37,3 +37,9 @@ nav a {
     background-image: url(../images/body-background/b1.jpg);
     background-repeat: repeat;
 } */
+@media (max-width: 360px){
+header{
+    background: rgb(54,53,55);
+background: linear-gradient(196deg, rgba(54,53,55,1) 5%, rgba(100,135,103,1) 76%, rgba(93,115,126,1) 100%);
+}
+}
