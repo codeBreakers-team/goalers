@@ -1,5 +1,6 @@
 'use strict'
 const express = require('express');
+var session = require('express-session');
 const app = express();
 const cors = require('cors');
 app.use(cors());
@@ -15,7 +16,15 @@ const client = new pg.Client(process.env.DATABASE_URL);
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
-//invoke constructors from models
+var sess = {
+    secret: 'save',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true,
+    maxAge: 50000000 }
+  }
+app.use(session(sess));
+
 const Player = require("./Models/Player").default;
 const LastMatch = require("./Models/LastMatch.js").default;
 const LeagueMatch = require("./Models/LeagueMatch").default;
@@ -44,11 +53,9 @@ function getMainRoute(request, response) {
     let link = `https://www.scorebat.com/video-api/v1/`;
     superagent.get(link)
         .then((returnedData) => {
-            //  let matchesArr = [];
             for (let i = 0; i < 5; i++) {
                 matchesArr.push(new LastMatch(returnedData.body[i]));
             }
-            //  response.render('index', { latestMatches: matchesArr });
         });
     //end of slider
     //start of leagues latest matches results
@@ -74,10 +81,6 @@ function getMainRoute(request, response) {
                     }
                 });
             }
-            //console.log(allLeaguesNames); //////////
-            //console.log(allLeaguesObj);
-            //response.send(allLeaguesObj);
-            // response.render('index', { latestMatches: leaguesArr });
         })
         // .then((allLeaguesObj) => {
         //     console.log(allLeaguesObj);
@@ -244,12 +247,102 @@ function getMatchesByLeagueName(request, response) {
         })
     });
 }
+////////////////////////////////////////////////
+app.post('/signup', signUser);
+app.post('/login', logUser);
+app.get('/logout', logout);
+app.post('/addMatchToWishList',addMatchToWishList);
+app.get('/addMatchToWishList', profile)
+app.get('/:id', (req,res) => {
+    res.redirect(`/`);
+})
 
+function signUser(req,res){
+  let {username,email,psw} = req.body;
+  let SQL = 'INSERT into account(username,email,psw) VALUES ($1, $2, $3);';
+  let values = [username,email,psw];
+  return client.query(SQL, values).then( ()=>{
+    let SQL2 = 'SELECT * FROM account WHERE email = $1;';
+    let values2 = [req.body.email];
+    return client.query(SQL2,values2).then( data => {
+    res.redirect(`/${data.rows[0].id}`);
+      })
+    }).catch(err => console.log(err));
+}
+
+function logUser(req,res){
+  let {username,psw} = req.body;
+  let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
+  let values = [username,psw];
+  return client.query(SQL, values).then( data =>{
+      if(!data.rows[0]){
+          res.redirect(`/`);
+      } else {
+        sess.username = username;
+        sess.accountId = data.rows[0].id;
+        res.redirect(`/:id`);
+      }
+    }).catch(err => console.log(err));
+}
+
+function logout (req, res, next) {
+    if (req.session) {
+      req.session.destroy(err => {
+        if (err) {
+          console.log(err);
+        } else {
+          return res.redirect('/');
+        }
+      });
+    }
+}
+
+function addMatchToWishList(req,res){
+    let {matchName,matchDate,matchTime,homeTeam,awayTeam} = req.body;
+    let SQL = 'INSERT into match(matchName,homeTeam,awayTeam,matchDate,matchTime) VALUES ($1, $2, $3,$4,$5);';
+    let values = [matchName,homeTeam,awayTeam,matchDate,matchTime];
+    return client.query(SQL, values).then( ()=>{
+        let SQL2 = 'SELECT * FROM match WHERE matchName = $1;';
+        let values2 = [matchName];
+        client.query(SQL2,values2).then( data => {
+            let matchId = data.rows[0].id;
+            let SQL3 = 'SELECT * FROM account WHERE username = $1;';
+            let values3 = [sess.username];
+            client.query(SQL3,values3).then(data => {
+            var accountId = data.rows[0].id;
+            sess.accountId = accountId;
+            let SQL4 = 'INSERT into userDetails(match_id, account_id) VALUES ($1,$2);';
+            let values4 = [matchId, accountId];
+            client.query(SQL4,values4).then(() => {
+                });
+            });
+        });
+        res.redirect(`/addMatchToWishList`);
+    }).catch(err => console.log(err));
+}
+
+function profile (req,res){
+    let SQL = 'SELECT match.matchName, match.homeTeam, match.awayTeam, match.matchDate, match.matchTime, account.username FROM match,account,userDetails WHERE userDetails.account_id = $1';
+    let values = [sess.accountId];
+    client.query(SQL,values).then(data => {
+        var matchesTable = data.rows;
+        res.render('profile', {matchesTable : matchesTable});
+    });
+    
+}
 //7- about us page route function
 function aboutUsPageRoute(request, response) {
     response.render('about-us')
 };
 
-app.listen(PORT, () => { // to Start the express server only after the database connection is established.
-    console.log('server is listening to the port: ', PORT);
+// app.listen(PORT, () => { // to Start the express server only after the database connection is established.
+//     console.log('server is listening to the port: ', PORT);
+// });
+
+client.connect().then(() => { 
+          // this is a promise and we need to start the server after it connects to the database
+    app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
+        console.log('server is listening to the port: ', PORT);
+    });
 });
+

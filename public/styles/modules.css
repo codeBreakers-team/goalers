@@ -217,8 +217,10 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     opacity: 1;
 }
 
-a.burgerIcon,div#burgerLinks {
-  
+/* //////////////////////////////// */
+
+
+a.burgerIcon, div #burgerLinks { 
     display: none;
   }
 
@@ -290,7 +292,7 @@ a.burgerIcon,div#burgerLinks {
     width: 18em;
     position: static;
   }
-  
+
   .slideshow-container{
     max-width: 95%;
   }
@@ -320,3 +322,4 @@ a.burgerIcon,div#burgerLinks {
   }
    
 }
+
