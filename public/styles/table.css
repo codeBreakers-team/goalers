@@ -1,6 +1,5 @@
 table td:hover {
-  width: 300px;
-  height: 300px;
+  height: 100px;
 }
 
 table {
@@ -22,13 +21,13 @@ table th,
 table td {
   padding: .625em;
   text-align: center;
-  color: #B75D69;
+  color: green;
   font-size: 20px;
 }
 
 table th {
   font-size: 22px;
-  background-color: #EACDC2;
+  background-color: lightgreen;
   height: 35px;
   letter-spacing: .1em;
   text-transform: uppercase;

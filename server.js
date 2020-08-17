@@ -251,7 +251,6 @@ function getMatchesByLeagueName(request, response) {
 app.post('/signup', signUser);
 app.post('/login', logUser);
 app.get('/logout', logout);
-app.get('/profile', profile);
 app.post('/addMatchToWishList',addMatchToWishList);
 app.get('/addMatchToWishList', profile)
 app.get('/:id', (req,res) => {
