@@ -84,7 +84,7 @@ body {
 
 @media (max-width: 360px) {
     #playerSearchForm {
-        margin-top: 100px;
+        margin-top: 125px;
         font-size: 15px;
         width: 100%;
         display: flex;

@@ -35,7 +35,7 @@
             <div class="each-league-matches">
                 <section class="byCountryForm searchForm" style="display: none;">
                     <form id="countrySearchForm" action="/searchByCountry" method="GET">
-                        <label>Country: <input id="countryInputText" type="text" name="country"> </label> <br />
+                        <label>Country: <input class="matchInputclass" id="countryInputText" type="text" name="country"> </label> 
                         <input class="searchButton" type="submit" value="Search">
                     </form>
                 </section>
@@ -44,7 +44,7 @@
             <div class="each-league-matches">
                 <section class="byTeamForm searchForm" style="display: none;">
                     <form id="teamSearchForm" action="/searchMatchesByTeamName" method="GET">
-                        <label>Team: <input id="teamInputText" type="text" name="teamName"> </label> <br />
+                        <label>Team: <input class="matchInputclass" id="teamInputText" type="text" name="teamName"> </label> 
                         <input class="searchButton" type="submit" value="Search">
                     </form>
                 </section>
@@ -53,7 +53,7 @@
             <div class="each-league-matches">
                 <section class="byPlayerForm searchForm" style="display: none;">
                     <form id="playerSearchForm" action="/searchMatchesByName" method="GET">
-                        <label>Player: <input id="playerInputText" type="text" name="player"> </label> <br />
+                        <label>Player: <input class="matchInputclass" id="playerInputText" type="text" name="player"> </label> 
                         <input class="searchButton" type="submit" value="Search">
                     </form>
                 </section>
@@ -65,7 +65,7 @@
                     <form id="leagueSearchForm" action="/searchMatchesByLeagueName" method="GET">
 
                         <label for="leagueInputList">Choose league name from the list:</label>
-                        <input list="leaguesDataList" name="leagueInputList" id="leagueInputList">
+                        <input list="leaguesDataList" name="leagueInputList" id="leagueInputList"  class="matchInputclass" >
                         <datalist id="leaguesDataList">
                             <% if(typeof(leagues)!=='undefined'){ %>
 

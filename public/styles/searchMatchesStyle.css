@@ -1,5 +1,6 @@
 body{
-    background-color: rgb(236, 236, 27);
+    background-color: wheat; 
+  background-image: linear-gradient(white, rgb(165, 161, 161));
 }
 main {
     width: 100%;
@@ -100,11 +101,104 @@ main {
         margin: 4em auto 0px auto;
         width: 85%;
     }
-    .searchForm{
-        width: 29%;
+   
+    /*  */
+
+    .each-match-serchResult{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 33%;
+  text-align: center;
+  padding: 10px;
+  margin: 15px;
+  background-color: wheat; 
+  background-image: linear-gradient(white, rgb(194, 190, 190));
+    }
+   
+    .all-matches-search-result{
         display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: space-around;
+    }
+    .add-wishList{
+        background-color: #4CAF50;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+    }
+    
+
+   .searchForm {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 50%;
+  text-align: center;
+  padding: 3px;
+  margin: 8px;
+  background-color: wheat; 
+  background-image: linear-gradient(white, rgb(194, 190, 190));
+  display: flex;
         flex-direction: column;
         padding: 5px 0px;
-        font-size: 1.2em;
+        font-size: 1.1em;
+  justify-content: center; 
+}
+
+.searchButton{
+    background-color: #252725;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;  
+}
+
+.leagues-names-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.matchInputclass{
+    height: 22px;
+    width: 250px;
+    border-radius: 7px;
+}
+
+@media (max-width: 360px) {
+    .match-search-tabs-container{
+        margin: 9em auto 0px auto;
+        width: 85%;
     }
-    /*  */
+    .searchForm {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 85%;
+  text-align: center;
+  padding: 5px;
+  margin: 10px;
+  background-color: wheat; 
+  background-image: linear-gradient(white, rgb(194, 190, 190));
+
+}
+.each-match-serchResult{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+width: 50%;
+text-align: center;
+padding: 10px;
+margin: 15px;
+background-color: wheat; 
+background-image: linear-gradient(white, rgb(194, 190, 190));
+}
+}
