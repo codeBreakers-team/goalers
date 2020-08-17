@@ -328,7 +328,7 @@ a.burgerIcon, div #burgerLinks {
     display: flex;
     justify-items: center;
     align-items: center;
-    line-height: 2em;
+    line-height: 1.3em;
     padding: 0px 2.8px;
   }
   .mySlides img{
