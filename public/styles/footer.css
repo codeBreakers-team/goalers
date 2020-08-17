@@ -1,13 +1,11 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css");
 
 footer{
-	position: fixed;
+	position: static;
 	bottom: 0;
 }
 
-@media (max-height:800px){
-	footer { position: static; }
-}
+
 
 
 .footer-distributed{
