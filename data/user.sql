@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS userDetails;
+DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS match;
+
+
+CREATE TABLE account (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  psw VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE match (
+  id SERIAL PRIMARY KEY,
+  matchName VARCHAR(255) UNIQUE NOT NULL,
+  homeTeam VARCHAR(255) NOT NULL,
+  awayTeam VARCHAR(255) NOT NULL,
+  matchDate VARCHAR(255) NOT NULL,
+  matchTime VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE userDetails (
+  match_id INTEGER,
+  account_id INTEGER,
+  FOREIGN KEY (match_id) REFERENCES match (id),
+  FOREIGN KEY (account_id) REFERENCES account (id)
+);
