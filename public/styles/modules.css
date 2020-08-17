@@ -214,7 +214,6 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
   opacity: 1;
 }
 
-<<<<<<< HEAD
 /* //////////////////////////////// */
 /* 
 table td:hover {
@@ -252,7 +251,6 @@ table th {
   letter-spacing: .1em;
   text-transform: uppercase;
 } */
-=======
 a.burgerIcon , div#burgerLinks{
   
   display: none;
@@ -318,4 +316,3 @@ a.burgerIcon , div#burgerLinks{
   }
   
   }
->>>>>>> 1412597f8e24f658acb5629859aaa5d67225e623

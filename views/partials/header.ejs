@@ -15,22 +15,22 @@
           ><i class="fas fa-user-circle" style="font-size: 35px;"></i
         ></a>
         <div class="dropdown-content">
-          <a href="#" onclick="openForm()">Log in</a>
-          <a href="#" onclick="openSignForm()">Sign up</a>
-          <a href="#" onclick="openProfile()">profile</a>
-          <a href="/profile">Log out</a>
+          <a href="#" id='login' onclick="openForm()">Log in</a>
+          <a href="#" id='signup'onclick="openSignForm()">Sign up</a>
+          <a href="#" id='profile' onclick="openProfile()">profile</a>
+          <a href="/profile" id="logout">Log out</a>
         </div>
       </div>
 
-      <!-- <div id="burgerLinks">
+      <div id="burgerLinks">
         <a href="/" class="mobileLinks"><i class="fas fa-house-user"></i> HOME</a>
         <a href="" class="mobileLinks"><i class="fas fa-users"></i> MATCHES</a>
         <a href="/player" class="mobileLinks"><i class="fas fa-running"></i> PLAYERS</a>
         <a href="/about-us" class="mobileLinks"><i class="fas fa-address-card"></i> ABOUT</a>
-      </div> -->
-      <!-- <a href="javascript:void(0);" class="burgerIcon" style="font-size: 35px;" onclick="burgerFuntion()">
+      </div>
+       <a href="javascript:void(0);" class="burgerIcon" style="font-size: 35px;" onclick="burgerFuntion()">
         <i class="fa fa-bars"></i>
-      </a> -->
+      </a>
     </nav>
 
     <div class="form-popup" id="loginForm">
@@ -80,6 +80,15 @@
 
 <script>
 
+// document.getElementById("profile").style.display = "none";
+// document.getElementById("logout").style.display = "none";
+
+// function onlogin(){
+//   document.getElementById("profile").style.display = "block";
+//   document.getElementById("logout").style.display = "block";
+//   document.getElementById("signup").style.display = "none";
+//   document.getElementById("login").style.display = "none";
+// }
 function burgerFuntion() {
     var burgerLinks = document.getElementById("burgerLinks");
     if (burgerLinks.style.display === "block") {
@@ -92,6 +101,8 @@ function burgerFuntion() {
     document.getElementById("loginForm").style.display = "block";
     document.getElementById("signUpForm").style.display = "none";
     document.getElementById("logoutForm").style.display = "none";
+    document.getElementById("signup").style.display = "none";
+    
   }
 
   function closeForm() {
