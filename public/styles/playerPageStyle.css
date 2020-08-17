@@ -90,7 +90,7 @@ body {
         display: flex;
         top: 100px;
         padding: 8px;
-        background-color: white;
+        background-color: #3a811a;
         text-align: center;
         font-family: 'Segoe UI', 'Roboto', arial, sans-serif;
     }
@@ -112,12 +112,12 @@ body {
         width: 60px;
     }
     #playerInfoDiv {
-        /* background-color:rgba(101, 110, 92, 0.6); */
-        padding: 20px 20px 20px 20px;
-        width: 100%;
-        background-image: url(https://st2.depositphotos.com/1502607/10186/i/950/depositphotos_101860542-stock-photo-green-grass-soccer-field-background.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
+        padding: 15px;
+        margin: auto;
+        background-color: #648668;
+        width: 80%;
+        margin-top: 15px;
+        border-radius: 10px;
     }
     .imageAndInfoDiv {
         display: flex;
@@ -125,18 +125,18 @@ body {
     }
     .playerImage {
         border-radius: 10px;
-        margin: 8px;
-        width: 85%;
+        width: 100%;
+        margin: 0px;
     }
     .playerBreifInfoDiv {
-        background-color: rgba(50, 50, 50, .55);
-        padding-left: 5px;
+        margin: 5px 0px 0px 0px;
+        background-color: #506452;
         border-radius: 10px;
-        width: 70%;
-        font-size: 30px;
-        padding-right: 40px;
+        font-size: 20px;
         color: #f1ebe0;
         justify-content: center;
+        width: 100%;
+        padding: 10px;
     }
     #playerDescription {
         display: none;
