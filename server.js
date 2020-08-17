@@ -110,36 +110,66 @@ function searchPlayer(request, response) {
 }
 
 // 3- Player page route function
+// function playerPage(request, response) {
+//     //get all fav player link
+//     let favPlayerLink = `https://www.thesportsdb.com/api/v1/json/1/searchloves.php?u=zag`;
+//     // extract Ids of fav players
+//     let favPlayersIds = [];
+//     //result array which will be passed to ejs file
+//     let playersArray = [];
+//     try {
+//         superagent.get(favPlayerLink).then(data => {
+//             favPlayersIds = data.body.players.map(player => {
+//                     // if there is no id 'No Id Provided' will be the value of id then we will filter it
+//                     return player.idPlayer || 'No Id Provided';
+//                 }).filter(item => {
+//                     return item != 'No Id Provided';
+//                 })
+//                 // console.log('favPlayersIds: ', favPlayersIds);
+//             let randomFavPlayerIndex = Math.floor(Math.random() * favPlayersIds.length + 1);
+//             // console.log('randomFavPlayerIndex: ', randomFavPlayerIndex);
+//             let getPlayerByIdLink = `https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=${favPlayersIds[randomFavPlayerIndex]}`;
+//             superagent.get(getPlayerByIdLink).then(item => {
+//                 // if (item.body.players[0].strSport == 'Soccer') {
+//                 let player = new Player(item.body.players[0]);
+//                 // console.log('player: ', player);
+//                 playersArray.push(player);
+//                 // }
+//                 response.render('players', { players: playersArray });
+//             })
+//         })
+//     } catch (error) {
+//         console.log('error: ', error);
+//     }
+// }
+
+// 3- Player page route function
 function playerPage(request, response) {
-    //get all fav player link
-    let favPlayerLink = `https://www.thesportsdb.com/api/v1/json/1/searchloves.php?u=zag`;
-    // extract Ids of fav players
-    let favPlayersIds = [];
-    //result array which will be passed to ejs file
     let playersArray = [];
-    try {
-        superagent.get(favPlayerLink).then(data => {
-            favPlayersIds = data.body.players.map(player => {
-                    // if there is no id 'No Id Provided' will be the value of id then we will filter it
-                    return player.idPlayer || 'No Id Provided';
-                }).filter(item => {
-                    return item != 'No Id Provided';
-                })
-                // console.log('favPlayersIds: ', favPlayersIds);
-            let randomFavPlayerIndex = Math.floor(Math.random() * favPlayersIds.length + 1);
-            // console.log('randomFavPlayerIndex: ', randomFavPlayerIndex);
-            let getPlayerByIdLink = `https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=${favPlayersIds[randomFavPlayerIndex]}`;
-            superagent.get(getPlayerByIdLink).then(item => {
-                // if (item.body.players[0].strSport == 'Soccer') {
+    let idsStratFrom = 34145399;
+    let idsEndAt = 34149690;
+    let randomStart = Math.floor(Math.random() * (idsEndAt - idsStratFrom + 1)) + idsStratFrom;
+    for (var i = randomStart; i < randomStart + 5; i++) {
+        let j = i;
+        let newRandomStart = randomStart;
+        let link = `https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=${i}`;
+        superagent.get(link).then((item, ) => {
+            // console.log('item.body: ', item.body.players[0]);
+            if (item.body && item.body.players && item.body.players.length) {
                 let player = new Player(item.body.players[0]);
                 // console.log('player: ', player);
                 playersArray.push(player);
-                // }
-                response.render('players', { players: playersArray });
-            })
+            } else {}
+            // console.log('i: ', i);
+            // console.log('randomStart: ', randomStart + 5);
+            if (j == newRandomStart + 4) {
+                console.log('j: ', j);
+                console.log('newRandomStart: ', newRandomStart + 5);
+                let newPlayersArray = playersArray.filter(item => { return item.strSport == 'Soccer' });
+                // console.log('newPlayersArray: ', newPlayersArray)
+                // response.render('players', { players: newPlayersArray });
+            }
         })
-    } catch (error) {
-        console.log('error: ', error);
     }
 }
 
