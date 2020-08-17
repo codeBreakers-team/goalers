@@ -1,6 +1,8 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css");
 
-
+#indexBody{
+  background-color: #d2d2d2;
+}
 .mySlides {display: none;}
 /* img {vertical-align: middle;} */
 
@@ -86,28 +88,29 @@
 }
 .single-league-name{
 border: none;
-    background-color: black;
+    background-color: #5d737e;
     color: white;
     padding: 5px;
     margin-right: 3%;
     font-size: 1em;
+    outline: none;
 }
 .leagues-names-container{
   display: flex;
-  background-color: black;
+  background-color: #5d737e;
   padding-left: 10px;
   flex-wrap: wrap;
   
 }
 .single-league-name:nth-of-type(1){
-  background-color: red;
+  background-color: #7f7caf;
 }
 
 .single-league-name:hover{
   background-color: gray;
 }
 .matchEmbed{
-  width: 80%;
+  width: 65%;
   margin: 0px auto 0px auto;
 }
 .HorizontalScroll .HorizontalScrollMouse .VideoPlayerStoriesC{
@@ -132,11 +135,15 @@ text-align: center;
     min-width: 175px;
 }
 .league-vs{
-background-image: url(../images/league-background/upper-vs.jpg);
-color: yellow !important;
+background-image: url(../images/league-background/b1.jpg);
+color: dimgray !important;
   line-height: 3em;
+  font-size: 1.2em;
 }
 .league-vs-result{
-  background-image: url(../images/league-background/down-result.jpg);
+  background-image: url(../images/league-background/17.jpg);
+  background-position-y: -6px;
   line-height: 4em;
+  color: whitesmoke;
+  font-size: 1.2em;
 }
