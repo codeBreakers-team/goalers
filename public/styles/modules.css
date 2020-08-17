@@ -252,5 +252,11 @@ a.burgerIcon , div#burgerLinks{
   right: 50px;
   top: 0;
   }
-  
+
+  #burgerLinks > a.mobileLinks{
+display: block !important;
+  }
+  #mySidenav{
+    display: none;
+  }
   }
