@@ -15,13 +15,15 @@ const { response, query } = require('express');
 const client = new pg.Client(process.env.DATABASE_URL);
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
-app.use(session({
+
+var sess = {
     secret: 'save',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true,
-    maxAge: 60000 }
-  }))
+    maxAge: 365 * 24 * 60 * 60 * 1000 }
+  }
+app.use(session(sess));
 
 const Player = require("./Models/Player").default;
 const LastMatch = require("./Models/LastMatch.js").default;
@@ -135,9 +137,10 @@ app.get('/player', (request, response) => {
 // matches page
 app.get('/matches', (request, response) => {
 
+console.log(sess.username);
+
     let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
     superagent.get(all_leaguesLink).then(leagues => {
-        console.log('leagues.body: ', leagues.body.leagues);
         // console.log('returnedData.body: ', returnedData.body.countries);
         response.render('search-matches', { leagues: leagues.body.leagues });
     })
@@ -168,7 +171,6 @@ app.get('/searchMatchesByTeamName', (request, response) => {
             // console.log('element: ', element.idTeam);
             idsArray.push(element.idTeam);
         });
-        console.log(idsArray);
         for (var i = 0; i < idsArray.length; i++) {
             let j = i;
             let matchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idsArray[i]}`;
@@ -181,7 +183,6 @@ app.get('/searchMatchesByTeamName', (request, response) => {
                     });
                 }
                 if (j == idsArray.length - 1) {
-                    console.log('matchesArray: ', matchesArray);
                     response.render('search-matches', { matches: matchesArray });
                 }
             });
@@ -214,7 +215,7 @@ app.post('/signup', signUser);
 app.post('/login', logUser);
 app.get('/logout', logout);
 app.get('/profile', profile);
-
+app.post('/addMatchToWishList',addMatchToWishList);
 app.get('/:id', (req,res) => {
     res.redirect(`/`);
 })
@@ -236,13 +237,14 @@ function logUser(req,res){
   let {username,psw} = req.body;
   let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
   let values = [username,psw];
+  
+  console.log('243',sess, sess.username);
   return client.query(SQL, values).then( data =>{
-      console.log(data.rows[0]);
+      console.log('data',data.rows[0]);
       if(!data.rows[0]){
           res.redirect(`/`);
       } else {
-          req.session.username = username;
-          req.session.psw = psw;
+        sess.username = username;
         res.redirect(`/:id`);
       }
     }).catch(err => console.log(err));
@@ -258,6 +260,33 @@ function logout (req, res, next) {
         }
       });
     }
+}
+
+function addMatchToWishList(req,res){
+    console.log('body',req.body);
+    let {matchName,matchDate,matchTime,homeTeam,awayTeam} = req.body;
+    let SQL = 'INSERT into match(name,homeTeam,awayTeam,date,time) VALUES ($1, $2, $3,$4,$5);';
+    let values = [matchName,homeTeam,awayTeam,matchDate,matchTime];
+    return client.query(SQL, values).then( ()=>{
+        console.log('added');
+        let SQL2 = 'SELECT * FROM match WHERE name = $1;';
+        let values2 = [matchName];
+        client.query(SQL2,values2).then( data => {
+            let matchId = data.rows[0].id;
+            let SQL3 = 'SELECT id FROM account WHERE name = $1;';
+            let values3 = [sess.username];
+            client.query(SQL3,values3).then(data => {
+            let SQL4 = 'INSERT into userDetails(match_id, account_id) VALUES ($1,$2);';
+            let values4 = [matchId, sess.username];
+            console.log('added',data.rows[0].id, sess.username);
+            client.query(SQL3,values3).then(() => {
+                    console.log('done');
+                });
+            });
+        });
+        res.redirect(`/addMatchToWishList`);
+    }).catch(err => console.log(err));
+    
 }
 
 function profile (req,res){
