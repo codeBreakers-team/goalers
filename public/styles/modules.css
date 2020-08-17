@@ -220,6 +220,15 @@ a.burgerIcon , div#burgerLinks{
 }
 
 @media (max-width: 360px) {
+  header{
+    position: fixed;
+    z-index: 10;
+    top: 0px;
+    display: block;
+  }
+  #header-image{
+    margin-top: 7em;
+  }
   #mySidenav{
     display: none;
   }
