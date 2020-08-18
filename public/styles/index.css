@@ -16,7 +16,7 @@
 /* Caption text */
 .text {
   color: #f2f2f2;
-  font-size: 15px;
+  font-size: 1.3em;
   /* padding: 8px 12px; */
   /* position: absolute;
   bottom: 8px; */
@@ -138,12 +138,12 @@ text-align: center;
 background-image: url(../images/league-background/b1.jpg);
 color: dimgray !important;
   line-height: 3em;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 .league-vs-result{
   background-image: url(../images/league-background/17.jpg);
   background-position-y: -6px;
-  line-height: 4em;
-  color: whitesmoke;
-  font-size: 1.2em;
+  line-height: 3em;
+  color: darkgreen;
+  font-size: 1.7em;
 }
