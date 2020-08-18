@@ -3,8 +3,8 @@
 
 <head>
     <%- include( 'partials/head') %>
-    <link rel="stylesheet" href="styles/searchMatchesStyle.css" />
-    <link rel="stylesheet" href="styles/sideNav.css">
+        <link rel="stylesheet" href="styles/searchMatchesStyle.css" />
+        <link rel="stylesheet" href="styles/sideNav.css">
 </head>
 
 <body>
@@ -14,38 +14,38 @@
     </header>
 
     <%- include('partials/sideNav') %>
-    <main>
+        <main>
 
 
-        <div class="match-search-tabs-container">
-            <div class="leagues-names-container">
+            <div class="match-search-tabs-container">
+                <div class="leagues-names-container">
 
-                <button id="searchByTeam" class="single-search-name byTeamForm" onclick="openSearch(event)"> Team
+                    <button id="searchByTeam" class="single-search-name byTeamForm" onclick="openSearch(event)"> Team
                 </button>
 
-                <button id="searchByLeague" class="single-search-name byLeagueForm" onclick="openSearch(event)"> League
+                    <button id="searchByLeague" class="single-search-name byLeagueForm" onclick="openSearch(event)"> League
                 </button>
-            </div>
+                </div>
 
 
-            <div class="each-league-matches">
-                <section class="byTeamForm searchForm" style="display: none;">
-                    <form id="teamSearchForm" action="/searchMatchesByTeamName" method="GET">
-                        <label>Team: <input class="matchInputclass" id="teamInputText" type="text" name="teamName"> </label> 
-                        <input class="searchButton" type="submit" value="Search">
-                    </form>
-                </section>
-            </div>
+                <div class="each-league-matches">
+                    <section class="byTeamForm searchForm" style="display: none;">
+                        <form id="teamSearchForm" action="/searchMatchesByTeamName" method="GET">
+                            <label>Team: <input class="matchInputclass" id="teamInputText" type="text" name="teamName"> </label>
+                            <input class="searchButton" type="submit" value="Search">
+                        </form>
+                    </section>
+                </div>
 
 
-            <div class="each-league-matches">
-                <section class="byLeagueForm searchForm" style="display: none;">
+                <div class="each-league-matches">
+                    <section class="byLeagueForm searchForm" style="display: none;">
 
-                    <form id="leagueSearchForm" action="/searchMatchesByLeagueName" method="GET">
+                        <form id="leagueSearchForm" action="/searchMatchesByLeagueName" method="GET">
 
-                        <label for="leagueInputList">Choose league name from the list:</label>
-                        <input list="leaguesDataList" name="leagueInputList" id="leagueInputList"  class="matchInputclass" >
-                        <datalist id="leaguesDataList">
+                            <label for="leagueInputList">Choose league name from the list:</label>
+                            <input list="leaguesDataList" name="leagueInputList" id="leagueInputList" class="matchInputclass">
+                            <datalist id="leaguesDataList">
                             <% if(typeof(leagues)!=='undefined'){ %>
 
                                 <% leagues.forEach(league => { %>
@@ -55,51 +55,59 @@
 
 
                             </datalist>
-                        <input class="searchButton" type="submit" value="Search">
-                    </form>
-                </section>
-            </div>
-        </div>
-        <% if(typeof(matches)!=='undefined'){ %>
-            <div class="all-matches-search-result">
-                <% matches.forEach((match, i) => { %>
-                    <section class="each-match-serchResult">
-                        <h3>
-                            <%= match.strEvent %>
-                        </h3>
-                        <h4>
-                            <%= match.strLeague %>
-                        </h4>
-                        <h4>
-                            <%= match.dateEvent %>
-                        </h4>
-                        <h4>
-                            <%= match.strTime %>
-                        </h4>
-                        <form class="add-to-wishList" action="/addMatchToWishList" method="POST">
-                            <input type="hidden" name="matchId" value="<%= match.idEvent %>">
-                            <input type="hidden" name="matchName" value="<%= match.strEvent %>">
-                            <input type="hidden" name="matchDate" value="<%= match.dateEvent %>">
-                            <input type="hidden" name="matchTime" value="<%= match.strTime %>">
-                            <input type="hidden" name="homeTeam" value="<%= match.strHomeTeam %>">
-                            <input type="hidden" name="awayTeam" value="<%= match.strAwayTeam %>">
-
-                            <button type="submit" class="add-wishList">add to wishList</button>
+                            <input class="searchButton" type="submit" value="Search">
                         </form>
                     </section>
-                    <%  })  %>
+                </div>
             </div>
+            <% if(typeof(matches)!=='undefined'){ %>
+                <div class="all-matches-search-result">
+                    <% matches.forEach((match, i) => { %>
+                        <section class="each-match-serchResult">
+                            <h3>
+                                <%= match.strEvent %>
+                            </h3>
+                            <h4>
+                                <%= match.strLeague %>
+                            </h4>
+                            <h4>
+                                <%= match.dateEvent %>
+                            </h4>
+                            <h4>
+                                <%= match.strTime %>
+                            </h4>
+                            <form class="add-to-wishList" action="/addMatchToWishList" method="POST">
+                                <input type="hidden" name="matchId" value="<%= match.idEvent %>">
+                                <input type="hidden" name="matchName" value="<%= match.strEvent %>">
+                                <input type="hidden" name="matchDate" value="<%= match.dateEvent %>">
+                                <input type="hidden" name="matchTime" value="<%= match.strTime %>">
+                                <input type="hidden" name="homeTeam" value="<%= match.strHomeTeam %>">
+                                <input type="hidden" name="awayTeam" value="<%= match.strAwayTeam %>">
 
-            <% } %>
+                                <button type="submit" class="add-wishList">add to wishList</button>
+                            </form>
+                        </section>
+                        <%  })  %>
+                </div>
+
+                <% } else { %>
+                    <div id="noResultsMessageDiv">No Matching results. Please try Again later</div>
+                    <% }
+            
+            
+            
+            
+            %>
 
 
 
-    </main>
-    <%- include('partials/footer') %>
+
+        </main>
+        <%- include('partials/footer') %>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/matches.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="js/matches.js"></script>
 </body>
 
 </html>
