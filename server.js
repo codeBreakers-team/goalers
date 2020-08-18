@@ -77,7 +77,7 @@ function getMainRoute(request, response) {
                     }
                     allLeaguesObj[`${leagueName}`] = oneLeagueMatchesArr;
                     if (i == 3) {
-                        response.render('index', { latestMatches: matchesArr, leagues: allLeaguesObj });
+                        response.render('index', { latestMatches: matchesArr, leagues: allLeaguesObj , user:(sess.username? sess.username:'') });
                     }
                 });
             }
@@ -254,7 +254,7 @@ app.get('/logout', logout);
 app.post('/addMatchToWishList',addMatchToWishList);
 app.get('/addMatchToWishList', profile)
 app.get('/:id', (req,res) => {
-    res.redirect(`/`);
+    res.redirect('/')
 })
 
 app.get('/profile', profile)
