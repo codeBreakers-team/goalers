@@ -376,14 +376,14 @@ function profile(req, res) {
     let SQL = 'SELECT DISTINCT match.matchName, match.homeTeam, match.awayTeam, match.matchDate, match.matchTime, account.username, account.id FROM match,account,userDetails WHERE userDetails.account_id = (SELECT id FROM account WHERE username = $1) AND account.username = $2;';
     client.query(SQL, values).then(data => {
         var matchesTable = data.rows;
-        res.render('profile', { matchesTable: matchesTable });
+        res.render('profile', { matchesTable: matchesTable , user:(sess.username? sess.username:'')});
     });
 }
 
 //////////////////////////////////
 //7- about us page route function
 function aboutUsPageRoute(request, response) {
-    response.render('about-us')
+    response.render('about-us', {user:(sess.username? sess.username:'')})
 };
 
 // app.listen(PORT, () => { // to Start the express server only after the database connection is established.
