@@ -12,7 +12,6 @@
   color: #ffffff;
   text-align: left;
 }
-/* //#009879 */
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
@@ -29,7 +28,6 @@
   border-bottom: 2px solid #26A550;
 }
 .styled-table tbody tr:hover {
-  font-weight: bold;
   color: #009879;
 }
 /* ////////////////////////////////// */
