@@ -20,9 +20,11 @@ var sess = {
     secret: 'save',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true,
-    maxAge: 50000000 }
-  }
+    cookie: {
+        secure: true,
+        maxAge: 50000000
+    }
+}
 app.use(session(sess));
 
 const Player = require("./Models/Player").default;
@@ -179,15 +181,65 @@ function playerPage(request, response) {
 
 // 4- matches page route function
 function matchesRoute(request, response) {
+    let leaguesArray = [];
+    let matchesArray = [];
+
+
     let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
     superagent.get(all_leaguesLink).then(leagues => {
         //console.log('leagues.body: ', leagues.body.leagues);
         // console.log('returnedData.body: ', returnedData.body.countries);
-        response.render('search-matches', { leagues: leagues.body.leagues });
+        leagues.body.leagues.forEach(elment => leaguesArray.push(elment.idLeague));
+        // console.log('leaguesArray: ', leaguesArray);
+        //get coming matches for random league
+
+        // console.log('randomLeagueId: ', randomLeagueId);
+
+
+
+        for (var i = 0; i < 10; i++) {
+            let j = i;
+            let link = `https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${leaguesArray[i]}`;
+            console.log('leagueIdlink', link);
+            superagent.get(link).then(returnedData => {
+                if (returnedData.body && returnedData.body.events && returnedData.body.events.length) {
+                    // let event = returnedData.body.events[0];
+                    // let match = new Match(event);
+                    // matchesArray.push(match);
+                    returnedData.body.events.forEach(event => {
+                        let match = new Match(event);
+                        matchesArray.push(match);
+                    });
+                }
+                // console.log('matchesArray.length: ', matchesArray.length);
+                // console.log('matchesArray: ', matchesArray);
+                if (j = 9) {
+                    console.log('matchesArray: ', matchesArray);
+
+                    response.render('search-matches', { matches: matchesArray, leagues: leaguesArray });
+                }
+            })
+        }
     })
 }
 
+// matchesArray = getMatchesUsingLeagueId(randomLeagueId, function (ok) {
+//     //this will print matchesArray
+//     matchesArray = ok;
 
+//     if (matchesArray.length) {
+//         console.log('matchesArray: ', matchesArray);
+//         response.render('search-matches', { matches: matchesArray, leagues: leagues.body.leagues });
+
+
+//     } else {
+//         matchesArray = getMatchesUsingLeagueId(leaguesArray[randomIndex], function (ok) {
+//             //this will print matchesArray
+//             return ok;
+//         })
+
+//     }
+// });
 
 // 5- get matches using team name function
 function getMatchesByTeamName(request, response) {
@@ -251,7 +303,7 @@ function getMatchesByLeagueName(request, response) {
 app.post('/signup', signUser);
 app.post('/login', logUser);
 app.get('/logout', logout);
-app.post('/addMatchToWishList',addMatchToWishList);
+app.post('/addMatchToWishList', addMatchToWishList);
 app.get('/addMatchToWishList', profile)
 app.get('/:id', (req,res) => {
     res.redirect('/')
@@ -259,18 +311,19 @@ app.get('/:id', (req,res) => {
 
 app.get('/profile', profile)
 
-function signUser(req,res){
-  let {username,email,psw} = req.body;
-  let SQL = 'INSERT into account(username,email,psw) VALUES ($1, $2, $3);';
-  let values = [username,email,psw];
-  return client.query(SQL, values).then( ()=>{
-    let SQL2 = 'SELECT * FROM account WHERE email = $1;';
-    let values2 = [req.body.email];
-    return client.query(SQL2,values2).then( data => {
-    res.redirect(`/${data.rows[0].id}`);
-      })
+function signUser(req, res) {
+    let { username, email, psw } = req.body;
+    let SQL = 'INSERT into account(username,email,psw) VALUES ($1, $2, $3);';
+    let values = [username, email, psw];
+    return client.query(SQL, values).then(() => {
+        let SQL2 = 'SELECT * FROM account WHERE email = $1;';
+        let values2 = [req.body.email];
+        return client.query(SQL2, values2).then(data => {
+            res.redirect(`/${data.rows[0].id}`);
+        })
     }).catch(err => console.log(err));
 }
+
 
 function logUser(req,res){
   let {username,psw} = req.body;
@@ -285,47 +338,46 @@ function logUser(req,res){
         sess.accountId = data.rows[0].id;
         res.redirect(`/:id`);
       }
+
     }).catch(err => console.log(err));
 }
 
-function logout (req, res, next) {
+function logout(req, res, next) {
     if (req.session) {
-      req.session.destroy(err => {
-        if (err) {
-          console.log(err);
-        } else {
-          return res.redirect('/');
-        }
-      });
+        req.session.destroy(err => {
+            if (err) {
+                console.log(err);
+            } else {
+                return res.redirect('/');
+            }
+        });
     }
 }
 
-function addMatchToWishList(req,res){
-    let {matchName,matchDate,matchTime,homeTeam,awayTeam} = req.body;
+function addMatchToWishList(req, res) {
+    let { matchName, matchDate, matchTime, homeTeam, awayTeam } = req.body;
     let SQL = 'SELECT id FROM match WHERE matchName = $1 AND matchDate = $2 AND matchTime = $3;';
-    let values = [matchName,matchDate,matchTime];
-    return client.query(SQL, values).then( data => {
+    let values = [matchName, matchDate, matchTime];
+    return client.query(SQL, values).then(data => {
         if (data.rowCount === 0) {
             let SQL3 = 'INSERT into match(matchName,homeTeam,awayTeam,matchDate,matchTime) VALUES ($1, $2, $3,$4,$5);';
-            let values3 = [matchName,homeTeam,awayTeam,matchDate,matchTime];
-            client.query(SQL3, values3).then( ()=>{
-            });
+            let values3 = [matchName, homeTeam, awayTeam, matchDate, matchTime];
+            client.query(SQL3, values3).then(() => {});
         } else {}
         let SQL4 = 'INSERT into userDetails(match_id, account_id) VALUES ((SELECT id FROM match WHERE matchName = $1 AND matchDate = $2),(SELECT id FROM account WHERE username = $3));';
         let values4 = [matchName, matchDate, sess.username];
-            client.query(SQL4,values4).then(() => {
-            });
+        client.query(SQL4, values4).then(() => {});
         res.redirect(`/addMatchToWishList`);
-    }).catch(err => console.log(err));   
+    }).catch(err => console.log(err));
 }
 
-function profile (req,res){
-    let values = [sess.username,sess.username];
+function profile(req, res) {
+    let values = [sess.username, sess.username];
     let SQL = 'SELECT DISTINCT match.matchName, match.homeTeam, match.awayTeam, match.matchDate, match.matchTime, account.username, account.id FROM match,account,userDetails WHERE userDetails.account_id = (SELECT id FROM account WHERE username = $1) AND account.username = $2;';
-    client.query(SQL,values).then(data => {
+    client.query(SQL, values).then(data => {
         var matchesTable = data.rows;
-        res.render('profile', {matchesTable : matchesTable});
-    });  
+        res.render('profile', { matchesTable: matchesTable });
+    });
 }
 
 //////////////////////////////////
@@ -338,10 +390,9 @@ function aboutUsPageRoute(request, response) {
 //     console.log('server is listening to the port: ', PORT);
 // });
 
-client.connect().then(() => { 
-          // this is a promise and we need to start the server after it connects to the database
-    app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
+client.connect().then(() => {
+    // this is a promise and we need to start the server after it connects to the database
+    app.listen(PORT, () => { // to Start the express server only after the database connection is established.
         console.log('server is listening to the port: ', PORT);
     });
 });
-

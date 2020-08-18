@@ -105,20 +105,23 @@ main {
    
     /*  */
 
-    .each-match-serchResult{
+    .whole-card-div{
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 25%;
+  width: 27%;
   text-align: center;
-  padding: 10px;
-  margin: 15px;
+  padding: 8px;
+  margin: 12px;
+  display: flex;
+
+
   background-color: wheat; 
   background-image: linear-gradient(white, rgb(194, 190, 190));
     }
     .each-match-serchResult > .each-match-teams-name{
         color: forestgreen;
         line-height: 1.6;
-        font-size: 1.1em;
+        font-size: 1em;
         font-weight: 900;
     }
     .each-match-serchResult > .each-match-date{
@@ -147,7 +150,23 @@ main {
   cursor: pointer;
     }
     
-
+    .whole-card-div .left-flag,
+.whole-card-div .each-match-serchResult,
+.whole-card-div .right-flag{
+	display: inline-block;
+	/* vertical-align: top; */
+}
+.whole-card-div .left-flag{
+    width: 10%;
+    padding-right: 2px;
+}
+.each-match-serchResult{
+    width: 75%;
+}
+.whole-card-div .right-flag{
+    width: 10%;
+    padding-left: 2px;
+}
    .searchForm {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -197,19 +216,19 @@ main {
     .searchForm {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 90%;
+  width: 98%;
   text-align: center;
-  padding: 5px;
+  padding: 4px;
   margin: 10px;
-  margin-left: 5%;
+  margin-left: 1%;
   background-color: wheat; 
   background-image: linear-gradient(white, rgb(194, 190, 190));
 
 }
-.each-match-serchResult{
+.whole-card-div{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 transition: 0.3s;
-width: 75%;
+width: 90%;
 text-align: center;
 padding: 10px;
 margin: 15px;
