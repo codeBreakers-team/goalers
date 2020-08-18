@@ -55,7 +55,39 @@
 
 
                             </datalist>
-                            <input class="searchButton" type="submit" value="Search">
+
+
+                        <input class="searchButton" type="submit" value="Search">
+                    </form>
+                </section>
+            </div>
+        </div>
+        <% if(typeof(matches)!=='undefined'){ %>
+            <div class="all-matches-search-result">
+                <% matches.forEach((match, i) => { %>
+                    <section class="each-match-serchResult">
+                        <h3 class="each-match-teams-name">
+                            <%= match.strEvent %>
+                        </h3>
+                        <h4>
+                            <%= match.strLeague %>
+                        </h4>
+                        <h4 class="each-match-date">
+                            <%= match.dateEvent %>
+                        </h4>
+                        <h4>
+                            <%= match.strTime %>
+                        </h4>
+                        <form class="add-to-wishList" action="/addMatchToWishList" method="POST">
+                            <input type="hidden" name="matchId" value="<%= match.idEvent %>">
+                            <input type="hidden" name="matchName" value="<%= match.strEvent %>">
+                            <input type="hidden" name="matchDate" value="<%= match.dateEvent %>">
+                            <input type="hidden" name="matchTime" value="<%= match.strTime %>">
+                            <input type="hidden" name="homeTeam" value="<%= match.strHomeTeam %>">
+                            <input type="hidden" name="awayTeam" value="<%= match.strAwayTeam %>">
+
+                            <button type="submit" class="add-wishList">add to wishList</button>
+
                         </form>
                     </section>
                 </div>

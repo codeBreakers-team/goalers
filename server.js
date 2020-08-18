@@ -324,18 +324,21 @@ function signUser(req, res) {
     }).catch(err => console.log(err));
 }
 
-function logUser(req, res) {
-    let { username, psw } = req.body;
-    let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
-    let values = [username, psw];
-    return client.query(SQL, values).then(data => {
-        if (!data.rows[0]) {
-            res.redirect(`/`);
-        } else {
-            sess.username = username;
-            sess.accountId = data.rows[0].id;
-            res.redirect(`/:id`);
-        }
+
+function logUser(req,res){
+  let {username,psw} = req.body;
+  let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
+  let values = [username,psw];
+  return client.query(SQL, values).then( data =>{
+      if(!data.rows[0]){
+          res.render('redirect')
+        //   res.redirect(`/`);
+      } else {
+        sess.username = username;
+        sess.accountId = data.rows[0].id;
+        res.redirect(`/:id`);
+      }
+
     }).catch(err => console.log(err));
 }
 
@@ -376,6 +379,8 @@ function profile(req, res) {
         res.render('profile', { matchesTable: matchesTable });
     });
 }
+
+//////////////////////////////////
 //7- about us page route function
 function aboutUsPageRoute(request, response) {
     response.render('about-us')

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('partials/head') %>
     <link rel="stylesheet" href="/styles/table.css">
@@ -7,28 +8,49 @@
 
 <body>
     <%- include('partials/header') %>
-    <table id="matches-table" class="styled-table">
-    <thead>
-        <tr>
-            <th>Match</th>
-            <th>Home Team</th>
-            <th>Away Team</th>
-            <th>Date</th>
-            <th>Time</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% matchesTable.forEach(match => { %>
-            <tr>
-            <td><%= match.matchname %></td>
-            <td><%= match.hometeam %></td>
-            <td><%= match.awayteam %></td>
-            <td><%= match.matchdate %></td>
-            <td><%= match.matchtime %></td>
-        </tr>
-        <% }); %>
-    </tbody>
-    </table>
-    <%- include('partials/head') %>
+
+    <section class="user-section">
+        <div class="avatar">
+            <img src="/images/avatar.png" alt="">
+        </div>
+        <div class="user-data">
+            <h3>Welcome back <%= matchesTable[0].username %> !</h3>
+            <p> <br>  Click on the 'Show Matches' button to see your favourite matches.<i class="fas fa-futbol"></i></p>
+            <button onclick="showTable()">Show Matches</button>
+        </div>
+
+
+    </section>
+    <div style="display: none;" id="testtoggle">
+        <table id="matches-table" class="styled-table">
+            <thead>
+                <tr>
+                    <th>Match</th>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% matchesTable.forEach(match => { %>
+                <tr>
+                    <td><%= match.matchname %></td>
+                    <td><%= match.hometeam %></td>
+                    <td><%= match.awayteam %></td>
+                    <td><%= match.matchdate %></td>
+                    <td><%= match.matchtime %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('partials/footer') %>
+    <script>
+        function showTable() {
+            document.getElementById("testtoggle").style.display = "block";
+        }
+    </script>
 </body>
+
 </html>
