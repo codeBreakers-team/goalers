@@ -108,6 +108,7 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     /* padding: 2%; */
     text-align: center;
     /* margin-top: 0px; */
+    color: darkcyan;
 }
 .text button {
     display: block;
