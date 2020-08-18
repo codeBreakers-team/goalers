@@ -79,7 +79,7 @@ function getMainRoute(request, response) {
                     }
                     allLeaguesObj[`${leagueName}`] = oneLeagueMatchesArr;
                     if (i == 3) {
-                        response.render('index', { latestMatches: matchesArr, leagues: allLeaguesObj , user:(sess.username? sess.username:'') });
+                        response.render('index', { latestMatches: matchesArr, leagues: allLeaguesObj, user: (sess.username ? sess.username : '') });
                     }
                 });
             }
@@ -110,7 +110,7 @@ function searchPlayer(request, response) {
                 playersArray.push(player);
             }
         }
-        response.render('players', { players: playersArray, user:(sess.username? sess.username:'')});
+        response.render('players', { players: playersArray, user: (sess.username ? sess.username : '') });
     });
 }
 
@@ -173,7 +173,7 @@ function playerPage(request, response) {
                 // console.log('end: ', end);
                 let newPlayersArray = playersArray.filter(item => { return item.strSport == 'Soccer' });
                 // console.log('newPlayersArray: ', newPlayersArray)
-                response.render('players', { players: newPlayersArray ,user:(sess.username? sess.username:'')});
+                response.render('players', { players: newPlayersArray, user: (sess.username ? sess.username : '') });
             }
         })
     }
@@ -183,23 +183,22 @@ function playerPage(request, response) {
 function matchesRoute(request, response) {
     let leaguesArray = [];
     let matchesArray = [];
-
-
+    let leaguesIdsArray = [];
     let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
     superagent.get(all_leaguesLink).then(leagues => {
         //console.log('leagues.body: ', leagues.body.leagues);
         // console.log('returnedData.body: ', returnedData.body.countries);
-        leagues.body.leagues.forEach(elment => leaguesArray.push(elment.idLeague));
+        leagues.body.leagues.forEach(elment => {
+            leaguesArray.push(elment)
+            leaguesIdsArray.push(elment.idLeague)
+        });
         // console.log('leaguesArray: ', leaguesArray);
         //get coming matches for random league
-
         // console.log('randomLeagueId: ', randomLeagueId);
-
-
-
         for (var i = 0; i < 10; i++) {
             let j = i;
-            let link = `https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${leaguesArray[i]}`;
+            console.log('j: ', j);
+            let link = `https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${leaguesIdsArray[i]}`;
             console.log('leagueIdlink', link);
             superagent.get(link).then(returnedData => {
                 if (returnedData.body && returnedData.body.events && returnedData.body.events.length) {
@@ -213,8 +212,8 @@ function matchesRoute(request, response) {
                 }
                 // console.log('matchesArray.length: ', matchesArray.length);
                 // console.log('matchesArray: ', matchesArray);
-                if (j = 9) {
-                    response.render('search-matches', { matches: matchesArray, leagues: leaguesArray, user:(sess.username? sess.username:'') });
+                if (j == 9) {
+                    response.render('search-matches', { matches: matchesArray, leagues: leaguesArray, user: (sess.username ? sess.username : '') });
                 }
             })
         }
@@ -266,7 +265,7 @@ function getMatchesByTeamName(request, response) {
                 }
                 if (j == idsArray.length - 1) {
                     //console.log('matchesArray: ', matchesArray);
-                    response.render('search-matches', { matches: matchesArray ,user:(sess.username? sess.username:'')});
+                    response.render('search-matches', { matches: matchesArray, user: (sess.username ? sess.username : '') });
                 }
             });
         };
@@ -289,7 +288,7 @@ function getMatchesByLeagueName(request, response) {
         }
         let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
         superagent.get(all_leaguesLink).then(leagues => {
-            response.render('search-matches', { matches: matchesArray, leagues: leagues.body.leagues, user:(sess.username? sess.username:'') });
+            response.render('search-matches', { matches: matchesArray, leagues: leagues.body.leagues, user: (sess.username ? sess.username : '') });
         })
     });
 }
@@ -299,7 +298,7 @@ app.post('/login', logUser);
 app.get('/logout', logout);
 app.post('/addMatchToWishList', addMatchToWishList);
 app.get('/addMatchToWishList', profile)
-app.get('/:id', (req,res) => {
+app.get('/:id', (req, res) => {
     res.redirect('/')
 })
 
@@ -319,19 +318,19 @@ function signUser(req, res) {
 }
 
 
-function logUser(req,res){
-  let {username,psw} = req.body;
-  let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
-  let values = [username,psw];
-  return client.query(SQL, values).then( data =>{
-      if(!data.rows[0]){
-          res.render('redirect')
-        //   res.redirect(`/`);
-      } else {
-        sess.username = username;
-        sess.accountId = data.rows[0].id;
-        res.redirect(`/:id`);
-      }
+function logUser(req, res) {
+    let { username, psw } = req.body;
+    let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
+    let values = [username, psw];
+    return client.query(SQL, values).then(data => {
+        if (!data.rows[0]) {
+            res.render('redirect')
+                //   res.redirect(`/`);
+        } else {
+            sess.username = username;
+            sess.accountId = data.rows[0].id;
+            res.redirect(`/:id`);
+        }
 
     }).catch(err => console.log(err));
 }
@@ -342,7 +341,7 @@ function logout(req, res, next) {
             if (err) {
                 console.log(err);
             } else {
-                sess.username='';
+                sess.username = '';
                 res.redirect(`/`);
             }
         });
@@ -371,14 +370,14 @@ function profile(req, res) {
     let SQL = 'SELECT DISTINCT match.matchName, match.homeTeam, match.awayTeam, match.matchDate, match.matchTime, account.username, account.id FROM match,account,userDetails WHERE userDetails.account_id = (SELECT id FROM account WHERE username = $1) AND account.username = $2;';
     client.query(SQL, values).then(data => {
         var matchesTable = data.rows;
-        res.render('profile', { matchesTable: matchesTable , user:(sess.username? sess.username:'')});
+        res.render('profile', { matchesTable: matchesTable, user: (sess.username ? sess.username : '') });
     });
 }
 
 //////////////////////////////////
 //7- about us page route function
 function aboutUsPageRoute(request, response) {
-    response.render('about-us', {user:(sess.username? sess.username:'')})
+    response.render('about-us', { user: (sess.username ? sess.username : '') })
 };
 
 // app.listen(PORT, () => { // to Start the express server only after the database connection is established.
