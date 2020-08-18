@@ -63,7 +63,10 @@
         <% if(typeof(matches)!=='undefined'){ %>
             <div class="all-matches-search-result">
                 <% matches.forEach((match, i) => { %>
-                    <section class="each-match-serchResult">
+                    <div class="whole-card-div">
+                      <section class="left-flag">   </section>
+
+                      <section class="each-match-serchResult">
                         <h3 class="each-match-teams-name">
                             <%= match.strEvent %>
                         </h3>
@@ -87,6 +90,9 @@
                             <button type="submit" class="add-wishList">add to wishList</button>
                         </form>
                     </section>
+                      <section class="right-flag">  </section>
+                    </div>
+                  
                     <%  })  %>
             </div>
 
