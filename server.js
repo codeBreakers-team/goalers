@@ -278,7 +278,8 @@ function logUser(req,res){
   let values = [username,psw];
   return client.query(SQL, values).then( data =>{
       if(!data.rows[0]){
-          res.redirect(`/`);
+          res.render('redirect')
+        //   res.redirect(`/`);
       } else {
         sess.username = username;
         sess.accountId = data.rows[0].id;
@@ -326,6 +327,8 @@ function profile (req,res){
         res.render('profile', {matchesTable : matchesTable});
     });  
 }
+
+//////////////////////////////////
 //7- about us page route function
 function aboutUsPageRoute(request, response) {
     response.render('about-us')
