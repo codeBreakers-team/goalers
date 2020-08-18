@@ -81,6 +81,7 @@
                         <h4>
                             <%= match.strTime %>
                         </h4>
+                        <% if(user !== '') {  %>
                         <form class="add-to-wishList" action="/addMatchToWishList" method="POST">
                             <input type="hidden" name="matchId" value="<%= match.idEvent %>">
                             <input type="hidden" name="matchName" value="<%= match.strEvent %>">
@@ -92,6 +93,7 @@
                             <button type="submit" class="add-wishList">add to watch list</button>
 
                         </form>
+                        <%}%>
                     </section>
 
                       <section class="right-flag">  </section>
