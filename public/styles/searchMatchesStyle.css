@@ -114,7 +114,16 @@ main {
   background-color: wheat; 
   background-image: linear-gradient(white, rgb(194, 190, 190));
     }
-   
+    .each-match-serchResult > .each-match-teams-name{
+        color: forestgreen;
+        line-height: 1.6;
+        font-size: 1.1em;
+    }
+    .each-match-serchResult > .each-match-date{
+        color: #af4c4ce0;
+        /* padding: 3px; */
+        line-height: 1.6;
+    }
     .all-matches-search-result{
         display: flex;
         flex-direction: row;
@@ -186,11 +195,11 @@ main {
     .searchForm {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 80%;
+  width: 90%;
   text-align: center;
   padding: 5px;
   margin: 10px;
-  margin-left: 10%;
+  margin-left: 5%;
   background-color: wheat; 
   background-image: linear-gradient(white, rgb(194, 190, 190));
 
@@ -198,7 +207,7 @@ main {
 .each-match-serchResult{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 transition: 0.3s;
-width: 50%;
+width: 75%;
 text-align: center;
 padding: 10px;
 margin: 15px;
