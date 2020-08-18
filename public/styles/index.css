@@ -93,6 +93,7 @@ border: none;
     padding: 5px;
     margin-right: 3%;
     font-size: 1em;
+    outline: none;
 }
 .leagues-names-container{
   display: flex;
@@ -143,4 +144,6 @@ color: dimgray !important;
   background-image: url(../images/league-background/17.jpg);
   background-position-y: -6px;
   line-height: 4em;
+  color: whitesmoke;
+  font-size: 1.2em;
 }
