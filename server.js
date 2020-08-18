@@ -110,7 +110,7 @@ function searchPlayer(request, response) {
                 playersArray.push(player);
             }
         }
-        response.render('players', { players: playersArray });
+        response.render('players', { players: playersArray, user:(sess.username? sess.username:'')});
     });
 }
 
@@ -173,7 +173,7 @@ function playerPage(request, response) {
                 // console.log('end: ', end);
                 let newPlayersArray = playersArray.filter(item => { return item.strSport == 'Soccer' });
                 // console.log('newPlayersArray: ', newPlayersArray)
-                response.render('players', { players: newPlayersArray });
+                response.render('players', { players: newPlayersArray ,user:(sess.username? sess.username:'')});
             }
         })
     }
@@ -216,7 +216,7 @@ function matchesRoute(request, response) {
                 if (j = 9) {
                     console.log('matchesArray: ', matchesArray);
 
-                    response.render('search-matches', { matches: matchesArray, leagues: leaguesArray });
+                    response.render('search-matches', { matches: matchesArray, leagues: leaguesArray, user:(sess.username? sess.username:'') });
                 }
             })
         }
@@ -269,7 +269,7 @@ function getMatchesByTeamName(request, response) {
                 }
                 if (j == idsArray.length - 1) {
                     //console.log('matchesArray: ', matchesArray);
-                    response.render('search-matches', { matches: matchesArray });
+                    response.render('search-matches', { matches: matchesArray ,user:(sess.username? sess.username:'')});
                 }
             });
         };
@@ -295,7 +295,7 @@ function getMatchesByLeagueName(request, response) {
             console.log("leagues", leagues.body.leagues[0]);
             //console.log('leagues.body: ', leagues.body.leagues);
             // console.log('returnedData.body: ', returnedData.body.countries);
-            response.render('search-matches', { matches: matchesArray, leagues: leagues.body.leagues });
+            response.render('search-matches', { matches: matchesArray, leagues: leagues.body.leagues, user:(sess.username? sess.username:'') });
         })
     });
 }
