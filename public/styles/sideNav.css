@@ -1,40 +1,53 @@
   /* Style the links inside the sidenav */
+  
   #mySidenav a {
-    position: fixed; /* Position them relative to the browser window */
-    /*left: -80px;*/ /* Position them outside of the screen */
-    left: -122px;
-    transition: 0.3s; /* Add transition on hover */
-    padding: 15px 0px 15px 9px; /* 15px padding */
-    /*width: 100px;*/ /* Set a specific width */
-    width: 8em;
-    text-decoration: none; /* Remove underline */
-    font-size: 20px; /* Increase font size */
-    color: white; /* White text color */
-    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
-    text-align: left;
+      position: fixed;
+      /* Position them relative to the browser window */
+      /*left: -80px;*/
+      /* Position them outside of the screen */
+      left: -122px;
+      transition: 0.3s;
+      /* Add transition on hover */
+      padding: 15px 0px 15px 9px;
+      /* 15px padding */
+      /*width: 100px;*/
+      /* Set a specific width */
+      width: 8em;
+      text-decoration: none;
+      /* Remove underline */
+      font-size: 20px;
+      /* Increase font size */
+      color: white;
+      /* White text color */
+      border-radius: 0 5px 5px 0;
+      /* Rounded corners on the top right and bottom right side */
+      text-align: left;
   }
   
   #mySidenav a:hover {
-    left: 0; /* On mouse-over, make the elements appear as they should */
+      left: 0;
+      /* On mouse-over, make the elements appear as they should */
   }
-  
   /* The about link: 20px from the top with a green background */
+  
   #about {
-    top: 7em;
-    background-color: #b8b8b8;
+      top: 7em;
+      background-color: #7f7caf;
   }
   
   #blog {
-    top: 10em;
-    background-color: #648767; /* Blue */
+      top: 10em;
+      background-color: #648767;
+      /* Blue */
   }
   
   #projects {
-    top: 13em;
-    background-color: #5d737e; /* Red */
+      top: 13em;
+      background-color: #5d737e;
+      /* Red */
   }
   
   #contact {
-    top: 16em;
-    background-color: #555 /* Light Black */
+      top: 16em;
+      background-color: #555/* Light Black */
   }
