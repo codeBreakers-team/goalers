@@ -28,7 +28,7 @@ nav a:hover {
 #header-image {
     width: 100%;
     background-image: url('/images/ball.jpg');
-/*     background-repeat: no-repeat; */
+    /*     background-repeat: no-repeat; */
     /* position: relative;
   top: 115px; */
     background-size: cover;
@@ -46,18 +46,19 @@ nav a:hover {
 
 /* /////////////////////////////Form  */
 
-#form{
-  /* background: rgba(50,50,50,.90); */
-  background: rgb(12,23,0);
-background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714627647934) 50%, rgba(117,207,78,0.7682423311121324) 100%);
-  width: 28%;
-  border-radius: 50px 20px;
-  position: relative;
-  top: 11%;
-  left: 12%;
-  padding: 2.5%;
-  padding-bottom: 5%;
+#form {
+    /* background: rgba(50,50,50,.90); */
+    background: rgb(12, 23, 0);
+    background: linear-gradient(180deg, rgba(12, 23, 0, 1) 0%, rgba(29, 141, 42, 0.8410714627647934) 50%, rgba(117, 207, 78, 0.7682423311121324) 100%);
+    width: 28%;
+    border-radius: 50px 20px;
+    position: relative;
+    top: 11%;
+    left: 12%;
+    padding: 2.5%;
+    padding-bottom: 5%;
 }
+
 #form h3 {
     font-family: 'Pangolin', cursive;
     font-weight: bold;
@@ -66,6 +67,7 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     text-align: center;
     color: white;
 }
+
 #intro {
     font-family: 'Pangolin', cursive;
     /* font-size: 20px; */
@@ -73,6 +75,7 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     padding: 2%;
     color: white;
 }
+
 #form button {
     font-family: 'Pangolin', cursive;
     position: absolute;
@@ -86,7 +89,10 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     border: solid 1px;
     border-radius: 25px
 }
+
+
 /* /////////////////////////////// */
+
 .introduction {
     font-family: 'Pangolin', cursive;
     /* background-color: rgba(50, 50, 50, .99); */
@@ -94,15 +100,18 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     /* padding: 5%; */
     margin-bottom: 5em;
 }
+
 .introduction h3 {
     font-size: 4vw;
     margin: 4%;
     /* margin-top: 8%; */
     text-align: center;
 }
+
 .introduction h3 span {
     color: green;
 }
+
 .introduction #sub-header {
     font-size: 35px;
     /* padding: 2%; */
@@ -110,6 +119,7 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     /* margin-top: 0px; */
     color: darkcyan;
 }
+
 .text button {
     display: block;
     padding: 19px 39px 18px 39px;
@@ -124,16 +134,23 @@ background: linear-gradient(180deg, rgba(12,23,0,1) 0%, rgba(29,141,42,0.8410714
     border-width: 1px 1px 3px;
     margin-bottom: 10px;
 }
-.introduction > *{
-  margin-right: 5%;
-  margin-left: 5%;
+
+.introduction>* {
+    margin-right: 5%;
+    margin-left: 5%;
 }
-.sliderAndVideo{
-margin: auto;
-padding: 20px 0px;
-background-color: #a8b3b8;;
+
+.sliderAndVideo {
+    margin: auto;
+    padding: 20px 0px;
+    background-color: #a8b3b8;
+    ;
 }
+
+
 /* /////////////////////////////// */
+
+
 /* .each-league-matches{
   background-color: white;
 } */
@@ -160,13 +177,21 @@ background-color: #a8b3b8;;
     display: block;
 }
 
-.dropdown-content a:hover {    background-color: #ddd;}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {    display: block;}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
-.dropdown:hover .dropbtn {    background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
 
 /* ////////////////////////// */
+
 .form-popup {
     display: none;
     width: 300px;
@@ -177,12 +202,15 @@ background-color: #a8b3b8;;
     z-index: 9;
 }
 
+
 /* Add styles to the form container */
+
 .form-container {
     max-width: 300px;
     padding: 10px;
     background-color: white;
 }
+
 .form-container h1 {
     text-align: center;
     font-size: 40px;
@@ -191,7 +219,9 @@ background-color: #a8b3b8;;
 
 
 /* Full-width input fields */
-.form-container input[type=text],.form-container input[type=password] {
+
+.form-container input[type=text],
+.form-container input[type=password] {
     width: 80%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -199,14 +229,19 @@ background-color: #a8b3b8;;
     background: #f1f1f1;
 }
 
+
 /* When the inputs get focus, do something */
-.form-container input[type=text]:focus,.form-container input[type=password]:focus {
+
+.form-container input[type=text]:focus,
+.form-container input[type=password]:focus {
     background-color: #ddd;
     outline: none;
     color: #000;
 }
 
+
 /* Set a style for the submit/login button */
+
 .form-container .btn {
     background-color: #4CAF50;
     color: white;
@@ -218,25 +253,31 @@ background-color: #a8b3b8;;
     opacity: 0.8;
 }
 
+
 /* Add a red background color to the cancel button */
+
 .form-container .cancel {
     background-color: red;
 }
 
+
 /* Add some hover effects to buttons */
-.form-container .btn:hover,.open-button:hover {
+
+.form-container .btn:hover,
+.open-button:hover {
     opacity: 1;
 }
 
+
 /* //////////////////////////////// */
 
-
-a.burgerIcon, div #burgerLinks { 
+a.burgerIcon,
+div #burgerLinks {
     display: none;
-  }
+}
 
-@media (max-width: 360px){
-      header {
+@media (max-width: 360px) {
+    header {
         position: fixed;
         z-index: 10;
         top: 0px;
@@ -247,103 +288,96 @@ a.burgerIcon, div #burgerLinks {
     }
     #mySidenav {
         display: none;
-    }  
-  nav{
-    display: block;
-    overflow: auto;
-    width: 100%;
-  }
-  .mobileLinks{
-    display: block;
-  }
-  #burgerLinks{
-    position: relative;
-    display: inline-block;
-  }
-  
-  #burgerLinks-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  #burgerLinks-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-
-  nav > a.computerLinks{
-    display: none;
-  }
-  a.burgerIcon{
-    display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  }
-
-  div.dropdown {
-    display: block;
-  position: absolute;
-  right: 50px;
-  top: 0;
-  }
-
-  #header-image{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  #header-image #form{
-    width: 18em;
-    position: static;
-  }
-
-  .slideshow-container{
-    max-width: 95%;
-  }
-  .matchEmbed{
-    width: 95%;
-  }
-  .leagues-names-container{
-    justify-content: center;
-    align-items: center;
-    padding-left: 0px;
-  }
-  .single-league-name{
-    width: 100%;
-    margin-right: 0px;
-    outline: none;
-  }
-  .one-match{
-    width: 49%;
-    min-width: auto;
-  }
-  .league-vs{
-    min-height: 4em;
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    line-height: 1.3em;
-    padding: 0px 2.8px;
-  }
-  .mySlides img{
-    height: 57vw;
-  }
-  #form h3{
-    font-size: 2.2em;
-  }
-  #header-image #form button{
-    left: 47%;
-    bottom: 21.4%;
-    width: 5em;
-    height: 1.4em;
-    font-size: 1.4em;
-  }
+    }
+    nav {
+        display: block;
+        overflow: auto;
+        width: 100%;
+    }
+    .mobileLinks {
+        display: block;
+    }
+    #burgerLinks {
+        position: relative;
+        display: inline-block;
+    }
+    #burgerLinks-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+    #burgerLinks-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    nav>a.computerLinks {
+        display: none;
+    }
+    a.burgerIcon {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    div.dropdown {
+        display: block;
+        position: absolute;
+        right: 50px;
+        top: 0;
+    }
+    #header-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #header-image #form {
+        width: 18em;
+        position: static;
+    }
+    .slideshow-container {
+        max-width: 95%;
+    }
+    .matchEmbed {
+        width: 95%;
+    }
+    .leagues-names-container {
+        justify-content: center;
+        align-items: center;
+        padding-left: 0px;
+    }
+    .single-league-name {
+        width: 100%;
+        margin-right: 0px;
+        outline: none;
+    }
+    .one-match {
+        width: 49%;
+        min-width: auto;
+    }
+    .league-vs {
+        min-height: 4em;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        line-height: 1.3em;
+        padding: 0px 2.8px;
+    }
+    .mySlides img {
+        height: 57vw;
+    }
+    #form h3 {
+        font-size: 2.2em;
+    }
+    #header-image #form button {
+        left: 47%;
+        bottom: 21.4%;
+        width: 5em;
+        height: 1.4em;
+        font-size: 1.4em;
+    }
 }
-
