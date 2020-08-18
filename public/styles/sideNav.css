@@ -4,14 +4,14 @@
     /*left: -80px;*/ /* Position them outside of the screen */
     left: -122px;
     transition: 0.3s; /* Add transition on hover */
-    padding: 15px; /* 15px padding */
+    padding: 15px 0px 15px 9px; /* 15px padding */
     /*width: 100px;*/ /* Set a specific width */
     width: 8em;
     text-decoration: none; /* Remove underline */
     font-size: 20px; /* Increase font size */
     color: white; /* White text color */
     border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
-    text-align: center;
+    text-align: left;
   }
   
   #mySidenav a:hover {

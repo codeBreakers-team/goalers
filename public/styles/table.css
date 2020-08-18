@@ -8,11 +8,10 @@
   overflow-x:auto;
 }
 .styled-table thead tr {
-  background-color:#26A550 ;
+  background-color:rgba(50, 50, 50, .45);
   color: #ffffff;
   text-align: left;
 }
-/* //#009879 */
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
@@ -26,10 +25,9 @@
 }
 
 .styled-table tbody tr:last-of-type {
-  border-bottom: 2px solid #26A550;
+  border-bottom: 2px solid rgba(50, 50, 50, .55);;
 }
 .styled-table tbody tr:hover {
-  font-weight: bold;
   color: #009879;
 }
 /* ////////////////////////////////// */
@@ -42,7 +40,7 @@
   flex-wrap: wrap; 
   padding: 30px;
   width: 80%;
-  background-color: #CCFFCC;
+  background-color: #648668;
   box-shadow: 5px 5px 5px 5px #7777;
 }
 .user-section .avatar img{
@@ -67,12 +65,12 @@
   padding: 19px 39px 18px 39px;
   color: #FFF;
   margin: 0 auto;
-  background: #26A550;
+  background: rgba(50, 50, 50, .55);
   font-size: 18px;
   text-align: center;
   font-style: normal;
   width: 90%;
-  border: 1px solid green;
+  border: 1px solid rgba(50, 50, 50, .55);
   border-width: 1px 1px 3px;
   margin: 30px auto;
 }
@@ -92,11 +90,11 @@
     font-size: 0.7em;
     font-family: sans-serif;
     max-width:100%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(50, 50, 50, .45);;
     overflow-x:auto;
   }
   .styled-table thead tr {
-    background-color:#26A550 ;
+    background-color:rgba(50, 50, 50, .45);
     color: #ffffff;
     text-align: left;
   }
@@ -113,7 +111,7 @@
   }
   
   .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #26A550;
+    border-bottom: 2px solid rgba(50, 50, 50, .45);
   }
   .styled-table tbody tr:hover {
     font-weight: bold;
@@ -129,7 +127,7 @@
     flex-wrap: wrap; 
     padding: 30px;
     width: 100%;
-    background-color: #CCFFCC;
+    background-color: #648668;
     box-shadow: 5px 5px 5px 5px #7777;
   }
   .user-section .avatar img{
@@ -154,12 +152,12 @@
     padding: 19px 39px 18px 39px;
     color: #FFF;
     margin: 0 auto;
-    background: #26A550;
+    background: rgba(50, 50, 50, .55);
     font-size: 18px;
     text-align: center;
     font-style: normal;
     width: 90%;
-    border: 1px solid green;
+    border: 1px solid rgba(50, 50, 50, .55);
     border-width: 1px 1px 3px;
     margin: 30px auto;
   }

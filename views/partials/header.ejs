@@ -13,12 +13,17 @@
       <div class="dropdown">
         <a href="#"
           ><i class="fas fa-user-circle" style="font-size: 35px;"></i
-        ></a>
+        > <%= user%> </a>
         <div class="dropdown-content">
+          <% if(user === '') {  %>
           <a href="#" onclick="openForm()">Log in</a>
           <a href="#" onclick="openSignForm()">Sign up</a>
-          <a href="/addMatchToWishList" onclick="openProfile()">profile</a>
-          <a href="/logout">Log out</a>
+          <%}%>
+          <% if(user !== '') {  %>
+            <a href="/addMatchToWishList" id='testlink' onclick="openProfile()">profile</a>
+            <a href="/logout">Log out</a>
+          <%}%>
+          
         </div>
       </div>
 
@@ -53,9 +58,9 @@
         <h1>Sign up</h1><br><br><br><br>
 
         <br><label for="username"><b>User name</b></label>
-        <input type="text" placeholder="Enter username" name="username" required>
+        <input type="text" placeholder="Enter username" name="username" required><br>
 
-        <label for="email"><b>Email</b></label>
+        <label for="email"><b>Email</b></label><br>
         <input type="text" placeholder="Enter Email" name="email" required>
 
         <label for="psw"><b>Password</b></label>
