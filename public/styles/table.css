@@ -40,7 +40,7 @@
   flex-wrap: wrap; 
   padding: 30px;
   width: 80%;
-  background-color: #CCFFCC;
+  background-color: rgba(50,50,50,.65);
   box-shadow: 5px 5px 5px 5px #7777;
 }
 .user-section .avatar img{
