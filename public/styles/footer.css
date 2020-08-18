@@ -60,7 +60,7 @@ footer{
 }
 
 .footer-distributed .footer-company-name{
-	color:  #363537;
+	color:  #d0ced3;
 	font-size: 14px;
 	font-weight: normal;
 	margin: 0;
@@ -177,11 +177,12 @@ p {
 	font-size: 15px;
 }
 
-div.footer-center , .footer-right > p :first-child{
+.footer-links ,div.footer-center , .footer-right > p :first-child{
 	display: none !important;
 }
 footer.footer-distributed{
 	background: rgb(54,53,55);
 background: linear-gradient(196deg, rgba(54,53,55,1) 5%, rgba(100,135,103,1) 76%, rgba(93,115,126,1) 100%);
 }
+
 }
