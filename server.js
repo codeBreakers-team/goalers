@@ -216,7 +216,7 @@ function matchesRoute(request, response) {
                 if (j = 9) {
                     console.log('matchesArray: ', matchesArray);
 
-                    response.render('search-matches', { matches: matchesArray, leagues: leagues.body.leagues });
+                    response.render('search-matches', { matches: matchesArray, leagues: leaguesArray });
                 }
             })
         }
