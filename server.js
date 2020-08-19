@@ -93,24 +93,31 @@ function getMainRoute(request, response) {
 //2- search for player Route function
 function searchPlayer(request, response) {
     let playerName = request.query.playerName;
+    let searchResult = false;
     let link = `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${playerName}`;
     superagent.get(link).then((returnedData) => {
         var x;
         let playersArray = [];
-        if (returnedData.body.player.length < 10) {
-            x = returnedData.body.player.length;
-        } else {
-            x = 10;
-        }
-        for (var i = 0; i < x; i++) {
-            let item = returnedData.body.player[i];
 
-            if (item.strSport == 'Soccer') {
-                let player = new Player(item);
-                playersArray.push(player);
+        if (returnedData.body && returnedData.body.player && returnedData.body.player.length) {
+            playersArray = returnedData.body.player.filter(item => item.strSport == 'Soccer').map(item => {
+                return new Player(item);
+            })
+            if (playersArray.length) {
+                searchResult = true;
             }
         }
-        response.render('players', { players: playersArray, user: (sess.username ? sess.username : '') });
+        //this code is working well but the previous 2 lines are shorter
+        // for (var i = 0; i < x; i++) {
+        //     let item = returnedData.body.player[i];
+
+        //     if (item.strSport == 'Soccer') {
+        //         let player = new Player(item);
+        //         playersArray.push(player);
+        //     }
+        // }
+
+        response.render('players', { searchResult: searchResult, players: playersArray, user: (sess.username ? sess.username : '') });
     });
 }
 
@@ -318,18 +325,18 @@ function signUser(req, res) {
 }
 
 
-function logUser(req,res){
-  let {username,psw} = req.body;
-  let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
-  let values = [username,psw];
-  return client.query(SQL, values).then( data =>{
-      if(!data.rows[0]){
-          res.render('redirect');
-      } else {
-        sess.username = username;
-        sess.accountId = data.rows[0].id;
-        res.redirect(`/:id`);
-      }
+function logUser(req, res) {
+    let { username, psw } = req.body;
+    let SQL = 'SELECT * FROM account WHERE username = $1 AND psw = $2;';
+    let values = [username, psw];
+    return client.query(SQL, values).then(data => {
+        if (!data.rows[0]) {
+            res.render('redirect');
+        } else {
+            sess.username = username;
+            sess.accountId = data.rows[0].id;
+            res.redirect(`/:id`);
+        }
 
     }).catch(err => console.log(err));
 }
