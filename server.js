@@ -246,43 +246,73 @@ function matchesRoute(request, response) {
 // });
 
 // 5- get matches using team name function
+// function getMatchesByTeamName(request, response) {
+//     let teamName = request.query.teamName;
+//     let matchesArray = [];
+//     let idsArray = [];
+
+//     let teamNamelink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
+//     superagent.get(teamNamelink).then((returnedData) => {
+//         // console.log('Teams result: ', returnedData.body.teams);
+//         returnedData.body.teams.forEach(element => {
+//             // console.log('element: ', element.idTeam);
+//             idsArray.push(element.idTeam);
+//         });
+//         //console.log(idsArray);
+//         for (var i = 0; i < idsArray.length; i++) {
+//             let j = i;
+//             let matchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idsArray[i]}`;
+//             superagent.get(matchesLink).then((matchesData) => {
+//                 // console.log('matchesData: ', matchesData.body.events);
+//                 if (matchesData.body && matchesData.body.events && matchesData.body.events.length) {
+//                     matchesData.body.events.map((event) => {
+//                         let match = new Match(event);
+//                         matchesArray.push(match);
+//                     });
+//                 }
+//                 if (j == idsArray.length - 1) {
+//                     //console.log('matchesArray: ', matchesArray);
+//                     response.render('search-matches', { matches: matchesArray, user: (sess.username ? sess.username : '') });
+//                 }
+//             });
+//         };
+//     });
+// }
+
+
+// 5- get matches using team name function
 function getMatchesByTeamName(request, response) {
     let teamName = request.query.teamName;
-    let matchesArray = [];
-    let idsArray = [];
+    console.log('teamName: ', teamName);
 
-    let teamNamelink = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
-    superagent.get(teamNamelink).then((returnedData) => {
-        // console.log('Teams result: ', returnedData.body.teams);
-        returnedData.body.teams.forEach(element => {
-            // console.log('element: ', element.idTeam);
-            idsArray.push(element.idTeam);
-        });
-        //console.log(idsArray);
-        for (var i = 0; i < idsArray.length; i++) {
-            let j = i;
-            let matchesLink = `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idsArray[i]}`;
-            superagent.get(matchesLink).then((matchesData) => {
-                // console.log('matchesData: ', matchesData.body.events);
-                if (matchesData.body && matchesData.body.events && matchesData.body.events.length) {
-                    matchesData.body.events.map((event) => {
-                        let match = new Match(event);
-                        matchesArray.push(match);
-                    });
-                }
-                if (j == idsArray.length - 1) {
-                    //console.log('matchesArray: ', matchesArray);
-                    response.render('search-matches', { matches: matchesArray, user: (sess.username ? sess.username : '') });
-                }
+    let matchesArray = [];
+    let searchResult = false;
+    let link = `https://www.thesportsdb.com/api/v1/json/1/searchevents.php?e=${teamName}`;
+
+    superagent.get(link).then((returnedData) => {
+        if (returnedData.body && returnedData.body.event && returnedData.body.event.length) {
+            // console.log('returnedData.body: ', returnedData.body);
+            returnedData.body.event.map((event) => {
+                let match = new Match(event);
+                matchesArray.push(match);
             });
-        };
+            // console.log('matchesArray: ', matchesArray);
+            if (matchesArray.length) {
+                searchResult = true;
+            }
+            // console.log('searchResult: ', searchResult);
+            //end of if (matchesData.body && matchesData.body.events && matchesData.body.events.length) {
+        }
+        response.render('search-matches', { searchResult: searchResult, matches: matchesArray, user: (sess.username ? sess.username : '') });
     });
 }
+
 
 // 6- get matches using league function
 function getMatchesByLeagueName(request, response) {
     // console.log('request.query: ', request.query);
     let leagueId = request.query.leagueInputList;
+    let searchResult = false;
     let matchesArray = [];
     // console.log('leagueId: ', leagueId);
     let leagueIdlink = `https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${leagueId}`;
@@ -292,10 +322,13 @@ function getMatchesByLeagueName(request, response) {
                 let match = new Match(event);
                 matchesArray.push(match);
             });
+            if (matchesArray.length) {
+                searchResult = true;
+            }
         }
         let all_leaguesLink = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
         superagent.get(all_leaguesLink).then(leagues => {
-            response.render('search-matches', { matches: matchesArray, leagues: leagues.body.leagues, user: (sess.username ? sess.username : '') });
+            response.render('search-matches', { searchResult: searchResult, matches: matchesArray, leagues: leagues.body.leagues, user: (sess.username ? sess.username : '') });
         })
     });
 }

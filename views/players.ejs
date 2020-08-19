@@ -22,71 +22,75 @@
                     <input type="text" id="playerNameInputText" name="playerName" value=""><br>
                     <input id="searchButton" type="submit" value="Search">
                 </form>
-                <div id="resultsStatus">
-                    <% if (typeof(searchResult)=='undefined') { %>
 
-                        <%} else { %>
-
-
-                            <%  if (searchResult==false) { %>
-                                <h2>No matching Results</h2>
-
-                                <%} else { %>
-                                    <h2> Search results</h2>
-                                    <% } %>
-
-                                        <% } %>
-
-
-                </div>
-
-                <% if (typeof(players)=='undefined') { %>
-                    <div id="noResultsMessageDiv">No Matching results. Please try Again later</div>
-
+                <% if (typeof(searchResult)=='undefined') { %>
 
                     <%} else { %>
-                        <div class="allPlayersContainer">
-                            <% players.forEach (player => {  %>
-                                <div id="playerInfoDiv">
-                                    <img class="playerImage" src="<%= player.strThumb %>" alt="">
-                                    <div class=playerBreifInfoDiv>
-                                        <h1>
-                                            <%= player.strPlayer %>
-                                        </h1>
-                                        <h3>Nationality:
-                                            <%= player.strNationality %>
-                                        </h3>
-                                        <h3>Teams:
-                                            <%= player.strTeam  %>,
-                                                <%= player.strTeam2  %>
-                                        </h3>
-                                        <h3>Born Date:
-                                            <%= player.dateBorn %>
-                                        </h3>
-                                        <h3>Gender:
-                                            <%= player.strGender %>
-                                        </h3>
-                                        <h3>Side:
-                                            <%= player.strSide %>
-                                        </h3>
-                                        <h3>Position:
-                                            <%= player.strPosition %>
-                                        </h3>
-                                        <h3>Height:
-                                            <%= player.strHeight %>
-                                        </h3>
-                                        <h3>Weight :
-                                            <%= player.strWeight %>
-                                        </h3>
-
-                                    </div>
 
 
+                        <%  if (searchResult==false) { %>
+                            <div id="resultsStatus">
+                                <h2>No matching Results</h2>
+                            </div>
+
+                            <%} else { %>
+                                <div id="resultsStatus">
+                                    <h2> Search results</h2>
                                 </div>
+                                <% } %>
 
-                                <% }) %>
-                        </div>
-                        <% } %>
+                                    <% } %>
+
+
+
+
+                                        <% if (typeof(players)=='undefined') { %>
+                                            <div id="noResultsMessageDiv">No Matching results. Please try Again later</div>
+
+
+                                            <%} else { %>
+                                                <div class="allPlayersContainer">
+                                                    <% players.forEach (player => {  %>
+                                                        <div id="playerInfoDiv">
+                                                            <img class="playerImage" src="<%= player.strThumb %>" alt="">
+                                                            <div class=playerBreifInfoDiv>
+                                                                <h1>
+                                                                    <%= player.strPlayer %>
+                                                                </h1>
+                                                                <h3>Nationality:
+                                                                    <%= player.strNationality %>
+                                                                </h3>
+                                                                <h3>Teams:
+                                                                    <%= player.strTeam  %>,
+                                                                        <%= player.strTeam2  %>
+                                                                </h3>
+                                                                <h3>Born Date:
+                                                                    <%= player.dateBorn %>
+                                                                </h3>
+                                                                <h3>Gender:
+                                                                    <%= player.strGender %>
+                                                                </h3>
+                                                                <h3>Side:
+                                                                    <%= player.strSide %>
+                                                                </h3>
+                                                                <h3>Position:
+                                                                    <%= player.strPosition %>
+                                                                </h3>
+                                                                <h3>Height:
+                                                                    <%= player.strHeight %>
+                                                                </h3>
+                                                                <h3>Weight :
+                                                                    <%= player.strWeight %>
+                                                                </h3>
+
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <% }) %>
+                                                </div>
+                                                <% } %>
 
 
 

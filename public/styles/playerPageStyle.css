@@ -11,6 +11,16 @@ body {
     margin-bottom: 20px;
 }
 
+#resultsStatus {
+    padding: 5px;
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #7f7caf;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media (min-width: 1024px) {
     main {
         min-height: 53.3vh;
@@ -89,13 +99,7 @@ body {
         background-color: rgba(50, 50, 50, .55);
     }
     #resultsStatus {
-        width: 70%;
-        margin: auto;
-        margin-top: 20px;
-        background-color: #7f7caf;
         font-size: 30px;
-        font-weight: bold;
-        text-align: center;
     }
 }
 
@@ -162,5 +166,8 @@ body {
         margin: 0;
         padding: 0%;
         width: 100%;
+    }
+    #resultsStatus {
+        font-size: 20px;
     }
 }
