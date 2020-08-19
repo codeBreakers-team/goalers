@@ -88,6 +88,15 @@ body {
         padding: 20px 80px 20px 30px;
         background-color: rgba(50, 50, 50, .55);
     }
+    #resultsStatus {
+        width: 70%;
+        margin: auto;
+        margin-top: 20px;
+        background-color: #7f7caf;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
 }
 
 @media (max-width: 360px) {
